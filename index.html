@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>  اخبار مثبت  | حال خوب </title>
+<title>سپیده‌دم | نسخه‌ی روزانه‌ی کامل</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -150,6 +150,86 @@
   .shop-link.featured .shop-link-title{ color:var(--dawn-gold); }
   .shop-link.featured .shop-link-desc{ color:#e9dfc9; }
 
+  /* Featured real product inside the shop section */
+  .shop-featured-product{
+    margin-top:18px;
+    display:flex;
+    gap:16px;
+    align-items:center;
+    background:linear-gradient(135deg,var(--dawn-amber),var(--dawn-rose));
+    border-radius:18px;
+    padding:20px;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .shop-featured-badge{
+    position:absolute; top:14px; left:14px;
+    background:rgba(255,255,255,.22);
+    border:1px solid rgba(255,255,255,.4);
+    color:#fff;
+    font-size:.72rem;
+    font-weight:700;
+    padding:4px 12px;
+    border-radius:999px;
+  }
+  .shop-featured-thumb{
+    flex:0 0 auto;
+    width:92px; height:92px;
+    border-radius:14px;
+    background:#fff;
+    overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .shop-featured-thumb img{ width:100%; height:100%; object-fit:contain; display:block; }
+  .shop-featured-body{ flex:1; min-width:0; }
+  .shop-featured-name{ font-size:1.02rem; font-weight:800; line-height:1.6; margin:14px 0 4px; }
+  .shop-featured-price{ font-size:.88rem; font-weight:700; opacity:.95; }
+  .shop-featured-sync{ font-size:.72rem; opacity:.85; margin-top:4px; }
+  .shop-featured-actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+  .shop-featured-link{
+    display:inline-flex; align-items:center; gap:5px;
+    font-family:inherit; text-decoration:none; font-weight:700;
+    padding:8px 16px; border-radius:999px; font-size:.82rem;
+  }
+  .shop-featured-link.watch{ background:rgba(255,255,255,.2); color:#fff; border:1px solid rgba(255,255,255,.45); }
+  .shop-featured-link.watch:hover{ background:rgba(255,255,255,.32); }
+  .shop-featured-link.buy{ background:#fff; color:var(--gold-deep); }
+  .shop-featured-link.buy:hover{ opacity:.9; }
+  .shop-featured-link.watch{ cursor:pointer; border:1px solid rgba(255,255,255,.45); font-family:inherit; }
+  @media (max-width:480px){
+    .shop-featured-product{ flex-direction:column; align-items:flex-start; }
+    .shop-featured-thumb{ width:100%; height:140px; }
+    .shop-featured-badge{ position:static; display:inline-block; margin-bottom:10px; }
+  }
+
+  /* Inline product-test video modal (no navigating to Aparat) */
+  .pv-overlay{
+    position:fixed; inset:0;
+    background:rgba(21,27,50,.75);
+    backdrop-filter:blur(3px);
+    display:flex; align-items:center; justify-content:center;
+    z-index:80; padding:18px;
+    opacity:0; visibility:hidden;
+    transition:opacity .25s ease;
+  }
+  .pv-overlay.show{ opacity:1; visibility:visible; }
+  .pv-modal{
+    background:var(--night);
+    border-radius:18px;
+    max-width:640px; width:100%;
+    padding:14px;
+    transform:translateY(12px) scale(.97);
+    transition:transform .25s ease;
+  }
+  .pv-overlay.show .pv-modal{ transform:translateY(0) scale(1); }
+  .pv-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding:0 4px; }
+  .pv-head h3{ font-size:.92rem; font-weight:700; color:#fdf6e6; margin:0; }
+  .pv-close{ background:none; border:none; color:#e9dfc9; font-size:22px; cursor:pointer; line-height:1; }
+  .pv-frame-wrap{ position:relative; width:100%; padding-top:56.25%; background:#000; border-radius:12px; overflow:hidden; }
+  .pv-frame-wrap iframe{ position:absolute; inset:0; width:100%; height:100%; border:none; }
+  .pv-loading{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#e9dfc9; font-size:.82rem; }
+
   /* Streak badge */
   .streak-badge{ position:relative; z-index:2; display:inline-block; margin-top:8px; padding:6px 18px; border-radius:999px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.3); color:#ffe7bd; font-size:.82rem; }
 
@@ -188,9 +268,86 @@
   footer{ text-align:center; padding:30px 24px 50px; color:#a8967a; font-size:.82rem; line-height:1.9; }
 
   @media (prefers-reduced-motion: reduce){ .stars,.sun{animation:none;} }
+
+  /* ---- Price dashboard (قیمت لحظه‌ای) ---- */
+  .price-updated{ font-size:.8rem; color:#8a7960; margin:-14px 0 20px; }
+  .price-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-bottom:28px; }
+  .price-card{ background:var(--night); border:1px solid var(--night); border-radius:16px; padding:14px; }
+  .price-card-title{ font-size:.85rem; font-weight:700; color:var(--dawn-gold); margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .price-widget-box{ height:170px; border-radius:10px; overflow:hidden; }
+
+  .price-domestic{ background:#fff; border:1px solid var(--line); border-radius:20px; overflow:hidden; margin-bottom:28px; }
+  .price-row{ display:flex; align-items:center; justify-content:space-between; padding:16px 20px; border-bottom:1px solid var(--line); gap:12px; flex-wrap:wrap; }
+  .price-row:last-child{ border-bottom:none; }
+  .price-name{ font-size:.95rem; font-weight:700; color:var(--ink); min-width:130px; }
+  .price-name small{ display:block; font-weight:400; color:#8a7960; font-size:.75rem; margin-top:2px; }
+  .price-value{ font-size:1.02rem; font-weight:800; color:var(--gold-deep); direction:ltr; text-align:left; }
+  .price-value small{ display:block; font-weight:400; color:#8a7960; font-size:.72rem; }
+  .price-link{ font-size:.78rem; color:var(--dawn-amber); text-decoration:none; white-space:nowrap; font-weight:600; }
+  .price-link:hover{ text-decoration:underline; }
+
+  .price-calc{ background:#fff; border:1px solid var(--line); border-radius:20px; padding:26px 28px; margin-bottom:16px; }
+  .price-calc-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin-bottom:14px; }
+  .price-calc-field label{ display:block; font-size:.78rem; color:#8a7960; margin-bottom:6px; font-weight:600; }
+  .price-calc-field input{ width:100%; font-family:inherit; background:var(--cloud); border:1px solid var(--line); border-radius:10px; padding:10px 12px; color:var(--ink); font-size:.92rem; direction:ltr; text-align:left; box-sizing:border-box; }
+  .price-calc-field input:focus{ outline:2px solid var(--dawn-gold); outline-offset:1px; }
+  .price-calc-btn{ font-family:inherit; cursor:pointer; border:none; background:linear-gradient(90deg,var(--dawn-amber),var(--dawn-gold)); color:#fff; font-weight:700; padding:12px 20px; border-radius:999px; font-size:.9rem; width:100%; }
+  .price-calc-btn:hover{ opacity:.9; }
+  .price-calc-results{ margin-top:18px; display:none; }
+  .price-calc-results.show{ display:block; }
+  .price-result-row{ display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:var(--cloud); border:1px solid var(--line); border-radius:12px; margin-bottom:10px; flex-wrap:wrap; gap:8px; }
+  .price-result-name{ font-size:.85rem; font-weight:700; color:var(--ink); }
+  .price-result-name small{ display:block; color:#8a7960; font-weight:400; font-size:.72rem; margin-top:2px; }
+  .price-result-vals{ text-align:left; direction:ltr; }
+  .price-result-vals .price-fair{ font-size:.78rem; color:#8a7960; }
+  .price-result-vals .price-bubble{ font-size:.98rem; font-weight:800; }
+  .price-badge{ display:inline-block; font-size:.72rem; font-weight:700; padding:4px 10px; border-radius:999px; margin-inline-start:8px; }
+  .price-badge.low{ background:#e5f3e6; color:#2e6b31; }
+  .price-badge.mid{ background:#fbeecb; color:var(--gold-deep); }
+  .price-badge.high{ background:#fbe4e1; color:#a13a34; }
+  .price-badge.neg{ background:#e5eefb; color:#2a5fa1; }
+  .price-advice{ margin-top:16px; background:var(--cloud); border:1px solid var(--line); border-radius:12px; padding:16px 18px; font-size:.88rem; line-height:2; color:var(--ink); }
+  .price-advice h4{ margin:0 0 8px; color:var(--gold-deep); font-size:.95rem; }
+
+  /* ---- Top tabs (قیمت / اخبار) ---- */
+  .top-tabs{ display:flex; gap:10px; margin-bottom:24px; flex-wrap:wrap; }
+  .top-tab-btn{ font-family:inherit; cursor:pointer; flex:1; min-width:160px; border:1px solid var(--line); background:#fff; color:var(--ink); font-weight:700; font-size:.92rem; padding:14px 18px; border-radius:16px; transition:background .2s,color .2s,border-color .2s; }
+  .top-tab-btn.active{ background:linear-gradient(135deg,var(--dawn-amber),var(--dawn-gold)); color:#fff; border-color:transparent; box-shadow:0 10px 24px -12px rgba(232,121,26,.5); }
+  .top-tab-btn:focus-visible{ outline:2px solid var(--dawn-gold); outline-offset:2px; }
+  .top-tab-panel[hidden]{ display:none; }
+
+  /* ---- Gender modal ---- */
+  .gender-overlay{ position:fixed; inset:0; background:rgba(28,37,65,.55); backdrop-filter:blur(2px); display:flex; align-items:center; justify-content:center; z-index:999; padding:20px; }
+  .gender-overlay[hidden]{ display:none; }
+  .gender-modal{ background:var(--cloud); border-radius:22px; padding:32px 28px; max-width:380px; width:100%; text-align:center; box-shadow:0 30px 70px -20px rgba(0,0,0,.4); }
+  .gender-modal h3{ margin:0 0 10px; font-size:1.1rem; color:var(--gold-deep); }
+  .gender-modal p{ margin:0 0 22px; font-size:.88rem; color:#8a7960; line-height:1.9; }
+  .gender-options{ display:flex; gap:12px; }
+  .gender-btn{ flex:1; font-family:inherit; cursor:pointer; border:1px solid var(--line); background:#fff; padding:18px 10px; border-radius:16px; font-size:.95rem; font-weight:700; color:var(--ink); transition:transform .15s,border-color .15s; }
+  .gender-btn:hover{ border-color:var(--dawn-gold); transform:translateY(-2px); }
+  .gender-btn .g-icon{ display:block; font-size:1.8rem; margin-bottom:8px; }
+  .gender-skip{ margin-top:16px; background:none; border:none; color:#a8967a; font-size:.8rem; text-decoration:underline; cursor:pointer; font-family:inherit; }
+
+  /* ---- Product of the day (with image) ---- */
+  .product-day-img-wrap{ width:100%; height:160px; border-radius:16px; overflow:hidden; margin-bottom:18px; background:rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; }
+  .product-day-img-wrap img{ width:100%; height:100%; object-fit:cover; }
+  .product-day-icon-fallback{ font-size:3rem; }
+  .product-day-change{ display:inline-block; margin-top:10px; background:none; border:none; color:#fff; opacity:.85; font-size:.78rem; text-decoration:underline; cursor:pointer; font-family:inherit; }
 </style>
 </head>
 <body>
+
+<div class="gender-overlay" id="gender-overlay" hidden>
+  <div class="gender-modal">
+    <h3>پیشنهادِ محصول رو دقیق‌تر کنیم؟</h3>
+    <p>بگو شما آقا هستید یا خانم، تا هر روز محصولِ مناسب‌تری بهتون پیشنهاد بدیم.</p>
+    <div class="gender-options">
+      <button class="gender-btn" data-gender="male" type="button"><span class="g-icon">👨</span>آقا</button>
+      <button class="gender-btn" data-gender="female" type="button"><span class="g-icon">👩</span>خانم</button>
+    </div>
+    <button class="gender-skip" id="gender-skip" type="button">فعلاً نه</button>
+  </div>
+</div>
 
 <div class="sky">
   <div class="stars"></div><div class="sun"></div>
@@ -203,6 +360,179 @@
 </div>
 
 <div class="wrap">
+
+  <div class="top-tabs">
+    <button class="top-tab-btn active" data-tab="price" type="button">📊 قیمتِ لحظه‌ایِ بازار</button>
+    <button class="top-tab-btn" data-tab="news" type="button">📰 اخبارِ مثبت</button>
+    <button class="top-tab-btn" data-tab="shop" type="button">🛍️ فروشگاه و مشاوره</button>
+    <button class="top-tab-btn" data-tab="contact" type="button">📞 ارتباط با ما</button>
+  </div>
+
+  <div class="top-tab-panel" id="tab-panel-price">
+
+  <div class="section-label">💵 قیمتِ لحظه‌ایِ بازار</div>
+  <p class="price-updated">طلا، نقره، نفت، بیت‌کوین و یورو/دلار زنده‌اند؛ بازارِ داخلی آخرین قیمتِ ثبت‌شده است — برای نرخِ لحظه‌ای روی «مشاهده لحظه‌ای» بزن.</p>
+
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="price-card-title">🥇 طلا (اونس جهانی)</div>
+      <div class="price-widget-box">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          { "symbol":"TVC:GOLD","width":"100%","height":"100%","locale":"fa_IR","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true,"largeChartUrl":"" }
+          </script>
+        </div>
+      </div>
+    </div>
+    <div class="price-card">
+      <div class="price-card-title">🥈 نقره (اونس جهانی)</div>
+      <div class="price-widget-box">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          { "symbol":"TVC:SILVER","width":"100%","height":"100%","locale":"fa_IR","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true,"largeChartUrl":"" }
+          </script>
+        </div>
+      </div>
+    </div>
+    <div class="price-card">
+      <div class="price-card-title">🛢️ نفت خام WTI</div>
+      <div class="price-widget-box">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          { "symbol":"TVC:USOIL","width":"100%","height":"100%","locale":"fa_IR","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true,"largeChartUrl":"" }
+          </script>
+        </div>
+      </div>
+    </div>
+    <div class="price-card">
+      <div class="price-card-title">₿ بیت‌کوین (BTC/USD)</div>
+      <div class="price-widget-box">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          { "symbol":"BITSTAMP:BTCUSD","width":"100%","height":"100%","locale":"fa_IR","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true,"largeChartUrl":"" }
+          </script>
+        </div>
+      </div>
+    </div>
+    <div class="price-card">
+      <div class="price-card-title">💶 یورو به دلار (EUR/USD)</div>
+      <div class="price-widget-box">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+          { "symbol":"FX:EURUSD","width":"100%","height":"100%","locale":"fa_IR","dateRange":"1D","colorTheme":"dark","isTransparent":true,"autosize":true,"largeChartUrl":"" }
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="price-domestic">
+    <div class="price-row">
+      <div class="price-name">دلار آزاد</div>
+      <div class="price-value">۱۹۹,۹۰۰<small>تومان</small></div>
+      <a class="price-link" href="https://www.tgju.org/profile/price_dollar_rl" target="_blank" rel="noopener">مشاهده لحظه‌ای ↗</a>
+    </div>
+    <div class="price-row">
+      <div class="price-name">یورو</div>
+      <div class="price-value">۲۳۳,۶۱۰<small>تومان</small></div>
+      <a class="price-link" href="https://www.tgju.org/profile/price_eur" target="_blank" rel="noopener">مشاهده لحظه‌ای ↗</a>
+    </div>
+    <div class="price-row">
+      <div class="price-name">طلای ۱۸ عیار <small>هر گرم</small></div>
+      <div class="price-value">۲۱,۷۴۶,۴۰۰<small>تومان</small></div>
+      <a class="price-link" href="https://www.tgju.org/profile/geram18" target="_blank" rel="noopener">مشاهده لحظه‌ای ↗</a>
+    </div>
+    <div class="price-row">
+      <div class="price-name">مثقال طلا</div>
+      <div class="price-value">۹۴,۲۰۵,۰۰۰<small>تومان</small></div>
+      <a class="price-link" href="https://www.tgju.org/profile/mesghal" target="_blank" rel="noopener">مشاهده لحظه‌ای ↗</a>
+    </div>
+    <div class="price-row">
+      <div class="price-name">سکه امامی</div>
+      <div class="price-value">۲۱۸,۰۴۰,۰۰۰<small>تومان</small></div>
+      <a class="price-link" href="https://www.tgju.org/profile/sekee" target="_blank" rel="noopener">مشاهده لحظه‌ای ↗</a>
+    </div>
+    <div class="price-row">
+      <div class="price-name">نقره ۹۹۹ <small>هر گرم</small></div>
+      <div class="price-value">~۴۰۰,۰۰۰<small>تومان (تقریبی)</small></div>
+      <a class="price-link" href="https://www.tgju.org/profile/silver_999" target="_blank" rel="noopener">مشاهده لحظه‌ای ↗</a>
+    </div>
+  </div>
+
+  <div class="section-label">🧮 محاسبه‌گرِ حبابِ طلا، سکه و نقره</div>
+  <p class="section-sub">عددهای بازارِ داخلی را با نرخِ روزِ tgju.org به‌روز کن و دکمه‌ی محاسبه را بزن.</p>
+  <div class="price-calc">
+    <div class="price-calc-grid">
+      <div class="price-calc-field"><label>قیمت دلار آزاد (تومان)</label><input type="number" id="p-inDollar" value="199900" /></div>
+      <div class="price-calc-field"><label>انس جهانی طلا (دلار)</label><input type="number" id="p-inOunce" value="4620" /></div>
+      <div class="price-calc-field"><label>انس جهانی نقره (دلار)</label><input type="number" id="p-inSilverOunce" value="53" /></div>
+    </div>
+    <div class="price-calc-grid">
+      <div class="price-calc-field"><label>طلای ۱۸ عیار در بازار (تومان / گرم)</label><input type="number" id="p-inGram18" value="21746400" /></div>
+      <div class="price-calc-field"><label>آبشده نقدی در بازار (تومان / گرم)</label><input type="number" id="p-inMelted" value="27400000" /></div>
+      <div class="price-calc-field"><label>مثقال طلا در بازار (تومان)</label><input type="number" id="p-inMesghal" value="94205000" /></div>
+    </div>
+    <div class="price-calc-grid">
+      <div class="price-calc-field"><label>سکه امامی در بازار (تومان)</label><input type="number" id="p-inCoin" value="218040000" /></div>
+      <div class="price-calc-field"><label>نیم سکه در بازار (تومان)</label><input type="number" id="p-inHalfCoin" value="110000000" /></div>
+      <div class="price-calc-field"><label>ربع سکه در بازار (تومان)</label><input type="number" id="p-inQuarterCoin" value="62000000" /></div>
+      <div class="price-calc-field"><label>سکه گرمی در بازار (تومان)</label><input type="number" id="p-inGeramiCoin" value="32000000" /></div>
+    </div>
+    <div class="price-calc-grid">
+      <div class="price-calc-field"><label>نقره ۹۹۹ در بازار (تومان / گرم)</label><input type="number" id="p-inSilverGram" value="400000" /></div>
+    </div>
+
+    <button class="price-calc-btn" id="price-calc-btn" type="button">محاسبه حباب</button>
+
+    <div class="price-calc-results" id="price-calc-results">
+      <div class="price-result-row"><div class="price-result-name">طلای ۱۸ عیار <small>هر گرم</small></div><div class="price-result-vals"><div class="price-fair" id="p-fairGram18"></div><div class="price-bubble" id="p-bubbleGram18"></div></div></div>
+      <div class="price-result-row"><div class="price-result-name">آبشده نقدی <small>هر گرم، طلای خام بدون اجرت</small></div><div class="price-result-vals"><div class="price-fair" id="p-fairMelted"></div><div class="price-bubble" id="p-bubbleMelted"></div></div></div>
+      <div class="price-result-row"><div class="price-result-name">مثقال طلا <small>۴.۶۰۸ گرم</small></div><div class="price-result-vals"><div class="price-fair" id="p-fairMesghal"></div><div class="price-bubble" id="p-bubbleMesghal"></div></div></div>
+      <div class="price-result-row"><div class="price-result-name">سکه امامی <small>۸.۱۳۳ گرم، عیار ۹۰۰</small></div><div class="price-result-vals"><div class="price-fair" id="p-fairCoin"></div><div class="price-bubble" id="p-bubbleCoin"></div></div></div>
+      <div class="price-result-row"><div class="price-result-name">نیم سکه <small>۴.۰۶۶ گرم، عیار ۹۰۰</small></div><div class="price-result-vals"><div class="price-fair" id="p-fairHalfCoin"></div><div class="price-bubble" id="p-bubbleHalfCoin"></div></div></div>
+      <div class="price-result-row"><div class="price-result-name">ربع سکه <small>۲.۰۳۳ گرم، عیار ۹۰۰</small></div><div class="price-result-vals"><div class="price-fair" id="p-fairQuarterCoin"></div><div class="price-bubble" id="p-bubbleQuarterCoin"></div></div></div>
+      <div class="price-result-row"><div class="price-result-name">سکه گرمی <small>۱.۰۱ گرم، عیار ۹۰۰</small></div><div class="price-result-vals"><div class="price-fair" id="p-fairGeramiCoin"></div><div class="price-bubble" id="p-bubbleGeramiCoin"></div></div></div>
+      <div class="price-result-row"><div class="price-result-name">نقره ۹۹۹ <small>هر گرم</small></div><div class="price-result-vals"><div class="price-fair" id="p-fairSilver"></div><div class="price-bubble" id="p-bubbleSilver"></div></div></div>
+
+      <div class="price-advice" id="p-adviceBox"></div>
+
+      <p class="disclaimer">⚠️ این ابزار صرفاً بر پایه‌ی فرمولِ «قیمتِ جهانیِ فلز × نرخِ دلار» کار می‌کند و اختلافِ قیمتِ بازار با ارزشِ ذاتی را نشان می‌دهد؛ نه توصیه‌ی مالی و نه پیش‌بینیِ قیمت. حباب در قطعاتِ کوچک‌تر (ربع سکه، گرمی) طبیعتاً بیشتر از سکه‌ی تمام است. حبابِ بالا به‌معنیِ افتِ قریب‌الوقوعِ قیمت نیست و می‌تواند ماه‌ها بالا بماند. عددهای ورودی را خودتان از منبعِ لحظه‌ای (tgju.org) به‌روز کنید.</p>
+    </div>
+  </div>
+
+  <p class="disclaimer">⚠️ قیمتِ بیت‌کوین به‌دلار جهانی‌ست، نه نرخِ خریدوفروشِ صرافی‌های داخلی. اعدادِ بخشِ «بازارِ داخلی» (دلار، طلا، سکه) به‌صورتِ خودکار و لحظه‌ای به‌روز نمی‌شوند؛ برای نرخِ لحظه‌ای، روی «مشاهده لحظه‌ای» هر ردیف بزنید.</p>
+
+  </div>
+
+  <div class="top-tab-panel" id="tab-panel-news" hidden>
+
+  <div class="section-label">جملات تاکیدی، انگیزشی و فروش</div>
+  <p class="section-sub">هر دسته، سه موردِ روزِ خودش را نشان می‌دهد؛ با دکمه‌ی «بیشتر» موردهای تازه اضافه می‌شود.</p>
+  <div class="tabs" id="tabs">
+    <button class="tab-btn active" data-cat="money">💰 پول‌سازی</button>
+    <button class="tab-btn" data-cat="thanks">🙏 خدایا شکرت</button>
+    <button class="tab-btn" data-cat="humanity">🤍 انسانیت</button>
+    <button class="tab-btn" data-cat="sales">📈 فروش</button>
+    <button class="tab-btn" data-cat="motivation">🔥 انگیزشی</button>
+    <button class="tab-btn" data-cat="formula">🎯 فرمول موفقیت</button>
+    <button class="tab-btn" data-cat="instagram">📸 رشدِ اینستاگرام</button>
+    <button class="tab-btn" data-cat="admin">🛠 آموزشِ ادمینی</button>
+    <button class="tab-btn" data-cat="visitor">🚐 آموزشِ ویزیتوری</button>
+    <button class="tab-btn" data-cat="selling">🤝 آموزشِ فروشندگی</button>
+  </div>
+  <div class="quote-card">
+    <div id="quote-list"></div>
+    <div class="quote-nav">
+      <button id="btn-more">چند موردِ دیگر از همین دسته</button>
+      <button id="btn-listen" class="ghost" type="button">🔊 گوش بده</button>
+      <button id="btn-share" class="ghost" type="button">📤 اشتراک‌گذاری</button>
+    </div>
+  </div>
 
   <div class="section-label">مقاله‌ی کوتاهِ امروز</div>
   <div class="essay-card">
@@ -231,29 +561,6 @@
   <p class="section-sub">یک سوالِ کوتاه درباره‌ی فروش و کسب‌وکار؛ جواب بده و توضیح رو ببین.</p>
   <div class="quiz-card" id="quiz-card"></div>
 
-  <div class="section-label">جملات تاکیدی، انگیزشی و فروش</div>
-  <p class="section-sub">هر دسته، سه موردِ روزِ خودش را نشان می‌دهد؛ با دکمه‌ی «بیشتر» موردهای تازه اضافه می‌شود.</p>
-  <div class="tabs" id="tabs">
-    <button class="tab-btn active" data-cat="money">💰 پول‌سازی</button>
-    <button class="tab-btn" data-cat="thanks">🙏 خدایا شکرت</button>
-    <button class="tab-btn" data-cat="humanity">🤍 انسانیت</button>
-    <button class="tab-btn" data-cat="sales">📈 فروش</button>
-    <button class="tab-btn" data-cat="motivation">🔥 انگیزشی</button>
-    <button class="tab-btn" data-cat="formula">🎯 فرمول موفقیت</button>
-    <button class="tab-btn" data-cat="instagram">📸 رشدِ اینستاگرام</button>
-    <button class="tab-btn" data-cat="admin">🛠 آموزشِ ادمینی</button>
-    <button class="tab-btn" data-cat="visitor">🚐 آموزشِ ویزیتوری</button>
-    <button class="tab-btn" data-cat="selling">🤝 آموزشِ فروشندگی</button>
-  </div>
-  <div class="quote-card">
-    <div id="quote-list"></div>
-    <div class="quote-nav">
-      <button id="btn-more">چند موردِ دیگر از همین دسته</button>
-      <button id="btn-listen" class="ghost" type="button">🔊 گوش بده</button>
-      <button id="btn-share" class="ghost" type="button">📤 اشتراک‌گذاری</button>
-    </div>
-  </div>
-
   <div class="section-label">مهارت و فرصت پول‌ساز امروز</div>
   <div class="skill-card">
     <div class="skill-icon">💡</div>
@@ -268,45 +575,10 @@
   <p class="section-sub">امروز دو داستان از مسیرِ افرادِ شناخته‌شده، از صفر تا موفقیت.</p>
   <div class="story-list" id="story-list"></div>
 
-  <div class="section-label">فروشگاه و کسب‌وکار</div>
-  <p class="section-sub">فروشگاه محصولاتِ نانو، صفحه‌ی فروش در باسلام، مشاوره‌ی رایگانِ فروش و کانالِ آموزشیِ تجارت — همه‌جا که لازمه.</p>
-  <div class="shop-card">
-    <p class="shop-intro">هر روز که سر می‌زنی، یک قدم هم به کسب‌وکارت نزدیک شو 🌅</p>
-    <div class="shop-grid">
-      <a class="shop-link featured" href="https://remyshops.github.io/index/" target="_blank" rel="noopener">
-        <div class="shop-link-icon">🛍️</div>
-        <div>
-          <p class="shop-link-title">کاتالوگ محصولاتِ نانو</p>
-          <p class="shop-link-desc">مشاهده و سفارشِ محصولاتِ نانو، با قیمتِ عمده و خرده</p>
-        </div>
-      </a>
-      <a class="shop-link" href="https://basalam.com/editor" target="_blank" rel="noopener">
-        <div class="shop-link-icon">🏪</div>
-        <div>
-          <p class="shop-link-title">فروشگاه ما در باسلام</p>
-          <p class="shop-link-desc">ویترینِ فروشِ ما در باسلام</p>
-        </div>
-      </a>
-      <a class="shop-link" href="https://modaresibusiness.github.io/Academy/" target="_blank" rel="noopener">
-        <div class="shop-link-icon">📣</div>
-        <div>
-          <p class="shop-link-title">مشاوره‌ی رایگان برای فروشِ بیشتر</p>
-          <p class="shop-link-desc">مشاوره‌ی رایگان برای کسب‌وکارِ شما، برای رسیدن به فروشِ بیشتر</p>
-        </div>
-      </a>
-      <a class="shop-link" href="https://rubika.ir/tejarat_forosh" target="_blank" rel="noopener">
-        <div class="shop-link-icon">📢</div>
-        <div>
-          <p class="shop-link-title">عضویت در کانالِ روبیکا</p>
-          <p class="shop-link-desc">آموزشِ تجارت و فروش — کانالِ tejarat_forosh</p>
-        </div>
-      </a>
-    </div>
-  </div>
-
   <div class="section-label">🎁 پیشنهادِ محصولِ امروز</div>
-  <p class="section-sub">هر روز، یک محصول از کاتالوگِ نانو، با یک نکته برای معرفی به مشتری.</p>
+  <p class="section-sub">هر روز، یک محصول متناسب با شما، با یک نکته برای معرفی به مشتری.</p>
   <div class="product-day-card">
+    <div class="product-day-img-wrap" id="product-day-img-wrap"><span class="product-day-icon-fallback" id="product-day-icon">🎁</span></div>
     <p class="product-day-badge" id="product-day-badge">—</p>
     <p class="product-day-name" id="product-day-name">—</p>
     <p class="product-day-pitch" id="product-day-pitch">—</p>
@@ -314,6 +586,7 @@
       <a class="product-day-link" href="https://remyshops.github.io/index/" target="_blank" rel="noopener">مشاهده در کاتالوگ</a>
       <a class="product-day-link secondary" href="https://basalam.com/editor" target="_blank" rel="noopener">فروشگاهِ ما در باسلام</a>
     </div>
+    <button class="product-day-change" id="product-day-change" type="button">🔄 تغییرِ پیشنهاد (آقا/خانم)</button>
   </div>
 
   <div class="section-label">روتینِ روزانه‌ی افرادِ موفق</div>
@@ -360,23 +633,136 @@
     </div>
   </div>
 
-  <div class="section-label">اخبار مثبت جهان</div>
+  <div class="section-label">📰 اخبارِ مثبتِ امروز</div>
+  <p class="section-sub">هر روز، خبرهای مثبت از سراسرِ دنیا، کسب‌وکار و رشدِ فردی — همه در یک‌جا.</p>
+
   <p class="news-status" id="news-status-1">نمونه‌های امروز — در حال به‌روزرسانی با اخبارِ تازه…</p>
   <div class="news-list" id="news-list-1"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
 
-  <div class="section-label">اخبار کسب‌وکار، فروش و کارآفرینی</div>
+  <p class="section-sub" style="margin-top:28px;">💼 اخبارِ کسب‌وکار، فروش و کارآفرینی</p>
   <p class="news-status" id="news-status-2">نمونه‌های امروز — در حال به‌روزرسانی با اخبارِ تازه…</p>
   <div class="news-list" id="news-list-2"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
 
-  <div class="section-label">اخبارِ رشدِ فردی و موفقیت</div>
+  <p class="section-sub" style="margin-top:28px;">🌱 اخبارِ رشدِ فردی و موفقیت</p>
   <p class="news-status" id="news-status-3">نمونه‌های امروز — در حال به‌روزرسانی با اخبارِ تازه…</p>
   <div class="news-list" id="news-list-3"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
 
   <p class="disclaimer">جملات، مهارت‌ها، فرمول‌ها و مقاله‌های این صفحه، اصول انگیزشی و آموزه‌های عمومیِ کسب‌وکارند؛ نه مشاوره‌ی مالی و نه تضمینِ درآمد. نتیجه‌ی مالی هرکس به بازار، تلاش، مهارت و شرایط خودش بستگی دارد.</p>
 
+  </div>
+
+  <div class="top-tab-panel" id="tab-panel-shop" hidden>
+
+  <div class="section-label">🛍️ فروشگاه و کاتالوگ</div>
+  <p class="section-sub">فروشگاه محصولاتِ نانو، صفحه‌ی فروش در باسلام، مشاوره‌ی رایگانِ فروش و کانالِ آموزشیِ تجارت — همه‌جا که لازمه.</p>
+  <div class="shop-card">
+    <p class="shop-intro">هر روز که سر می‌زنی، یک قدم هم به کسب‌وکارت نزدیک شو 🌅</p>
+    <div class="shop-grid">
+      <a class="shop-link featured" href="https://remyshops.github.io/index/" target="_blank" rel="noopener">
+        <div class="shop-link-icon">🛍️</div>
+        <div>
+          <p class="shop-link-title">کاتالوگ محصولاتِ نانو</p>
+          <p class="shop-link-desc">مشاهده و سفارشِ محصولاتِ نانو، با قیمتِ عمده و خرده</p>
+        </div>
+      </a>
+      <a class="shop-link" href="https://basalam.com/editor" target="_blank" rel="noopener">
+        <div class="shop-link-icon">🏪</div>
+        <div>
+          <p class="shop-link-title">فروشگاه ما در باسلام</p>
+          <p class="shop-link-desc">ویترینِ فروشِ ما در باسلام</p>
+        </div>
+      </a>
+      <a class="shop-link" href="https://modaresibusiness.github.io/Academy/" target="_blank" rel="noopener">
+        <div class="shop-link-icon">📣</div>
+        <div>
+          <p class="shop-link-title">مشاوره‌ی رایگان برای فروشِ بیشتر</p>
+          <p class="shop-link-desc">مشاوره‌ی رایگان برای کسب‌وکارِ شما، برای رسیدن به فروشِ بیشتر</p>
+        </div>
+      </a>
+      <a class="shop-link" href="https://rubika.ir/tejarat_forosh" target="_blank" rel="noopener">
+        <div class="shop-link-icon">📢</div>
+        <div>
+          <p class="shop-link-title">عضویت در کانالِ روبیکا</p>
+          <p class="shop-link-desc">آموزشِ تجارت و فروش — کانالِ tejarat_forosh</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="shop-featured-product">
+      <span class="shop-featured-badge">⭐ محصول پیشنهادی</span>
+      <div class="shop-featured-thumb">
+        <img id="featuredProductImg" src="https://remyshops.github.io/index/home-multi-cleaner.webp" alt="نانو چند منظوره خانگی" loading="lazy" decoding="async">
+      </div>
+      <div class="shop-featured-body">
+        <p class="shop-featured-name">نانو چند منظوره خانگی</p>
+        <p class="shop-featured-price" id="featuredProductPrice">۲۸۵٬۰۰۰ تومان</p>
+        <p class="shop-featured-sync" id="featuredProductSync">در حال به‌روزرسانیِ قیمت از کاتالوگ…</p>
+        <div class="shop-featured-actions">
+          <a class="shop-featured-link watch" id="featuredProductWatch" href="https://www.aparat.com/v/sva419y" target="_blank" rel="noopener" data-video-url="https://www.aparat.com/v/sva419y">🎥 دیدن ویدیوی تست</a>
+          <a class="shop-featured-link buy" id="featuredProductBuy" href="https://basalam.com/editor/product/41543803" target="_blank" rel="noopener">🛒 خرید از باسلام</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <div class="top-tab-panel" id="tab-panel-contact" hidden>
+
+  <div class="section-label">📞 ارتباط با ما</div>
+  <p class="section-sub">هر سوالی داری یا خواستی سفارش بدی، از همین راه‌ها در دسترسیم.</p>
+  <div class="shop-card">
+    <div class="shop-grid">
+      <a class="shop-link" href="#" target="_blank" rel="noopener">
+        <div class="shop-link-icon">📱</div>
+        <div>
+          <p class="shop-link-title">تماس / واتساپ</p>
+          <p class="shop-link-desc">شماره‌ی تماس اینجا قرار می‌گیرد</p>
+        </div>
+      </a>
+      <a class="shop-link" href="#" target="_blank" rel="noopener">
+        <div class="shop-link-icon">📸</div>
+        <div>
+          <p class="shop-link-title">اینستاگرام</p>
+          <p class="shop-link-desc">آیدیِ اینستاگرام اینجا قرار می‌گیرد</p>
+        </div>
+      </a>
+      <a class="shop-link" href="#" target="_blank" rel="noopener">
+        <div class="shop-link-icon">✈️</div>
+        <div>
+          <p class="shop-link-title">تلگرام</p>
+          <p class="shop-link-desc">آیدیِ تلگرام اینجا قرار می‌گیرد</p>
+        </div>
+      </a>
+      <a class="shop-link" href="#" target="_blank" rel="noopener">
+        <div class="shop-link-icon">✉️</div>
+        <div>
+          <p class="shop-link-title">ایمیل</p>
+          <p class="shop-link-desc">آدرسِ ایمیل اینجا قرار می‌گیرد</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  </div>
+
 </div>
 
 <footer>این صفحه هر بار که باز می‌شود، محتوای هر بخش را بر اساس تاریخ به‌صورت خودکار عوض می‌کند و می‌کوشد آخرین خبرها را از چند منبعِ زنده، با پشتیبانِ خودکار، بارگیری کند.</footer>
+
+<!-- ================= PRODUCT TEST VIDEO MODAL (inline, no navigating to Aparat) ================= -->
+<div class="pv-overlay" id="pvOverlay">
+  <div class="pv-modal">
+    <div class="pv-head">
+      <h3 id="pvTitle">ویدیوی تست محصول</h3>
+      <button class="pv-close" id="pvClose" type="button">×</button>
+    </div>
+    <div class="pv-frame-wrap">
+      <span class="pv-loading" id="pvLoading">در حال بارگذاریِ ویدیو…</span>
+      <iframe id="pvFrame" src="" allow="autoplay; fullscreen" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+    </div>
+  </div>
+</div>
 
 <script>
 /* ---------------- تاریخ ---------------- */
@@ -1081,27 +1467,72 @@ function setupChallengeDone(){
 }
 setupChallengeDone();
 
-/* ---------------- پیشنهادِ محصولِ امروز ---------------- */
-/* توجه: اسم و توضیحِ محصولات نمونه‌ست — با محصولاتِ واقعیِ کاتالوگ جایگزین کن */
-const PRODUCTS = [
-  ["نانو پوششِ بدنه‌ی خودرو", "برای مشتری‌ای که تازه ماشین شسته، این محافظتِ چندماهه رو پیشنهاد بده."],
-  ["نانو محافظ و آبگریزِ شیشه‌ی جلو", "تو روزهای بارونی، این محصول بیشترین تقاضا رو داره — همین امروز معرفی‌اش کن."],
-  ["اسپریِ نانو ضدآبِ پارچه و مبل", "برای ماشین‌های نو یا مبلمانِ خونگی، یه پیشنهادِ ساده و کاربردیه."],
-  ["نانو براق‌کننده و محافظِ رینگ", "بعد از هر کاروآش، این محصول رو به‌عنوانِ مکملِ خدمت پیشنهاد بده."],
-  ["نانو پولیشِ دستیِ بدنه", "برای مشتری‌هایی که دنبالِ درخشندگیِ سریع و بدونِ دستگاه‌ان."],
-  ["محلولِ نانو ضدخشِ شیشه", "راهی ساده برای افزایشِ ارزشِ خدماتِ کاروآش، بدونِ هزینه‌ی زیاد."],
-  ["اسپریِ نانو محافظِ چرم و صندلی", "برای ماشین‌های صفر یا صندلیِ چرمی، این یکی همیشه فروش می‌ره."],
-  ["نانو تمیزکننده و درخشان‌کننده‌ی تایر", "لمسِ نهایی‌ای که ظاهرِ کارِ کاروآش رو حرفه‌ای‌تر نشون می‌ده."],
-  ["پکِ کاملِ نانو (بدنه + شیشه)", "برای مشتریانی که می‌خوان یه‌بار همه‌چیز رو کامل انجام بدن، این پک ایده‌آله."],
-  ["نانو ضدبخارِ شیشه", "تو فصلِ سرد، این محصول یه نیازِ واقعیِ رانندگی رو حل می‌کنه."]
+/* ---------------- پیشنهادِ محصولِ امروز (بر اساسِ جنسیت) ---------------- */
+/* توجه: اسم، توضیح و عکسِ محصولات نمونه‌ست — با محصولاتِ واقعیِ کاتالوگ و لینکِ عکسِ واقعی جایگزین کن */
+const PRODUCTS_MALE = [
+  ["نانو پوششِ بدنه‌ی خودرو", "برای مشتری‌ای که تازه ماشین شسته، این محافظتِ چندماهه رو پیشنهاد بده.", "🚗", ""],
+  ["نانو محافظ و آبگریزِ شیشه‌ی جلو", "تو روزهای بارونی، این محصول بیشترین تقاضا رو داره — همین امروز معرفی‌اش کن.", "🌧️", ""],
+  ["اسپریِ نانو ضدآبِ پارچه و مبلِ خودرو", "برای ماشین‌های نو یا مبلمانِ داخلِ خودرو، یه پیشنهادِ ساده و کاربردیه.", "🧴", ""],
+  ["نانو براق‌کننده و محافظِ رینگ", "بعد از هر کاروآش، این محصول رو به‌عنوانِ مکملِ خدمت پیشنهاد بده.", "⚙️", ""],
+  ["نانو پولیشِ دستیِ بدنه", "برای مشتری‌هایی که دنبالِ درخشندگیِ سریع و بدونِ دستگاه‌ان.", "✨", ""],
+  ["محلولِ نانو ضدخشِ شیشه", "راهی ساده برای افزایشِ ارزشِ خدماتِ کاروآش، بدونِ هزینه‌ی زیاد.", "🛡️", ""],
+  ["اسپریِ نانو محافظِ چرم و صندلی", "برای ماشین‌های صفر یا صندلیِ چرمی، این یکی همیشه فروش می‌ره.", "🪑", ""],
+  ["نانو تمیزکننده و درخشان‌کننده‌ی تایر", "لمسِ نهایی‌ای که ظاهرِ کارِ کاروآش رو حرفه‌ای‌تر نشون می‌ده.", "🛞", ""],
+  ["پکِ کاملِ نانو (بدنه + شیشه)", "برای مشتریانی که می‌خوان یه‌بار همه‌چیز رو کامل انجام بدن، این پک ایده‌آله.", "📦", ""],
+  ["نانو ضدبخارِ شیشه", "تو فصلِ سرد، این محصول یه نیازِ واقعیِ رانندگی رو حل می‌کنه.", "❄️", ""]
 ];
+const PRODUCTS_FEMALE = [
+  ["اسپریِ نانو ضدآبِ مبل و پارچه‌ی خانگی", "برای مبل و پرده‌های خونه، محافظتِ ساده در برابرِ لک و رطوبت.", "🛋️", ""],
+  ["نانو محافظِ سطوحِ آشپزخانه", "برای کابینت و روشوییِ آشپزخانه، در برابرِ چربی و لکه.", "🍽️", ""],
+  ["اسپریِ نانو ضدرسوبِ حمام و شیرآلات", "تمیزیِ بیشتر با تلاشِ کمتر؛ برای سطوحِ حمام و آشپزخانه.", "🚿", ""],
+  ["نانو محافظِ کیف و کفشِ چرم", "برای کیف و کفشِ چرم، در برابرِ آب و لکه‌های روزمره.", "👜", ""],
+  ["اسپریِ نانو ضدآبِ لباس و مانتو", "برای روزهای بارونی، لباس رو در برابرِ خیس‌شدن محافظت می‌کنه.", "🧥", ""],
+  ["نانو براق‌کننده‌ی سطوحِ شیشه‌ای خانگی", "برای آینه و درِ شیشه‌ای، براقیِ بیشتر و تمیزیِ ماندگارتر.", "🪞", ""],
+  ["نانو ضدجرمِ سینک و ظرفشویی", "کاهشِ جرم‌گیریِ سینک، برای تمیزیِ راحت‌ترِ روزانه.", "🧽", ""],
+  ["پکِ کاملِ نانوِ خانگی (پارچه + سطوح)", "برای کسی که می‌خواد یه‌جا همه‌ی خونه رو پوشش بده.", "🏠", ""]
+];
+const GENDER_KEY = 'sepide_gender';
+function getGender(){ try{ return localStorage.getItem(GENDER_KEY); }catch(e){ return null; } }
+function openGenderModal(){ document.getElementById('gender-overlay').hidden = false; }
+function closeGenderModal(){ document.getElementById('gender-overlay').hidden = true; }
+function setGender(g){
+  try{ localStorage.setItem(GENDER_KEY, g); }catch(e){}
+  closeGenderModal();
+  setProductOfDay(todayIndex);
+}
 function setProductOfDay(idx){
-  const p = PRODUCTS[((idx % PRODUCTS.length) + PRODUCTS.length) % PRODUCTS.length];
-  document.getElementById('product-day-badge').textContent = 'پیشنهادِ امروز';
+  const gender = getGender();
+  const list = gender === 'female' ? PRODUCTS_FEMALE : PRODUCTS_MALE;
+  const p = list[((idx % list.length) + list.length) % list.length];
+  document.getElementById('product-day-badge').textContent =
+    gender === 'female' ? 'پیشنهادِ امروز برای خانم‌ها' : (gender === 'male' ? 'پیشنهادِ امروز برای آقایون' : 'پیشنهادِ امروز');
   document.getElementById('product-day-name').textContent = p[0];
   document.getElementById('product-day-pitch').textContent = p[1];
+  const imgWrap = document.getElementById('product-day-img-wrap');
+  if(p[3]){
+    imgWrap.innerHTML = '<img src="' + p[3] + '" alt="" loading="lazy">';
+  }else{
+    imgWrap.innerHTML = '<span class="product-day-icon-fallback">' + p[2] + '</span>';
+  }
 }
 setProductOfDay(todayIndex);
+document.querySelectorAll('.gender-btn').forEach(btn => {
+  btn.addEventListener('click', () => setGender(btn.dataset.gender));
+});
+document.getElementById('gender-skip').addEventListener('click', closeGenderModal);
+document.getElementById('product-day-change').addEventListener('click', openGenderModal);
+if(!getGender()){ openGenderModal(); }
+
+/* ---------------- تبِ قیمت / اخبار ---------------- */
+document.querySelectorAll('.top-tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.top-tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.top-tab-panel').forEach(panel => {
+      panel.hidden = panel.id !== 'tab-panel-' + btn.dataset.tab;
+    });
+  });
+});
 
 /* ---------------- سوالِ امروز ---------------- */
 const QUIZZES = [
@@ -1472,6 +1903,219 @@ async function loadFeed(rssUrl, containerId, statusId, liveLabel, fallback, maxI
 loadFeed('https://www.goodnewsnetwork.org/feed/', 'news-list-1', 'news-status-1', 'Good News Network', NEWS_FALLBACK_WORLD, 12);
 loadFeed('https://www.entrepreneur.com/latest.rss', 'news-list-2', 'news-status-2', 'Entrepreneur', NEWS_FALLBACK_BIZ, 10);
 loadFeed('https://www.success.com/feed/', 'news-list-3', 'news-status-3', 'Success.com', NEWS_FALLBACK_GROWTH, 8);
+
+/* ---------------- پخشِ ویدیوی تستِ محصول داخلِ همین صفحه (بدون رفتن به آپارات) ---------------- */
+const pvOverlay = document.getElementById('pvOverlay');
+const pvFrame = document.getElementById('pvFrame');
+const pvTitle = document.getElementById('pvTitle');
+const pvLoading = document.getElementById('pvLoading');
+const pvClose = document.getElementById('pvClose');
+
+function aparatHashFromUrl(url){
+  const m = (url || '').match(/aparat\.com\/v\/([a-zA-Z0-9]+)/);
+  return m ? m[1] : null;
+}
+
+function openProductVideo(url, title){
+  const hash = aparatHashFromUrl(url);
+  if(!hash){
+    window.open(url, '_blank', 'noopener');
+    return;
+  }
+  pvTitle.textContent = title || 'ویدیوی تست محصول';
+  pvLoading.style.display = 'flex';
+  pvFrame.src = `https://www.aparat.com/video/video/embed/videohash/${hash}/vt/frame`;
+  pvOverlay.classList.add('show');
+}
+function closeProductVideo(){
+  pvOverlay.classList.remove('show');
+  pvFrame.src = ""; // پخش رو متوقف می‌کنه
+}
+pvFrame.addEventListener('load', ()=>{ pvLoading.style.display = 'none'; });
+pvClose.addEventListener('click', closeProductVideo);
+pvOverlay.addEventListener('click', (e)=>{ if(e.target === pvOverlay) closeProductVideo(); });
+
+const featuredWatchBtn = document.getElementById('featuredProductWatch');
+if(featuredWatchBtn){
+  featuredWatchBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const url = featuredWatchBtn.getAttribute('data-video-url') || featuredWatchBtn.href;
+    const productName = document.querySelector('.shop-featured-name')?.textContent || 'محصول';
+    openProductVideo(url, `ویدیوی تست — ${productName}`);
+  });
+}
+
+/* ---------------- همگام‌سازیِ محصولِ پیشنهادی با خودِ کاتالوگ ----------------
+   قیمت و عکس رو مستقیم از صفحه‌ی کاتالوگ (remyshop) می‌خونه تا همیشه به‌روز بمونه.
+   اگه به هر دلیلی (قطعیِ اینترنت، تغییرِ کاتالوگ و…) نشد بخونتش، همون مقدارِ
+   پیش‌فرضی که تو HTML نوشته شده باقی می‌مونه، پس کاربر هیچ‌وقت باکسِ خالی نمی‌بینه. */
+const CATALOG_URL = 'https://remyshops.github.io/index/';
+const FEATURED_PRODUCT_KEY = 'نانو چند منظوره خانگی';
+
+async function fetchCatalogHtmlRobust(url){
+  const attempts = [
+    async () => {
+      const r = await fetch(url, {cache:'no-store'});
+      if(!r.ok) throw new Error('direct fetch failed');
+      return await r.text();
+    },
+    async () => {
+      const r = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(url));
+      if(!r.ok) throw new Error('allorigins failed');
+      return await r.text();
+    },
+    async () => {
+      const r = await fetch('https://corsproxy.io/?' + encodeURIComponent(url));
+      if(!r.ok) throw new Error('corsproxy failed');
+      return await r.text();
+    }
+  ];
+  for(const attempt of attempts){
+    try{ const html = await attempt(); if(html && html.length > 500) return html; }
+    catch(e){ /* روشِ بعدی */ }
+  }
+  return null;
+}
+
+function parseCatalogProduct(html, productName){
+  /* دنبالِ آبجکتِ محصول تو آرایه‌ی products صفحه‌ی کاتالوگ می‌گرده:
+     { name:"...", price:NUMBER, cat:"...", buyUrl:"...", img:"...", videos:[ {url:"..."} ... ] } */
+  const escaped = productName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const objRe = new RegExp('\\{\\s*name:"' + escaped + '"[\\s\\S]*?\\]\\s*\\}', 'm');
+  const match = html.match(objRe);
+  if(!match) return null;
+  const block = match[0];
+  const priceM = block.match(/price:\s*(\d+)/);
+  const imgM = block.match(/img:\s*"([^"]+)"/);
+  const buyM = block.match(/buyUrl:\s*"([^"]+)"/);
+  const videoM = block.match(/url:\s*"([^"]+)"/);
+  if(!priceM) return null;
+  return {
+    price: parseInt(priceM[1], 10),
+    img: imgM ? imgM[1] : null,
+    buyUrl: buyM ? buyM[1] : null,
+    videoUrl: videoM ? videoM[1] : null
+  };
+}
+
+async function syncFeaturedProductFromCatalog(){
+  const syncEl = document.getElementById('featuredProductSync');
+  const html = await fetchCatalogHtmlRobust(CATALOG_URL);
+  if(!html){
+    if(syncEl) syncEl.textContent = 'اتصال به کاتالوگ برقرار نشد — مقدارِ ذخیره‌شده نمایش داده می‌شه';
+    return;
+  }
+  const p = parseCatalogProduct(html, FEATURED_PRODUCT_KEY);
+  if(!p){
+    if(syncEl) syncEl.textContent = 'اتصال به کاتالوگ برقرار نشد — مقدارِ ذخیره‌شده نمایش داده می‌شه';
+    return;
+  }
+  const priceEl = document.getElementById('featuredProductPrice');
+  const imgEl = document.getElementById('featuredProductImg');
+  const buyEl = document.getElementById('featuredProductBuy');
+  const watchEl = document.getElementById('featuredProductWatch');
+  if(priceEl) priceEl.textContent = Math.round(p.price).toLocaleString('fa-IR') + ' تومان';
+  if(imgEl && p.img) imgEl.src = CATALOG_URL + p.img;
+  if(buyEl && p.buyUrl) buyEl.href = p.buyUrl;
+  if(watchEl && p.videoUrl){ watchEl.href = p.videoUrl; watchEl.setAttribute('data-video-url', p.videoUrl); }
+  if(syncEl) syncEl.textContent = '✅ قیمت و عکس همین الان از کاتالوگ خونده شد';
+  setTimeout(()=>{ if(syncEl) syncEl.style.display = 'none'; }, 4000);
+}
+syncFeaturedProductFromCatalog();
+
+/* ---------------- محاسبه‌گرِ حبابِ طلا و سکه ---------------- */
+function priceToToman(n){ return Math.round(n).toLocaleString('fa-IR'); }
+function priceBadgeFor(pct){
+  if(pct < 0) return { cls:'neg', label:'زیر ارزش ذاتی' };
+  if(pct < 5) return { cls:'low', label:'حباب طبیعی' };
+  if(pct < 15) return { cls:'mid', label:'حباب قابل توجه' };
+  return { cls:'high', label:'حباب بالا' };
+}
+function priceCalcBubble(){
+  const dollar = parseFloat(document.getElementById('p-inDollar').value) || 0;
+  const ounce  = parseFloat(document.getElementById('p-inOunce').value) || 0;
+  const silverOunce = parseFloat(document.getElementById('p-inSilverOunce').value) || 0;
+
+  const gram18Market   = parseFloat(document.getElementById('p-inGram18').value) || 0;
+  const meltedMarket   = parseFloat(document.getElementById('p-inMelted').value) || 0;
+  const mesghalMarket  = parseFloat(document.getElementById('p-inMesghal').value) || 0;
+  const coinMarket     = parseFloat(document.getElementById('p-inCoin').value) || 0;
+  const halfCoinMarket    = parseFloat(document.getElementById('p-inHalfCoin').value) || 0;
+  const quarterCoinMarket = parseFloat(document.getElementById('p-inQuarterCoin').value) || 0;
+  const geramiCoinMarket  = parseFloat(document.getElementById('p-inGeramiCoin').value) || 0;
+  const silverGramMarket  = parseFloat(document.getElementById('p-inSilverGram').value) || 0;
+
+  const gram24Fair = (ounce / 31.1035) * dollar;
+  const gram18Fair = gram24Fair * 0.75;
+  const meltedFair = gram24Fair;
+  const mesghalFair = gram18Fair * 4.608;
+
+  const coinFair        = gram24Fair * 0.9 * 8.133;
+  const halfCoinFair     = gram24Fair * 0.9 * 4.066;
+  const quarterCoinFair  = gram24Fair * 0.9 * 2.033;
+  const geramiCoinFair   = gram24Fair * 0.9 * 1.01;
+
+  const silverGramFair = (silverOunce / 31.1035) * dollar;
+
+  const results = [
+    { key:'Gram18', fair:gram18Fair, market:gram18Market, unit:'تومان / گرم' },
+    { key:'Melted', fair:meltedFair, market:meltedMarket, unit:'تومان / گرم' },
+    { key:'Mesghal', fair:mesghalFair, market:mesghalMarket, unit:'تومان' },
+    { key:'Coin', fair:coinFair, market:coinMarket, unit:'تومان' },
+    { key:'HalfCoin', fair:halfCoinFair, market:halfCoinMarket, unit:'تومان' },
+    { key:'QuarterCoin', fair:quarterCoinFair, market:quarterCoinMarket, unit:'تومان' },
+    { key:'GeramiCoin', fair:geramiCoinFair, market:geramiCoinMarket, unit:'تومان' },
+    { key:'Silver', fair:silverGramFair, market:silverGramMarket, unit:'تومان / گرم' },
+  ];
+
+  results.forEach(r => {
+    const pct = r.fair > 0 ? ((r.market - r.fair) / r.fair) * 100 : 0;
+    const b = priceBadgeFor(pct);
+    document.getElementById('p-fair' + r.key).textContent = 'ارزش ذاتی تقریبی: ' + priceToToman(r.fair) + ' ' + r.unit;
+    document.getElementById('p-bubble' + r.key).innerHTML =
+      (pct >= 0 ? '+' : '') + pct.toFixed(1) + '٪' +
+      '<span class="price-badge ' + b.cls + '">' + b.label + '</span>';
+  });
+
+  const goldItems = results.filter(r => r.key !== 'Silver');
+  const avgPct = (goldItems.reduce((s, r) => {
+    const pct = r.fair > 0 ? ((r.market - r.fair) / r.fair) * 100 : 0;
+    return s + pct;
+  }, 0)) / goldItems.length;
+
+  const silverPct = results.find(r => r.key === 'Silver').fair > 0
+    ? ((silverGramMarket - silverGramFair) / silverGramFair) * 100
+    : 0;
+
+  let adviceHTML = '<h4>جمع‌بندی امروز</h4>';
+  if(avgPct < 3){
+    adviceHTML += '<b>طلا و سکه:</b> به‌طور میانگین حباب پایین و نزدیک به ارزش ذاتیه.';
+  }else if(avgPct < 10){
+    adviceHTML += '<b>طلا و سکه:</b> حباب در محدوده متعارف بازار ایران قرار داره؛ نه خیلی گرونه، نه خیلی ارزون.';
+  }else if(avgPct < 20){
+    adviceHTML += '<b>طلا و سکه:</b> حباب فعلاً بالاتر از میانگین معموله.';
+  }else{
+    adviceHTML += '<b>طلا و سکه:</b> حباب به‌طور محسوسی بالاست؛ این وضعیت می‌تونه ماه‌ها ادامه پیدا کنه.';
+  }
+  adviceHTML += '<br><br>';
+  if(Math.abs(silverPct) < 3){
+    adviceHTML += '<b>نقره:</b> قیمت نقره داخلی تقریباً هم‌راستا با ارزش جهانی‌شه.';
+  }else if(silverPct >= 3){
+    adviceHTML += '<b>نقره:</b> حدود ' + silverPct.toFixed(1) + '٪ بالاتر از ارزش جهانی معامله می‌شه.';
+  }else{
+    adviceHTML += '<b>نقره:</b> حدود ' + Math.abs(silverPct).toFixed(1) + '٪ پایین‌تر از ارزش جهانی به‌نظر می‌رسه.';
+  }
+  adviceHTML += '<br><br><b>برای تصمیم‌گیری این موارد رو هم در نظر بگیر:</b><br>' +
+    '• روند نرخ دلار و ریسک‌های سیاسی/اقتصادی کوتاه‌مدت<br>' +
+    '• افق زمانی سرمایه‌گذاری‌ات<br>' +
+    '• نقدشوندگیِ طلا و سکه نسبت به بعضی جایگزین‌ها<br>' +
+    '• تنوعِ دارایی؛ تمرکز کل سرمایه روی یک دارایی معمولاً ریسک بالایی داره';
+
+  document.getElementById('p-adviceBox').innerHTML = adviceHTML;
+  document.getElementById('price-calc-results').classList.add('show');
+}
+document.getElementById('price-calc-btn').addEventListener('click', priceCalcBubble);
+priceCalcBubble();
 </script>
 </body>
 </html>
