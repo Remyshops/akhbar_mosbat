@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سپیده‌دم | نسخه‌ی روزانه‌ی کامل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#1c2541; --night-2:#151b32;
+    --dawn-gold:#f2b544; --dawn-amber:#e8791a; --dawn-rose:#f2836b;
+    --cloud:#fbf5ea; --cloud-dim:#efe4cf; --ink:#241a0f;
+    --line: rgba(36,26,15,0.12); --gold-deep:#a9761c;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{ font-family:'Vazirmatn','Noto Naskh Arabic',sans-serif; background:var(--cloud); color:var(--ink); min-height:100vh; overflow-x:hidden; }
+
+  .sky{ position:relative; background:linear-gradient(180deg,var(--night) 0%,var(--night-2) 28%,var(--dawn-amber) 78%,var(--dawn-gold) 100%); padding:56px 24px 90px; text-align:center; overflow:hidden; }
+  .stars{ position:absolute; inset:0 0 55% 0; background-image:
+      radial-gradient(1.5px 1.5px at 10% 20%, #fff, transparent),
+      radial-gradient(1px 1px at 25% 45%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 60% 15%, #fff, transparent),
+      radial-gradient(1px 1px at 80% 30%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 90% 10%, #fff, transparent),
+      radial-gradient(1px 1px at 45% 8%, #fff, transparent),
+      radial-gradient(1px 1px at 70% 50%, #fff, transparent);
+    opacity:.65; animation: twinkle 4s ease-in-out infinite alternate; }
+  @keyframes twinkle{ from{opacity:.35;} to{opacity:.75;} }
+  .sun{ position:absolute; left:50%; bottom:-70px; transform:translateX(-50%); width:170px; height:170px; border-radius:50%;
+    background: radial-gradient(circle at 50% 40%, #fff6da, var(--dawn-gold) 55%, var(--dawn-rose) 100%);
+    box-shadow: 0 0 90px 25px rgba(242,181,68,.55); animation: rise 2.4s ease-out; }
+  @keyframes rise{ from{bottom:-180px;opacity:0;} to{bottom:-70px;opacity:1;} }
+  .eyebrow{ position:relative; z-index:2; letter-spacing:.35em; font-size:12px; font-weight:500; color:#ffe7bd; text-transform:uppercase; margin:0 0 16px; }
+  h1{ position:relative; z-index:2; font-size:clamp(2.1rem,6vw,3.6rem); font-weight:900; margin:0; color:#fffaf0; text-shadow:0 2px 30px rgba(0,0,0,.25); }
+  .tagline{ position:relative; z-index:2; margin:14px auto 0; max-width:620px; color:#fff2da; font-size:1rem; line-height:1.9; }
+  .today-badge{ position:relative; z-index:2; display:inline-block; margin-top:22px; padding:8px 22px; border-radius:999px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.35); color:#fff; font-size:.9rem; backdrop-filter:blur(6px); }
+  .read-badge{ position:relative; z-index:2; display:block; margin-top:10px; color:#ffe7bd; font-size:.82rem; }
+
+  .wrap{ max-width:920px; margin:0 auto; padding:0 20px 80px; }
+  .section-label{ display:flex; align-items:center; gap:14px; margin:56px 0 22px; color:var(--dawn-amber); font-weight:700; font-size:1rem; }
+  .section-label::after{ content:""; flex:1; height:1px; background:var(--line); }
+  .section-sub{ margin:-14px 0 22px; color:#8a7960; font-size:.85rem; }
+
+  /* Essay */
+  .essay-card{ background:#fff; border:1px solid var(--line); border-radius:20px; padding:34px 36px; }
+  .essay-title{ font-size:1.3rem; font-weight:800; margin:0 0 14px; color:var(--gold-deep); }
+  .essay-body{ line-height:2.1; font-size:1rem; margin:0; white-space:pre-line; }
+
+  /* Challenge */
+  .challenge-card{ background:linear-gradient(135deg,var(--dawn-amber),var(--dawn-rose)); color:#fff; border-radius:20px; padding:28px 32px; display:flex; gap:18px; align-items:flex-start; }
+  .challenge-icon{ font-size:1.8rem; flex:0 0 auto; }
+  .challenge-title{ font-weight:700; margin:0 0 6px; font-size:.85rem; letter-spacing:.02em; opacity:.9; }
+  .challenge-text{ font-size:1.1rem; font-weight:600; margin:0; line-height:1.9; }
+
+  .mini-challenge-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:560px){ .mini-challenge-grid{ grid-template-columns:1fr; } }
+  .mini-challenge{ background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px 20px; }
+  .mini-challenge-label{ display:flex; align-items:center; gap:8px; font-weight:700; font-size:.82rem; color:var(--gold-deep); margin:0 0 8px; }
+  .mini-challenge-text{ margin:0; font-size:.92rem; line-height:1.85; }
+
+  .tabs{ position:relative; z-index:3; display:flex; gap:6px; flex-wrap:wrap; background:var(--night); border-radius:18px 18px 0 0; padding:10px 12px 0; }
+  .tab-btn{ font-family:inherit; cursor:pointer; border:none; background:transparent; color:#c9bfa8; font-size:.82rem; font-weight:600; padding:11px 14px; border-radius:12px 12px 0 0; transition:background .2s,color .2s; white-space:nowrap; }
+  .tab-btn.active{ background:var(--cloud); color:var(--ink); }
+  .tab-btn:focus-visible{ outline:2px solid var(--dawn-gold); outline-offset:-2px; }
+
+  .quote-card{ position:relative; background:var(--cloud); border-radius:0 0 22px 22px; padding:34px 36px; z-index:3; box-shadow:0 30px 60px -20px rgba(28,37,65,.35); border:1px solid var(--line); border-top:none; }
+  .quote-item{ padding:16px 0; border-bottom:1px solid var(--line); }
+  .quote-item:last-of-type{ border-bottom:none; }
+  .quote-mark{ font-size:1.6rem; line-height:1; color:var(--dawn-amber); font-family:Georgia,serif; margin-left:6px; }
+  .quote-text{ font-size:1.08rem; line-height:2; font-weight:600; margin:0 0 6px; display:inline; }
+  .quote-author{ color:var(--gold-deep); font-size:.85rem; display:block; margin-top:4px; }
+  .quote-nav{ display:flex; gap:10px; margin-top:20px; flex-wrap:wrap; }
+  .quote-nav button{ background:var(--night); border:1px solid var(--night); color:#fdf6e6; padding:9px 18px; border-radius:999px; font-family:inherit; font-size:.85rem; cursor:pointer; }
+  .quote-nav button:hover{ opacity:.85; }
+  .quote-nav button:focus-visible{ outline:2px solid var(--dawn-amber); outline-offset:2px; }
+
+  .skill-card{ background:linear-gradient(135deg,var(--night),var(--night-2)); color:#fdf6e6; border-radius:20px; padding:32px 34px; display:flex; gap:20px; align-items:flex-start; }
+  .skill-icon{ flex:0 0 auto; width:52px; height:52px; border-radius:14px; background:rgba(242,181,68,.18); display:flex; align-items:center; justify-content:center; font-size:1.5rem; }
+  .skill-title{ font-weight:700; color:var(--dawn-gold); margin:0 0 6px; font-size:.85rem; letter-spacing:.02em; }
+  .skill-name{ font-size:1.25rem; font-weight:700; margin:0 0 8px; }
+  .skill-desc{ line-height:2; color:#e9dfc9; margin:0; font-size:.95rem; }
+
+  .story-list{ display:flex; flex-direction:column; gap:16px; }
+  .story-card{ background:#fff; border:1px solid var(--line); border-radius:18px; padding:24px 26px; }
+  .story-name{ font-weight:700; font-size:1.05rem; margin:0 0 4px; color:var(--gold-deep); }
+  .story-tag{ font-size:.78rem; color:#8a7960; margin:0 0 10px; }
+  .story-text{ line-height:2; margin:0; font-size:.95rem; }
+
+  .news-status{ font-size:.85rem; color:#8a7960; margin-bottom:18px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .retry-btn{ font-family:inherit; font-size:.78rem; background:var(--cloud-dim); border:1px solid var(--line); color:var(--gold-deep); padding:5px 14px; border-radius:999px; cursor:pointer; }
+  .retry-btn:hover{ background:var(--dawn-gold); color:#fff; }
+  .news-list{ display:flex; flex-direction:column; gap:12px; }
+  .news-item{ display:flex; gap:16px; background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px 20px; text-decoration:none; color:inherit; transition:transform .15s,box-shadow .15s; }
+  .news-item:hover{ transform:translateY(-2px); box-shadow:0 12px 28px -14px rgba(36,26,15,.25); }
+  .news-num{ flex:0 0 auto; width:32px; height:32px; border-radius:50%; background:var(--cloud-dim); color:var(--dawn-amber); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.82rem; }
+  .news-title{ font-weight:600; margin:0 0 4px; line-height:1.7; font-size:.96rem; }
+  .news-src{ font-size:.78rem; color:#8a7960; }
+  .skeleton{ height:60px; border-radius:16px; background:linear-gradient(90deg,#efe4cf 25%,#f7f0e1 37%,#efe4cf 63%); background-size:400% 100%; animation:shimmer 1.4s infinite; }
+  @keyframes shimmer{ 0%{background-position:100% 0;} 100%{background-position:0 0;} }
+  .see-more{ align-self:flex-start; margin-top:6px; font-family:inherit; font-size:.85rem; background:transparent; border:1px solid var(--line); color:var(--gold-deep); padding:9px 18px; border-radius:999px; cursor:pointer; }
+  .see-more:hover{ background:var(--cloud-dim); }
+
+  /* Routine of successful people */
+  .routine-card{ background:#fff; border:1px solid var(--line); border-radius:20px; padding:30px 32px; }
+  .routine-head{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:18px; }
+  .routine-person{ font-size:1.15rem; font-weight:800; color:var(--gold-deep); margin:0; }
+  .routine-role{ font-size:.85rem; color:#8a7960; margin:0; }
+  .timeline{ display:flex; flex-direction:column; }
+  .timeline-item{ display:flex; gap:16px; padding:12px 0; border-bottom:1px dashed var(--line); }
+  .timeline-item:last-child{ border-bottom:none; }
+  .timeline-time{ flex:0 0 auto; min-width:70px; font-weight:700; color:var(--dawn-amber); font-size:.88rem; }
+  .timeline-activity{ font-size:.95rem; line-height:1.8; }
+
+  /* Morning workout */
+  .workout-card{ background:linear-gradient(135deg,var(--night),var(--night-2)); color:#fdf6e6; border-radius:20px; padding:30px 32px; }
+  .workout-badge{ display:inline-block; font-size:.78rem; font-weight:700; color:var(--dawn-gold); background:rgba(242,181,68,.16); padding:5px 14px; border-radius:999px; margin-bottom:14px; }
+  .workout-list{ display:flex; flex-direction:column; gap:0; margin-top:6px; }
+  .workout-item{ display:flex; justify-content:space-between; align-items:center; gap:14px; padding:13px 0; border-bottom:1px solid rgba(255,255,255,.1); }
+  .workout-item:last-child{ border-bottom:none; }
+  .workout-name{ font-size:.96rem; font-weight:600; }
+  .workout-detail{ font-size:.85rem; color:#e9dfc9; white-space:nowrap; }
+  .workout-note{ margin:16px 0 0; font-size:.85rem; color:#e9dfc9; line-height:1.9; border-right:3px solid var(--dawn-gold); padding-right:12px; }
+
+  /* Planning for success */
+  .planner-card{ background:#fff; border:1px solid var(--line); border-radius:20px; padding:30px 32px; }
+  .planner-tip{ font-size:.92rem; line-height:1.9; color:var(--ink); background:var(--cloud-dim); border-radius:14px; padding:16px 18px; margin:0 0 22px; }
+  .planner-tip b{ color:var(--gold-deep); }
+  .planner-group{ margin-bottom:16px; }
+  .planner-label{ display:flex; align-items:center; gap:8px; font-size:.88rem; font-weight:700; color:var(--gold-deep); margin-bottom:8px; }
+  .planner-input{ width:100%; font-family:inherit; font-size:.95rem; border:1px solid var(--line); border-radius:12px; padding:12px 14px; background:var(--cloud); color:var(--ink); resize:vertical; min-height:44px; }
+  .planner-input:focus{ outline:2px solid var(--dawn-gold); outline-offset:1px; }
+  .planner-actions{ display:flex; align-items:center; gap:12px; margin-top:18px; flex-wrap:wrap; }
+  .planner-save{ font-family:inherit; cursor:pointer; border:none; background:var(--dawn-amber); color:#fff; font-weight:700; padding:11px 26px; border-radius:999px; font-size:.9rem; }
+  .planner-save:hover{ opacity:.9; }
+  .planner-status{ font-size:.82rem; color:#8a7960; }
+
+  /* Shop & business links */
+  .shop-card{ background:#fff; border:1px solid var(--line); border-radius:20px; padding:28px 30px; }
+  .shop-intro{ font-size:.92rem; color:#8a7960; line-height:1.9; margin:0 0 20px; }
+  .shop-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:560px){ .shop-grid{ grid-template-columns:1fr; } }
+  .shop-link{ display:flex; gap:14px; align-items:flex-start; text-decoration:none; color:inherit; background:var(--cloud); border:1px solid var(--line); border-radius:16px; padding:18px 20px; transition:transform .15s,box-shadow .15s,border-color .15s; }
+  .shop-link:hover{ transform:translateY(-2px); box-shadow:0 12px 28px -14px rgba(36,26,15,.25); border-color:var(--dawn-gold); }
+  .shop-link-icon{ flex:0 0 auto; width:42px; height:42px; border-radius:12px; background:linear-gradient(135deg,var(--dawn-amber),var(--dawn-rose)); display:flex; align-items:center; justify-content:center; font-size:1.2rem; }
+  .shop-link-title{ font-weight:700; margin:0 0 4px; font-size:.98rem; color:var(--gold-deep); }
+  .shop-link-desc{ margin:0; font-size:.82rem; color:#8a7960; line-height:1.7; }
+  .shop-link.featured{ background:linear-gradient(135deg,var(--night),var(--night-2)); border-color:var(--night); }
+  .shop-link.featured .shop-link-title{ color:var(--dawn-gold); }
+  .shop-link.featured .shop-link-desc{ color:#e9dfc9; }
+
+  /* Streak badge */
+  .streak-badge{ position:relative; z-index:2; display:inline-block; margin-top:8px; padding:6px 18px; border-radius:999px; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.3); color:#ffe7bd; font-size:.82rem; }
+
+  /* Product of the day */
+  .product-day-card{ background:linear-gradient(135deg,var(--dawn-rose),var(--dawn-amber)); color:#fff; border-radius:20px; padding:30px 32px; }
+  .product-day-badge{ display:inline-block; font-size:.78rem; font-weight:700; background:rgba(255,255,255,.22); padding:5px 14px; border-radius:999px; margin:0 0 14px; }
+  .product-day-name{ font-size:1.25rem; font-weight:800; margin:0 0 8px; }
+  .product-day-pitch{ font-size:.96rem; line-height:1.9; margin:0 0 20px; opacity:.95; }
+  .product-day-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+  .product-day-link{ display:inline-block; font-family:inherit; text-decoration:none; background:#fff; color:var(--gold-deep); font-weight:700; padding:10px 22px; border-radius:999px; font-size:.88rem; }
+  .product-day-link:hover{ opacity:.9; }
+  .product-day-link.secondary{ background:rgba(255,255,255,.16); color:#fff; border:1px solid rgba(255,255,255,.4); }
+
+  /* Quote extra actions */
+  .quote-nav button.ghost{ background:transparent; border:1px solid var(--night); color:var(--night); }
+
+  /* Quiz */
+  .quiz-card{ background:#fff; border:1px solid var(--line); border-radius:20px; padding:28px 30px; }
+  .quiz-question{ font-size:1.02rem; font-weight:700; margin:0 0 18px; line-height:1.8; }
+  .quiz-options{ display:flex; flex-direction:column; gap:10px; }
+  .quiz-option{ font-family:inherit; cursor:pointer; text-align:right; background:var(--cloud); border:1px solid var(--line); border-radius:14px; padding:13px 16px; font-size:.92rem; color:var(--ink); transition:background .15s,border-color .15s; }
+  .quiz-option:hover:not(:disabled){ border-color:var(--dawn-gold); }
+  .quiz-option:disabled{ cursor:default; }
+  .quiz-option.correct{ background:#e8f5e9; border-color:#4caf50; color:#2e6b31; font-weight:700; }
+  .quiz-option.wrong{ background:#fdecea; border-color:#e57373; color:#a13a34; }
+  .quiz-explain{ margin:16px 0 0; font-size:.88rem; line-height:1.9; color:#8a7960; border-right:3px solid var(--dawn-gold); padding-right:12px; }
+
+  /* Challenge done button */
+  .challenge-done-wrap{ display:flex; align-items:center; gap:12px; margin-top:16px; flex-wrap:wrap; }
+  .challenge-done-btn{ font-family:inherit; cursor:pointer; border:1px solid rgba(255,255,255,.5); background:rgba(255,255,255,.18); color:#fff; font-weight:700; padding:9px 20px; border-radius:999px; font-size:.85rem; }
+  .challenge-done-btn:hover{ background:rgba(255,255,255,.3); }
+  .challenge-done-btn:disabled{ cursor:default; opacity:.8; }
+  .challenge-done-status{ font-size:.82rem; color:#fff; opacity:.9; }
+
+  .disclaimer{ margin-top:14px; font-size:.8rem; color:#a8967a; line-height:1.9; border-right:3px solid var(--dawn-amber); padding-right:14px; }
+  footer{ text-align:center; padding:30px 24px 50px; color:#a8967a; font-size:.82rem; line-height:1.9; }
+
+  @media (prefers-reduced-motion: reduce){ .stars,.sun{animation:none;} }
+</style>
+</head>
+<body>
+
+<div class="sky">
+  <div class="stars"></div><div class="sun"></div>
+  <p class="eyebrow">هر روز، یک شروع تازه</p>
+  <h1>سپیده‌دم</h1>
+  <p class="tagline">مرجعِ روزانه‌ی اخبارِ مثبت، آموزشِ فروشندگی و ادمینی، و جملات و داستان‌های موفقیت و انگیزشی — برای شروعِ هر روز با انرژی و ذهنِ آماده‌ی رشد.</p>
+  <div class="today-badge" id="today-badge">—</div>
+  <span class="read-badge" id="read-badge"></span>
+  <span class="streak-badge" id="streak-badge"></span>
+</div>
+
+<div class="wrap">
+
+  <div class="section-label">مقاله‌ی کوتاهِ امروز</div>
+  <div class="essay-card">
+    <p class="essay-title" id="essay-title">—</p>
+    <p class="essay-body" id="essay-body">—</p>
+  </div>
+
+  <div class="section-label">چالشِ امروز</div>
+  <div class="challenge-card">
+    <div class="challenge-icon">✅</div>
+    <div>
+      <p class="challenge-title">امروز همین یک قدم را بردار</p>
+      <p class="challenge-text" id="challenge-text">—</p>
+      <div class="challenge-done-wrap">
+        <button class="challenge-done-btn" id="challenge-done-btn" type="button">✅ امروز انجامش دادم</button>
+        <span class="challenge-done-status" id="challenge-done-status"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">چالشِ هر حوزه</div>
+  <p class="section-sub">برای هر بخش، یک قدمِ عملیِ مخصوصِ همان حوزه — هر روز، جمله‌ای تازه.</p>
+  <div class="mini-challenge-grid" id="mini-challenge-grid"></div>
+
+  <div class="section-label">🧠 سوالِ امروز</div>
+  <p class="section-sub">یک سوالِ کوتاه درباره‌ی فروش و کسب‌وکار؛ جواب بده و توضیح رو ببین.</p>
+  <div class="quiz-card" id="quiz-card"></div>
+
+  <div class="section-label">جملات تاکیدی، انگیزشی و فروش</div>
+  <p class="section-sub">هر دسته، سه موردِ روزِ خودش را نشان می‌دهد؛ با دکمه‌ی «بیشتر» موردهای تازه اضافه می‌شود.</p>
+  <div class="tabs" id="tabs">
+    <button class="tab-btn active" data-cat="money">💰 پول‌سازی</button>
+    <button class="tab-btn" data-cat="thanks">🙏 خدایا شکرت</button>
+    <button class="tab-btn" data-cat="humanity">🤍 انسانیت</button>
+    <button class="tab-btn" data-cat="sales">📈 فروش</button>
+    <button class="tab-btn" data-cat="motivation">🔥 انگیزشی</button>
+    <button class="tab-btn" data-cat="formula">🎯 فرمول موفقیت</button>
+    <button class="tab-btn" data-cat="instagram">📸 رشدِ اینستاگرام</button>
+    <button class="tab-btn" data-cat="admin">🛠 آموزشِ ادمینی</button>
+    <button class="tab-btn" data-cat="visitor">🚐 آموزشِ ویزیتوری</button>
+    <button class="tab-btn" data-cat="selling">🤝 آموزشِ فروشندگی</button>
+  </div>
+  <div class="quote-card">
+    <div id="quote-list"></div>
+    <div class="quote-nav">
+      <button id="btn-more">چند موردِ دیگر از همین دسته</button>
+      <button id="btn-listen" class="ghost" type="button">🔊 گوش بده</button>
+      <button id="btn-share" class="ghost" type="button">📤 اشتراک‌گذاری</button>
+    </div>
+  </div>
+
+  <div class="section-label">مهارت و فرصت پول‌ساز امروز</div>
+  <div class="skill-card">
+    <div class="skill-icon">💡</div>
+    <div>
+      <p class="skill-title" id="skill-tag">مهارت امروز</p>
+      <p class="skill-name" id="skill-name">—</p>
+      <p class="skill-desc" id="skill-desc">—</p>
+    </div>
+  </div>
+
+  <div class="section-label">داستانِ ثروتمند شدنِ افراد موفق</div>
+  <p class="section-sub">امروز دو داستان از مسیرِ افرادِ شناخته‌شده، از صفر تا موفقیت.</p>
+  <div class="story-list" id="story-list"></div>
+
+  <div class="section-label">فروشگاه و کسب‌وکار</div>
+  <p class="section-sub">فروشگاه محصولاتِ نانو، صفحه‌ی فروش در باسلام، مشاوره‌ی رایگانِ فروش و کانالِ آموزشیِ تجارت — همه‌جا که لازمه.</p>
+  <div class="shop-card">
+    <p class="shop-intro">هر روز که سر می‌زنی، یک قدم هم به کسب‌وکارت نزدیک شو 🌅</p>
+    <div class="shop-grid">
+      <a class="shop-link featured" href="https://remyshops.github.io/index/" target="_blank" rel="noopener">
+        <div class="shop-link-icon">🛍️</div>
+        <div>
+          <p class="shop-link-title">کاتالوگ محصولاتِ نانو</p>
+          <p class="shop-link-desc">مشاهده و سفارشِ محصولاتِ نانو، با قیمتِ عمده و خرده</p>
+        </div>
+      </a>
+      <a class="shop-link" href="https://basalam.com/editor" target="_blank" rel="noopener">
+        <div class="shop-link-icon">🏪</div>
+        <div>
+          <p class="shop-link-title">فروشگاه ما در باسلام</p>
+          <p class="shop-link-desc">ویترینِ فروشِ ما در باسلام</p>
+        </div>
+      </a>
+      <a class="shop-link" href="https://modaresibusiness.github.io/Academy/" target="_blank" rel="noopener">
+        <div class="shop-link-icon">📣</div>
+        <div>
+          <p class="shop-link-title">مشاوره‌ی رایگان برای فروشِ بیشتر</p>
+          <p class="shop-link-desc">مشاوره‌ی رایگان برای کسب‌وکارِ شما، برای رسیدن به فروشِ بیشتر</p>
+        </div>
+      </a>
+      <a class="shop-link" href="https://rubika.ir/tejarat_forosh" target="_blank" rel="noopener">
+        <div class="shop-link-icon">📢</div>
+        <div>
+          <p class="shop-link-title">عضویت در کانالِ روبیکا</p>
+          <p class="shop-link-desc">آموزشِ تجارت و فروش — کانالِ tejarat_forosh</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="section-label">🎁 پیشنهادِ محصولِ امروز</div>
+  <p class="section-sub">هر روز، یک محصول از کاتالوگِ نانو، با یک نکته برای معرفی به مشتری.</p>
+  <div class="product-day-card">
+    <p class="product-day-badge" id="product-day-badge">—</p>
+    <p class="product-day-name" id="product-day-name">—</p>
+    <p class="product-day-pitch" id="product-day-pitch">—</p>
+    <div class="product-day-actions">
+      <a class="product-day-link" href="https://remyshops.github.io/index/" target="_blank" rel="noopener">مشاهده در کاتالوگ</a>
+      <a class="product-day-link secondary" href="https://basalam.com/editor" target="_blank" rel="noopener">فروشگاهِ ما در باسلام</a>
+    </div>
+  </div>
+
+  <div class="section-label">روتینِ روزانه‌ی افرادِ موفق</div>
+  <p class="section-sub">هر روز، یک نگاهِ نزدیک به برنامه‌ی روزانه‌ی یکی از افرادِ موفقِ جهان.</p>
+  <div class="routine-card">
+    <div class="routine-head">
+      <p class="routine-person" id="routine-person">—</p>
+      <p class="routine-role" id="routine-role">—</p>
+    </div>
+    <div class="timeline" id="routine-timeline"></div>
+  </div>
+
+  <div class="section-label">برنامه‌ی ورزشِ صبحگاهی</div>
+  <p class="section-sub">۱۰ تا ۱۵ دقیقه، بدونِ وسیله، برای شروعِ روز با انرژی.</p>
+  <div class="workout-card">
+    <span class="workout-badge" id="workout-badge">—</span>
+    <div class="workout-list" id="workout-list"></div>
+    <p class="workout-note">پیش از شروع، اگر مشکلِ جسمیِ خاصی داری یا مدتی‌ست ورزش نکرده‌ای، حرکات را ملایم‌تر و با نظرِ پزشک انجام بده.</p>
+  </div>
+
+  <div class="section-label">برنامه‌ریزی برای موفقیت</div>
+  <p class="section-sub">اهدافت را همین‌جا بنویس؛ روی همین مرورگر ذخیره می‌شود و هر بار که سر بزنی، همان‌جاست.</p>
+  <div class="planner-card">
+    <p class="planner-tip" id="planner-tip">—</p>
+    <div class="planner-group">
+      <p class="planner-label">🎯 مهم‌ترین هدفِ امروز</p>
+      <textarea class="planner-input" id="plan-today" rows="2" placeholder="امروز چه یک کار را باید تمام کنم؟"></textarea>
+    </div>
+    <div class="planner-group">
+      <p class="planner-label">📅 هدفِ این هفته</p>
+      <textarea class="planner-input" id="plan-week" rows="2" placeholder="تا آخرِ هفته باید به کجا رسیده باشم؟"></textarea>
+    </div>
+    <div class="planner-group">
+      <p class="planner-label">🗓 هدفِ این ماه</p>
+      <textarea class="planner-input" id="plan-month" rows="2" placeholder="مهم‌ترین نتیجه‌ای که تا آخرِ ماه می‌خواهم؟"></textarea>
+    </div>
+    <div class="planner-group">
+      <p class="planner-label">🚀 هدفِ بزرگِ امسال</p>
+      <textarea class="planner-input" id="plan-year" rows="2" placeholder="امسال، کدام تغییرِ بزرگ باید اتفاق بیفتد؟"></textarea>
+    </div>
+    <div class="planner-actions">
+      <button class="planner-save" id="planner-save-btn">ذخیره‌ی برنامه</button>
+      <span class="planner-status" id="planner-status"></span>
+    </div>
+  </div>
+
+  <div class="section-label">اخبار مثبت جهان</div>
+  <p class="news-status" id="news-status-1">نمونه‌های امروز — در حال به‌روزرسانی با اخبارِ تازه…</p>
+  <div class="news-list" id="news-list-1"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+
+  <div class="section-label">اخبار کسب‌وکار، فروش و کارآفرینی</div>
+  <p class="news-status" id="news-status-2">نمونه‌های امروز — در حال به‌روزرسانی با اخبارِ تازه…</p>
+  <div class="news-list" id="news-list-2"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+
+  <div class="section-label">اخبارِ رشدِ فردی و موفقیت</div>
+  <p class="news-status" id="news-status-3">نمونه‌های امروز — در حال به‌روزرسانی با اخبارِ تازه…</p>
+  <div class="news-list" id="news-list-3"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+
+  <p class="disclaimer">جملات، مهارت‌ها، فرمول‌ها و مقاله‌های این صفحه، اصول انگیزشی و آموزه‌های عمومیِ کسب‌وکارند؛ نه مشاوره‌ی مالی و نه تضمینِ درآمد. نتیجه‌ی مالی هرکس به بازار، تلاش، مهارت و شرایط خودش بستگی دارد.</p>
+
+</div>
+
+<footer>این صفحه هر بار که باز می‌شود، محتوای هر بخش را بر اساس تاریخ به‌صورت خودکار عوض می‌کند و می‌کوشد آخرین خبرها را از چند منبعِ زنده، با پشتیبانِ خودکار، بارگیری کند.</footer>
+
+<script>
+/* ---------------- تاریخ ---------------- */
+(function(){
+  try{
+    const fmt = new Intl.DateTimeFormat('fa-IR-u-ca-persian', { year:'numeric', month:'long', day:'numeric', weekday:'long' });
+    document.getElementById('today-badge').textContent = fmt.format(new Date());
+  }catch(e){ document.getElementById('today-badge').textContent = new Date().toLocaleDateString('fa-IR'); }
+})();
+function dayOfYear(d){ const start=new Date(d.getFullYear(),0,0); return Math.floor((d-start)/86400000); }
+const todayIndex = dayOfYear(new Date());
+
+/* ---------------- مقاله‌ی کوتاهِ روزانه ---------------- */
+const ESSAYS = [
+  ["ذهنِ فراوانی، پیش از حسابِ بانکی می‌سازد",
+"هر تغییرِ مالیِ واقعی، اول در ذهن اتفاق می‌افتد. کسی که فکر می‌کند «هیچ‌وقت پول کافی ندارم»، حتی وقتی فرصتی جلوی چشمش می‌آید، آن را نمی‌بیند. اما کسی که با ذهنِ فراوانی زندگی می‌کند، در همان مشکلاتِ روزمره، بازار و فرصت پیدا می‌کند.\nاین به معنیِ نادیده‌گرفتنِ واقعیت نیست؛ به معنیِ انتخابِ زاویه‌ای‌ست که به‌جای «چرا ندارم»، بپرسد «چطور می‌توانم بسازم». امروز، پیش از هر اقدامی، چند دقیقه به داشته‌هایت فکر کن -مهارت، وقت، رابطه‌ها- و ببین کدام‌یک را می‌توانی امروز به‌کار بگیری."],
+  ["شکرگزاری، استراتژیِ رشد است",
+"خیلی‌ها شکرگزاری را فقط یک حسِ خوب می‌دانند، در حالی‌که یک ابزارِ عملی‌ست. وقتی برای داشته‌های کوچک شکر می‌کنی، مغزت یاد می‌گیرد فرصت‌ها را زودتر ببیند، چون دیگر درگیرِ کمبود نیست.\nشکرگزاری، آدم را از حالتِ ترس بیرون می‌آورد و به حالتِ ساختن می‌برد. امروز سه چیز را که در زندگی یا کارت خوب پیش رفته یادداشت کن، حتی اگر کوچک باشند. این تمرینِ ساده، پایه‌ی روزهای بهتر است."],
+  ["مهربانی، سرمایه‌ای که هیچ‌وقت از بین نمی‌رود",
+"در دنیایی که همه دنبالِ منفعتِ سریع‌اند، مهربانیِ واقعی هنوز نایاب و ارزشمند است. آدم‌هایی که به‌خاطر خودشان -نه برای نمایش- به دیگران کمک می‌کنند، شبکه‌ای از اعتماد می‌سازند که هیچ تبلیغی نمی‌تواند بخرد.\nانسانیت به این معنا نیست که همیشه بله بگویی؛ به این معناست که در تصمیم‌هایت، عزتِ آدم‌های اطرافت را هم در نظر بگیری. امروز یک نفر را بدونِ چشم‌داشت کمک کن؛ حتی یک پیامِ کوتاه یا گوش‌دادنِ خالص کافی است."],
+  ["اصلِ فروش: مشکل را بشناس، بعد راه‌حل بفروش",
+"بیشترِ فروش‌های ناموفق، از جایی شروع می‌شوند که فروشنده عجله دارد محصولش را معرفی کند، پیش از آنکه بفهمد مشتری واقعاً به چه چیزی نیاز دارد.\nفروشنده‌ی حرفه‌ای، اول سؤال می‌پرسد. بعد گوش می‌دهد. بعد نشان می‌دهد چطور پیشنهادش دقیقاً همان دردی را که مشتری گفته حل می‌کند. اگر امروز قرار است چیزی -کالا، خدمت، یا حتی یک ایده- را به کسی بفروشی، پیش از حرف‌زدن، یک سؤالِ خوب بپرس."],
+  ["پشتکار وقتی معجزه می‌کند که استعداد کم بیاورد",
+"خیلی از داستان‌های موفقیت، با استعدادِ خیره‌کننده شروع نمی‌شوند؛ با کسی شروع می‌شوند که حاضر بوده یک روزِ دیگر هم امتحان کند.\nمهارت را می‌شود ساخت، اما پشتکار را باید انتخاب کرد؛ هر روز، دوباره. اگر امروز حس می‌کنی نتیجه‌ای نمی‌بینی، این نشانه‌ی شکست نیست؛ بخشی از مسیرِ طبیعیِ ساختن است. یک قدمِ کوچک بردار، حتی وقتی انگیزه‌ای نداری."],
+  ["برندِ شخصی؛ چیزی که مردم وقتی نیستی درباره‌ات می‌گویند",
+"برندِ شخصیِ قوی، لوگو یا شعار نیست؛ سابقه‌ای‌ست از قول‌هایی که سرِ وقت عمل کرده‌ای. آدم‌ها به کسی اعتماد می‌کنند که رفتارش قابلِ پیش‌بینی و صادقانه باشد.\nاگر می‌خواهی فرصت‌های مالیِ بیشتری به‌سویت بیاید، روی این سرمایه‌گذاری کن: هر قولی که می‌دهی را نگه دار، حتی کوچک‌ترینش. این، پایه‌ی هر شبکه‌ی حرفه‌ایِ پایدار است."],
+  ["ترسِ شکست، گران‌تر از خودِ شکست است",
+"بیشترِ آدم‌ها به‌خاطرِ ترسِ از شکست، هرگز شروع نمی‌کنند؛ در حالی‌که شکستِ واقعی، معلمِ سریع‌تری از موفقیتِ آسان است.\nهر فردِ موفقی که می‌شناسی، لیستی از تلاش‌های نافرجام دارد که کسی آن‌ها را نمی‌بیند. تفاوتش این است که او شکست را بخشی از مسیر دید، نه پایانِ آن. امروز، یک کارِ کوچک را که از انجامش می‌ترسیدی، شروع کن؛ فقط شروع."],
+  ["ثبات، از انگیزه قابل‌اعتمادتر است",
+"انگیزه می‌آید و می‌رود؛ اما سیستم‌ها و عادت‌ها می‌مانند. کسانی که در کارشان یا مالی‌شان به نتیجه می‌رسند، معمولاً منتظرِ روزِ پرانرژی نمی‌مانند؛ یک روتینِ کوچک می‌سازند و به آن پایبند می‌مانند.\nبه‌جای اینکه منتظرِ حالِ خوب برای شروع باشی، یک قدمِ کوچکِ روزانه تعریف کن که حتی در روزهای بد هم بتوانی انجامش بدهی."],
+  ["ارزش بده، پیش از آنکه بخواهی",
+"در رابطه‌ها و کسب‌وکار، کسانی که اول ارزش می‌دهند -نه اینکه اول بخواهند- معمولاً روابطِ پایدارتر و فرصت‌های بیشتری می‌سازند.\nاین به معنیِ رایگان‌کارکردن همیشگی نیست؛ به معنیِ این است که پیش از درخواست، نشان بدهی چه کمکی می‌توانی بکنی. امروز یک نفر را بدونِ انتظارِ چیزی در برابر، کمک کن؛ ببین چه احساسی برایت می‌سازد."],
+  ["هر روز، یک نسخه‌ی تازه از خودت",
+"لازم نیست همه‌چیز را یک‌شبه تغییر بدهی. کافی‌ست هر روز، اندکی بهتر از دیروز باشی: کمی بیشتر بخوانی، کمی صادق‌تر باشی، کمی پیگیرتر عمل کنی.\nاین تغییراتِ کوچک، در طولِ ماه‌ها، آدمی متفاوت می‌سازند -هم در ذهن، هم در مالی، هم در روابط. امروز فقط یک چیزِ کوچک را بهتر از دیروز انجام بده."]
+];
+function setEssay(idx){
+  const e = ESSAYS[((idx % ESSAYS.length)+ESSAYS.length) % ESSAYS.length];
+  document.getElementById('essay-title').textContent = e[0];
+  document.getElementById('essay-body').textContent = e[1];
+}
+setEssay(todayIndex);
+
+/* ---------------- چالشِ روزانه ---------------- */
+const CHALLENGES = [
+  "امروز به یک فرد که مدت‌هاست باهاش صحبت نکردی، پیام بده و حالش را بپرس.",
+  "یک ساعت از وقتِ امروزت را بدونِ گوشی، فقط روی مهم‌ترین کارِ زندگی یا کسب‌وکارت بگذار.",
+  "سه چیزی که امروز بابتشان شکرگزاری، را یادداشت کن.",
+  "با یک مشتری یا همکار قدیمی تماس بگیر و فقط حالش را بپرس، بدونِ درخواستِ چیزی.",
+  "یک مهارتِ جدید را برای ۲۰ دقیقه تمرین کن؛ چیزی که می‌تواند درآمدت را بالا ببرد.",
+  "بودجه‌ی هفته‌ات را مرور کن و یک هزینه‌ی غیرضروری را حذف کن.",
+  "به یک نفر که به کمکت نیاز دارد، بدونِ چشم‌داشت کمک کن.",
+  "یک ایده‌ی کسب‌وکاری که مدت‌هاست در ذهنت است را روی کاغذ بیاور.",
+  "امروز یک «نه» به کاری بگو که انرژی‌ات را می‌گیرد و ارزشی ندارد.",
+  "با یکی از قهرمانان یا الگوهایت (کتاب، مصاحبه، پادکست) نیم‌ساعت وقت بگذران.",
+  "یک پیام قدردانی برای کسی بفرست که در مسیرت کمکت کرده.",
+  "امروز محصولی یا خدمتی که ارائه می‌دهی را به یک مشتریِ بالقوه‌ی جدید معرفی کن.",
+  "پنج دقیقه بنشین و تصور کن زندگیِ مالیِ ایده‌آلت چه شکلی‌ست؛ آن را بنویس.",
+  "یک عادتِ کوچکِ منفی (مثلاً بهانه‌آوردن) را امروز، فقط برای یک روز، کنار بگذار.",
+  "به یک شکستِ اخیرت فکر کن و یک درسِ مشخص از آن بنویس."
+];
+function setChallenge(idx){
+  document.getElementById('challenge-text').textContent = CHALLENGES[((idx % CHALLENGES.length)+CHALLENGES.length) % CHALLENGES.length];
+}
+setChallenge(todayIndex);
+
+function renderMiniChallenges(idx){
+  const grid = document.getElementById('mini-challenge-grid');
+  grid.innerHTML = '';
+  Object.keys(MINI_CHALLENGE_META).forEach(key => {
+    const list = MINI_CHALLENGES[key];
+    const h = hashString(key);
+    const pick = ((idx + h) % list.length + list.length) % list.length;
+    const [icon, label] = MINI_CHALLENGE_META[key];
+    const card = document.createElement('div');
+    card.className = 'mini-challenge';
+    card.innerHTML = `<p class="mini-challenge-label">${icon} ${label}</p><p class="mini-challenge-text">${list[pick]}</p>`;
+    grid.appendChild(card);
+  });
+}
+
+/* ---------------- دسته‌های جملات ---------------- */
+const CATEGORIES = {
+  money: [
+    ["من آماده‌ام تا فراوانی و ثروت را با آغوش باز بپذیرم.","تاکید پول‌سازی"],
+    ["پول به‌سویم جاری می‌شود، از مسیرهایی که حتی تصورش را نمی‌کنم.","تاکید پول‌سازی"],
+    ["من ارزش‌آفرینم و به همان اندازه پاداش می‌گیرم.","تاکید پول‌سازی"],
+    ["هر روز به فراوانیِ مالی نزدیک‌تر می‌شوم.","تاکید پول‌سازی"],
+    ["فرصت‌های درآمدزا مرا پیدا می‌کنند، همان‌طور که من آن‌ها را می‌بینم.","تاکید پول‌سازی"],
+    ["ذهنم با ثروت هم‌سو شده و بدنم آماده‌ی دریافت آن است.","تاکید پول‌سازی"],
+    ["من لایق زندگیِ مرفه‌ام و آن را می‌سازم.","تاکید پول‌سازی"],
+    ["هر تصمیم مالیِ امروزم، پایه‌ی آزادیِ فردایم است.","تاکید پول‌سازی"],
+    ["فراوانی حالتِ طبیعیِ جهان است و من بخشی از آن‌ام.","تاکید پول‌سازی"],
+    ["با اعتماد‌به‌نفس ارزشِ کارم را قیمت‌گذاری می‌کنم.","تاکید پول‌سازی"],
+    ["پول ابزاریست برای گسترشِ خیر در دستانِ من.","تاکید پول‌سازی"],
+    ["هر ریالی که خرج می‌کنم، با برکت به من بازمی‌گردد.","تاکید پول‌سازی"],
+    ["فکرِ فراوانی، پیش از دیدنِ آن، در من زنده است.","تاکید پول‌سازی"],
+    ["من مغناطیسِ فرصت‌های مالی‌ام.","تاکید پول‌سازی"],
+    ["ثروتِ من از ارزشی که به دیگران می‌دهم، سرچشمه می‌گیرد.","تاکید پول‌سازی"],
+    ["هر روز راهی تازه برای افزایشِ درآمدم می‌بینم.","تاکید پول‌سازی"],
+    ["پول به‌سویِ کسی می‌آید که برایش آماده است؛ من آماده‌ام.","تاکید پول‌سازی"],
+    ["من با شجاعت سرمایه‌گذاریِ روی خودم را انتخاب می‌کنم.","تاکید پول‌سازی"],
+    ["فراوانیِ مالی، حقِ طبیعیِ من است.","تاکید پول‌سازی"],
+    ["امروز دری از فراوانی به رویم باز می‌شود.","تاکید پول‌سازی"]
+  ],
+  thanks: [
+    ["خدایا شکرت برای نفسی که امروز کشیدم.","شکرگزاری"],
+    ["خدایا شکرت که در سخت‌ترین روزها هم رهایم نکردی.","شکرگزاری"],
+    ["شکرگزاریِ امروز، درِ برکتِ فرداست.","شکرگزاری"],
+    ["خدایا شکرت برای داشته‌هایی که عادت کرده‌ام نادیده بگیرم.","شکرگزاری"],
+    ["هر روز که چشم باز می‌کنم، یک شکرِ تازه بدهکارم.","شکرگزاری"],
+    ["خدایا شکرت برای درس‌هایی که در لباسِ سختی آمدند.","شکرگزاری"],
+    ["دلم را از شکر پر می‌کنم تا جا برای نگرانی نماند.","شکرگزاری"],
+    ["خدایا شکرت برای آدم‌هایی که در مسیرم قرار دادی.","شکرگزاری"],
+    ["شکر، زبانِ کسانی است که فراوانی را می‌بینند نه کمبود را.","شکرگزاری"],
+    ["خدایا شکرت، همین که هستم و هنوز فرصت دارم.","شکرگزاری"],
+    ["خدایا شکرت برای سقفی که بالای سرم است.","شکرگزاری"],
+    ["خدایا شکرت برای دستانی که هنوز توانِ کار دارند.","شکرگزاری"],
+    ["خدایا شکرت برای هر بار که دوباره بلند شدم.","شکرگزاری"],
+    ["خدایا شکرت برای امروز، پیش از آنکه بخواهم چیزِ دیگری.","شکرگزاری"],
+    ["خدایا شکرت، هزار بار شکرت.","شکرگزاری"]
+  ],
+  humanity: [
+    ["کوچک‌ترین مهربانی، هرگز به هدر نمی‌رود.","انسانیت"],
+    ["گوش دادن، گاهی بزرگ‌ترین هدیه‌ای است که می‌توان داد.","انسانیت"],
+    ["انسانیت یعنی دیدنِ دردِ دیگری، حتی وقتی خودت درد داری.","انسانیت"],
+    ["دستی که کمک می‌کند، مقدس‌تر از لب‌هایی است که دعا می‌کنند.","انسانیت"],
+    ["هر لبخندی که هدیه می‌دهی، ممکن است تنها نورِ روزِ کسی باشد.","انسانیت"],
+    ["بزرگیِ انسان را در رفتارش با ضعیف‌ترین‌ها بشناس.","انسانیت"],
+    ["مهربانی زبانی است که همه، حتی بی‌زبان‌ها هم می‌فهمند.","انسانیت"],
+    ["کمکِ بی‌چشم‌داشت، ریشه در عمیق‌ترین لایه‌ی انسانیت دارد.","انسانیت"],
+    ["هیچ‌کس با دادن، فقیر نشده؛ فقط دلش بزرگ‌تر شده.","انسانیت"],
+    ["احترام به دیگری، بدونِ قید و شرط، زبانِ مشترکِ انسان‌هاست.","انسانیت"],
+    ["هر انسانی، جنگی نادیده در دلش دارد؛ مهربان باش.","انسانیت"],
+    ["بخشیدن، سنگین‌ترین بارِ دل را سبک می‌کند.","انسانیت"],
+    ["دستِ یاری، زبانِ مشترکِ همه‌ی انسان‌هاست.","انسانیت"],
+    ["احترام، رایگان‌ترین هدیه با بیشترین ارزش است.","انسانیت"],
+    ["هرکه را دیدی، در حالِ نبردی هستی که نمی‌بینی؛ مهربان باش.","انسانیت"]
+  ],
+  sales: [
+    ["مردم چیزی نمی‌خرند مگر اول به تو اعتماد کنند؛ روی اعتماد سرمایه‌گذاری کن.","اصل فروش"],
+    ["فروشِ خوب یعنی حلِ یک مشکلِ واقعی، نه متقاعدکردنِ کسی.","اصل فروش"],
+    ["مشتری دلیلِ خرید را با احساس پیدا می‌کند و با منطق توجیه می‌کند.","اصل فروش"],
+    ["پیگیریِ حرفه‌ای، بیش از پیامِ اول، فروش می‌سازد.","اصل فروش"],
+    ["به‌جای فروختنِ محصول، نتیجه‌ای که مشتری می‌خواهد را بفروش.","اصل فروش"],
+    ["بهترین بازاریابی، تجربه‌ای است که مشتری دوست دارد برای دیگران تعریف کند.","اصل فروش"],
+    ["قیمت را وقتی چانه می‌زنند که ارزش را نفهمیده باشند.","اصل فروش"],
+    ["نه‌شنیدن، پایانِ گفت‌وگو نیست؛ آغازِ فهمیدنِ نیازِ واقعی است.","اصل فروش"],
+    ["برندهای بزرگ، حسِ تعلق می‌فروشند، نه فقط کالا.","اصل فروش"],
+    ["مشتریِ راضی، ارزان‌ترین کانالِ تبلیغاتیِ توست.","اصل فروش"],
+    ["سؤال بپرس پیش از آنکه توضیح بدهی؛ نیاز را بشناس، بعد راه‌حل بده.","اصل فروش"],
+    ["فروشنده‌ی بزرگ، شنونده‌ی بزرگ‌تری است.","اصل فروش"],
+    ["اولین فروش به هر مشتری، گران‌ترین فروشِ توست؛ حفظش کن.","اصل فروش"],
+    ["داستان، بیشتر از فهرستِ ویژگی‌ها می‌فروشد.","اصل فروش"],
+    ["وقتی رقیب روی قیمت می‌جنگد، تو روی ارزش بجنگ.","اصل فروش"],
+    ["مشتریِ ناراضی که پاسخ می‌گیرد، وفادارتر از مشتریِ راضی می‌شود.","اصل فروش"],
+    ["فروش، انتقالِ اطمینان است، نه فشار.","اصل فروش"],
+    ["هر «نه» تو را به «بله»ی بعدی نزدیک‌تر می‌کند.","اصل فروش"],
+    ["برندسازی یعنی وعده‌ای که هر بار سرِ قولش می‌مانی.","اصل فروش"],
+    ["مشتریانِ فعلی‌ات، بازارِ ناشناخته‌ی فروشِ بیشتری‌اند.","اصل فروش"]
+  ],
+  motivation: [
+    ["امروز را طوری زندگی کن که دلت برایش تنگ شود.","انگیزشی"],
+    ["کوچک‌ترین قدم، بزرگ‌تر از بزرگ‌ترین نیت است.","انگیزشی"],
+    ["هیچ زمستانی ابدی نیست، هیچ بهاری هم دیر نمی‌رسد.","انگیزشی"],
+    ["برای دیدنِ رنگین‌کمان باید کمی باران را تحمل کرد.","انگیزشی"],
+    ["امیدوار باش، حتی وقتی دلیلی نداری؛ دلیلش را خودت می‌سازی.","انگیزشی"],
+    ["هرچه بیشتر شکرگزار باشی، بیشتر داری که شکرگزارش باشی.","انگیزشی"],
+    ["هیچ‌گاه برای شروعِ دوباره دیر نیست.","انگیزشی"],
+    ["هر مانع، فرصتی پنهان برای رشد است.","انگیزشی"],
+    ["شجاعت یعنی با وجودِ ترس، باز هم قدم برداری.","انگیزشی"],
+    ["مهم نیست چقدر آهسته می‌روی، مهم این است که نمی‌ایستی.","انگیزشی"],
+    ["تغییری که می‌خواهی در دنیا ببینی، از خودت شروع کن.","انگیزشی"],
+    ["روزهای سخت، آدم‌های قوی می‌سازند.","انگیزشی"],
+    ["شکست، پایانِ راه نیست؛ داده‌ای برای مسیرِ بهتر است.","انگیزشی"],
+    ["پشتکار وقتی معجزه می‌کند که استعداد خسته شده باشد.","انگیزشی"],
+    ["امروز تلاش کن؛ فردا نتیجه حرف می‌زند.","انگیزشی"],
+    ["هیچ رویایی آن‌قدر بزرگ نیست که با روزهای کوچک ساخته نشود.","انگیزشی"],
+    ["ترسی که با آن روبه‌رو می‌شوی، کوچک‌تر از تصورت است.","انگیزشی"],
+    ["راهی که با یک قدم شروع می‌شود، به هزار مقصد می‌رسد.","انگیزشی"],
+    ["انضباط، پلی است بینِ هدف و دستاورد.","انگیزشی"],
+    ["هر روز نسخه‌ی بهترِ دیروزِ خودت باش.","انگیزشی"],
+    ["وقتی دلیلِ کافی داری، راه را پیدا می‌کنی.","انگیزشی"],
+    ["انرژی‌ات را جایی بگذار که رشدت آنجاست، نه جایی که راحتی‌ات.","انگیزشی"],
+    ["هیچ تلاشِ صادقانه‌ای بی‌نتیجه نمی‌ماند.","انگیزشی"],
+    ["مسیر را دوست داشته باش، نه فقط مقصد را.","انگیزشی"],
+    ["امروز، بهترین روزِ ممکن برای شروع است.","انگیزشی"]
+  ],
+  formula: [
+    ["هدفِ بزرگ + برنامه‌ی روزانه + پیگیریِ بی‌وقفه = موفقیت.","فرمول موفقیت"],
+    ["مهارت را با تمرینِ هدفمند بساز، نه با تکرارِ بی‌فکر.","فرمول موفقیت"],
+    ["هر روز ۱٪ بهتر شو؛ در یک سال، تفاوت را می‌بینی.","فرمول موفقیت"],
+    ["اول ارزش بساز، بعد منتظرِ پاداش باش.","فرمول موفقیت"],
+    ["شکست را سریع بپذیر، درسش را سریع‌تر بگیر.","فرمول موفقیت"],
+    ["روی نقاطِ قوتت سرمایه‌گذاری کن، نه فقط رفعِ ضعف.","فرمول موفقیت"],
+    ["شبکه‌سازیِ صادقانه، دری‌ست که همیشه باز می‌ماند.","فرمول موفقیت"],
+    ["تمرکز روی یک هدف، از پراکندگی در ده هدف قوی‌تر است.","فرمول موفقیت"],
+    ["هر مشکل، بازاری‌ست برای کسی که راه‌حلش را بسازد.","فرمول موفقیت"],
+    ["مدیریتِ زمان یعنی مدیریتِ اولویت‌ها، نه ساعت‌ها.","فرمول موفقیت"],
+    ["بدونِ اقدام، دانش فقط اطلاعات است.","فرمول موفقیت"],
+    ["از کسانی بیاموز که آنجا هستند که تو می‌خواهی برسی.","فرمول موفقیت"],
+    ["ریسکِ حساب‌شده، ماده‌ی اصلیِ رشد است.","فرمول موفقیت"],
+    ["پولی که پس‌انداز می‌کنی، بذرِ آزادیِ فرداست.","فرمول موفقیت"],
+    ["مشتری را بشناس بهتر از آنکه خودش را می‌شناسد.","فرمول موفقیت"],
+    ["برندِ شخصیِ قوی، دری‌ست به فرصت‌های نادیده.","فرمول موفقیت"],
+    ["هر روز چیزی بساز که دیروز نداشتی.","فرمول موفقیت"],
+    ["ثبات، از استعدادِ خام قوی‌تر عمل می‌کند.","فرمول موفقیت"],
+    ["به‌جای رقابت بر سرِ قیمت، بر سرِ کیفیت متمایز شو.","فرمول موفقیت"],
+    ["هر تصمیمِ کوچکِ امروز، مسیرِ بزرگِ فردا را می‌سازد.","فرمول موفقیت"]
+  ],
+  instagram: [
+    ["قبل از تولید محتوا، مشخص کن این پست قرار است بیننده را خنده‌دار کند، آموزش دهد یا احساسش را تغییر دهد.","رشدِ اینستاگرام"],
+    ["سه ثانیه‌ی اول ریلز، تصمیم می‌گیرد کاربر بماند یا رد شود؛ قوی‌ترین لحظه را اول بگذار.","رشدِ اینستاگرام"],
+    ["پیج‌های موفق، به‌جای فروختن مستقیم، اول اعتماد می‌سازند.","رشدِ اینستاگرام"],
+    ["کپشن خوب، سوالی می‌پرسد که مخاطب را به کامنت‌گذاشتن دعوت کند.","رشدِ اینستاگرام"],
+    ["الگوریتم اینستاگرام، به محتوایی که مردم سیو و شیر می‌کنند پاداش می‌دهد، نه فقط لایک.","رشدِ اینستاگرام"],
+    ["پیش از پست‌گذاری، بپرس: این محتوا برای مخاطب چه ارزشی دارد؟","رشدِ اینستاگرام"],
+    ["یک برنامه‌ی انتشار منظم، از پست‌های پراکنده و بی‌قاعده قوی‌تر عمل می‌کند.","رشدِ اینستاگرام"],
+    ["استوری‌های روزانه، رابطه‌ای نزدیک با مخاطب می‌سازند که فید به‌تنهایی نمی‌سازد.","رشدِ اینستاگرام"],
+    ["هایلایت‌های مرتب‌شده، فروشگاهِ اولِ برند توست؛ آن‌ها را جدی بگیر.","رشدِ اینستاگرام"],
+    ["هوک قوی یعنی در همان جمله‌ی اول، دلیلِ ماندن را به مخاطب بدهی.","رشدِ اینستاگرام"],
+    ["رقیبان را دنبال کن، نه برای کپی‌کردن، بلکه برای فهمیدنِ چه‌چیزی روی مخاطبِ مشترک جواب می‌دهد.","رشدِ اینستاگرام"],
+    ["بهترین زمانِ پست‌گذاری، زمانی‌ست که مخاطبانِ خودت آنلاین‌اند، نه یک عددِ عمومی روی اینترنت.","رشدِ اینستاگرام"],
+    ["هر ریلز باید یک پیامِ اصلی داشته باشد، نه ده پیامِ نصفه.","رشدِ اینستاگرام"],
+    ["کامنت‌دادن به دیگران، پیش از انتظارِ کامنت‌گرفتن، رشدِ ارگانیک می‌سازد.","رشدِ اینستاگرام"],
+    ["دیتای اینسایت را نادیده نگیر؛ آن‌ها می‌گویند مخاطبت واقعاً چه می‌خواهد.","رشدِ اینستاگرام"],
+    ["برندِ شخصیِ قوی در اینستاگرام، از یک صدای ثابت در همه‌ی پست‌ها شروع می‌شود.","رشدِ اینستاگرام"],
+    ["پست‌های آموزشی، اعتبار می‌سازند؛ پست‌های داستانی، ارتباط می‌سازند؛ هر دو را داشته باش.","رشدِ اینستاگرام"],
+    ["دعوت به اکشن را فراموش نکن؛ مخاطب اغلب منتظرِ یک جمله‌ی راهنماست.","رشدِ اینستاگرام"],
+    ["کاور و تامبنیل، اولین چیزی‌ست که تصمیمِ کلیک را می‌سازد.","رشدِ اینستاگرام"],
+    ["همکاری با پیج‌های مکمل، سریع‌تر از تبلیغ، مخاطبِ جدید می‌آورد.","رشدِ اینستاگرام"],
+    ["پیج‌هایی که ثابت می‌مانند، حتی در روزهای کم‌انرژی، رشد می‌کنند.","رشدِ اینستاگرام"],
+    ["یک ریلز خوب، چندین بار قابلِ تماشاست؛ برای همین لوپ‌شدن، الگوریتم را راضی می‌کند.","رشدِ اینستاگرام"],
+    ["به‌جای دنبال‌کردنِ هر ترند، فقط ترندهایی را بگیر که با برندت هم‌خوانی دارند.","رشدِ اینستاگرام"],
+    ["سوال‌پرسیدن در استوری، ساده‌ترین راهِ شناختِ دقیقِ مخاطب است.","رشدِ اینستاگرام"],
+    ["پروفایلِ بایو باید در سه ثانیه بگوید: تو کی هستی و چه فایده‌ای داری.","رشدِ اینستاگرام"],
+    ["محتوایی که مشکلِ واقعیِ مخاطب را حل می‌کند، بیشتر از محتوای زیبا سیو می‌شود.","رشدِ اینستاگرام"],
+    ["پیج قوی، هر پستش را با پستِ بعدی وصل می‌کند تا مخاطب برای دیدنِ ادامه برگردد.","رشدِ اینستاگرام"],
+    ["ثباتِ بصری -رنگ، فونت، سبک- پیج را در ذهنِ مخاطب ماندگار می‌کند.","رشدِ اینستاگرام"],
+    ["بهترین محتوای فروش، محتوایی‌ست که مخاطب حس نکند تبلیغ می‌بیند.","رشدِ اینستاگرام"],
+    ["پاسخ‌دادن به دایرکت‌ها به‌موقع، مشتریِ سردرگم را به مشتریِ وفادار تبدیل می‌کند.","رشدِ اینستاگرام"],
+    ["هر هفته، یک پست را با معیارِ داده تحلیل کن، نه فقط با حسِ خودت.","رشدِ اینستاگرام"],
+    ["پیج‌های رشدکرده، معمولاً یک فرمتِ ثابت دارند که مخاطب آن را می‌شناسد.","رشدِ اینستاگرام"],
+    ["کپشنِ طولانی، وقتی ارزش‌مند باشد، دوستِ الگوریتم است، نه دشمنش.","رشدِ اینستاگرام"],
+    ["لایو گرفتن، سریع‌ترین راه برای ساختنِ اعتمادِ واقعی‌ست.","رشدِ اینستاگرام"],
+    ["بایگانی‌کردنِ پست‌های ضعیف، از نگه‌داشتنِ همه‌چیز برای «رزومه» بهتر است.","رشدِ اینستاگرام"],
+    ["هر پست باید یک نتیجه‌ی مشخص داشته باشد: فالو، دایرکت، خرید یا اشتراک‌گذاری.","رشدِ اینستاگرام"],
+    ["پیج‌های موفق، داستانِ برندشان را تعریف می‌کنند، نه فقط محصولشان را.","رشدِ اینستاگرام"],
+    ["بازخوردِ منفی را نادیده نگیر؛ اغلب دقیق‌ترین راهنمای بهبود است.","رشدِ اینستاگرام"],
+    ["محتوای پشتِ‌صحنه، اعتمادسازی می‌کند چون واقعی به‌نظر می‌رسد.","رشدِ اینستاگرام"],
+    ["رشدِ پایدار، از انفجارِ یک‌شبه با فالوورِ غیرواقعی، ارزشمندتر است.","رشدِ اینستاگرام"],
+    ["زمانِ پاسخ‌دهی به کامنت‌ها را کوتاه نگه دار؛ الگوریتم تعاملِ سریع را دوست دارد.","رشدِ اینستاگرام"],
+    ["هر سه ماه یک‌بار، بایو و هایلایت‌ها را با نگاهِ تازه بازبینی کن.","رشدِ اینستاگرام"],
+    ["پستی که سوال ایجاد می‌کند، بیشتر از پستی که فقط پاسخ می‌دهد، تعامل می‌گیرد.","رشدِ اینستاگرام"],
+    ["پیج قوی، برای هر مرحله از قیف فروش، محتوای متفاوت دارد.","رشدِ اینستاگرام"],
+    ["کیفیتِ صدا در ریلز، به همان اندازه‌ی تصویر روی ماندنِ مخاطب اثر دارد.","رشدِ اینستاگرام"],
+    ["بهترین تبلیغ، مشتریِ راضی‌ست که تجربه‌اش را در استوری تگ می‌کند.","رشدِ اینستاگرام"],
+    ["محتوایی که احساس واقعی نشان می‌دهد، بیشتر از محتوایِ کامل و بی‌نقص اعتماد می‌سازد.","رشدِ اینستاگرام"],
+    ["پیش از رشدِ فالوور، روی نرخِ تعامل تمرکز کن؛ عددِ بزرگ بدونِ تعامل، بی‌ارزش است.","رشدِ اینستاگرام"],
+    ["هر کپشن را طوری بنویس که انگار داری با یک دوست حرف می‌زنی، نه با جمعیت.","رشدِ اینستاگرام"],
+    ["پیجی که هر روز کمی بهتر از دیروز پست می‌گذارد، در یک سال شناخته می‌شود.","رشدِ اینستاگرام"]
+  ],
+  admin: [
+    ["ادمینِ خوب، اول گوش می‌دهد، بعد پاسخ می‌دهد.","آموزشِ ادمینی"],
+    ["سرعتِ پاسخ‌دهی، مهم‌تر از طولانی‌بودنِ پاسخ است.","آموزشِ ادمینی"],
+    ["هیچ پیامی را بدون پاسخ نگذار، حتی اگر پاسخ «بررسی می‌کنم و برمی‌گردم» باشد.","آموزشِ ادمینی"],
+    ["لحنِ ادمین، برندِ کسب‌وکار را در ذهنِ مشتری می‌سازد.","آموزشِ ادمینی"],
+    ["پیش از فروش، نیازِ مشتری را دقیق بپرس، نه اینکه فقط قیمت بدهی.","آموزشِ ادمینی"],
+    ["قالب‌های آماده برای سوالاتِ پرتکرار بساز تا زمانت را ذخیره کنی.","آموزشِ ادمینی"],
+    ["هر مشتریِ ناراضی، فرصتی‌ست برای نشان‌دادنِ حرفه‌ای‌بودنِ برند.","آموزشِ ادمینی"],
+    ["پیام‌های صبح را با اولویت پاسخ بده؛ اولین تجربه‌ی روزِ مشتری مهم است.","آموزشِ ادمینی"],
+    ["همیشه نامِ مشتری را به‌کار ببر؛ حسِ توجهِ شخصی می‌سازد.","آموزشِ ادمینی"],
+    ["اگر جوابِ سوالی را نمی‌دانی، صادقانه بگو و سریع پیگیری کن.","آموزشِ ادمینی"],
+    ["پیامِ تشکر بعد از هر خرید، مشتری را برای خریدِ بعدی آماده می‌کند.","آموزشِ ادمینی"],
+    ["ادمین باید بدونِ فشار، مشتری را به تصمیم‌گیری نزدیک کند، نه دورش کند.","آموزشِ ادمینی"],
+    ["هر شکایت را ثبت کن؛ الگوی تکرارشونده، نشانه‌ی مشکلِ واقعی‌ست.","آموزشِ ادمینی"],
+    ["پاسخ‌های کپی‌شده‌ی یکسان به همه، مشتری را از برند دور می‌کند؛ کمی شخصی‌سازی کن.","آموزشِ ادمینی"],
+    ["پیش از پاسخ به پیامِ عصبانی، چند ثانیه مکث کن؛ پاسخِ آرام، بحران را کوچک می‌کند.","آموزشِ ادمینی"],
+    ["لیستِ سوالاتِ پرتکرار را هر ماه به‌روزرسانی کن.","آموزشِ ادمینی"],
+    ["پیگیریِ سفارش‌های نیمه‌کاره، فروشِ ازدست‌رفته را برمی‌گرداند.","آموزشِ ادمینی"],
+    ["به‌جای «نداریم»، همیشه یک جایگزین پیشنهاد بده.","آموزشِ ادمینی"],
+    ["اطلاعاتِ محصول را دقیق و کامل بده؛ ابهام، اعتماد را از بین می‌برد.","آموزشِ ادمینی"],
+    ["ادمینِ حرفه‌ای، ساعتِ کاریِ مشخص دارد و به مشتری اطلاع می‌دهد.","آموزشِ ادمینی"],
+    ["هر پیامِ تبلیغاتی که می‌فرستی، باید ارزشی برای گیرنده داشته باشد، نه فقط فروش.","آموزشِ ادمینی"],
+    ["دیتای مکالمات را نگه‌دار؛ برای بهبودِ پاسخ‌ها به آن نیاز داری.","آموزشِ ادمینی"],
+    ["وقتی نمی‌توانی فوری پاسخ بدهی، پیامِ خودکارِ صادقانه بفرست.","آموزشِ ادمینی"],
+    ["هر مشتریِ جدید را با یک پیامِ خوش‌آمد، متفاوت از مشتریِ قدیمی راهنمایی کن.","آموزشِ ادمینی"],
+    ["زبانِ ساده و روان، از جملاتِ رسمی و پیچیده، بیشتر مشتری جذب می‌کند.","آموزشِ ادمینی"],
+    ["درخواستِ نظر و امتیاز، بعد از رضایتِ مشتری، اعتبار می‌سازد.","آموزشِ ادمینی"],
+    ["ادمین باید بدونِ نیازِ سرپرست، تصمیم‌های ساده را خودش بگیرد.","آموزشِ ادمینی"],
+    ["پاسخ‌ندادن به‌موقع، گران‌ترین اشتباهِ یک پیجِ فروشگاهی‌ست.","آموزشِ ادمینی"],
+    ["هر گروه یا کانال، نیازمندِ قوانینِ روشن برای ادمین‌کردن است.","آموزشِ ادمینی"],
+    ["کاربرانِ ساکت را هم فراموش نکن؛ گاهی با یک پیامِ کوتاه دوباره فعال می‌شوند.","آموزشِ ادمینی"],
+    ["ادمینِ خوب، فرق بین «مشتریِ درحالِ تصمیم» و «مشتریِ فقط کنجکاو» را می‌فهمد.","آموزشِ ادمینی"],
+    ["هر پاسخ باید یک قدم مشتری را به سمتِ خرید یا حل مسئله نزدیک‌تر کند.","آموزشِ ادمینی"],
+    ["استفاده از ایموجیِ مناسب، پیام را گرم‌تر می‌کند، اما زیاده‌روی نکن.","آموزشِ ادمینی"],
+    ["پیش از ارسالِ پیامِ گروهی، مطمئن شو محتوا برای همه‌ی گیرنده‌ها مرتبط است.","آموزشِ ادمینی"],
+    ["ثبتِ آدرس و مشخصاتِ مشتری، از پرسیدنِ دوباره‌ی هر بار جلوگیری می‌کند.","آموزشِ ادمینی"],
+    ["ادمینِ باتجربه، لحنِ خودش را با لحنِ مشتری هماهنگ می‌کند.","آموزشِ ادمینی"],
+    ["هر سفارش را تا تحویلِ نهایی پیگیری کن، نه فقط تا ثبت.","آموزشِ ادمینی"],
+    ["وقتی مشتری مقایسه می‌کند، به‌جای بدگویی از رقیب، مزیتِ خودت را نشان بده.","آموزشِ ادمینی"],
+    ["پیام‌های طولانی را به چند خطِ کوتاه بشکن؛ خواندن در موبایل راحت‌تر می‌شود.","آموزشِ ادمینی"],
+    ["هر روز، چند دقیقه را به بازبینیِ مکالماتِ ازدست‌رفته اختصاص بده.","آموزشِ ادمینی"],
+    ["کاربرِ عصبانی را عمومی جواب نده؛ گفت‌وگو را به پیامِ خصوصی ببر.","آموزشِ ادمینی"],
+    ["پاسخ‌گویی در تعطیلات هم، حتی محدود، حسِ اعتمادِ بیشتری می‌سازد.","آموزشِ ادمینی"],
+    ["برای هر محصول، یک توضیحِ کوتاه و آماده داشته باش تا زمان تلف نشود.","آموزشِ ادمینی"],
+    ["ادمین باید بین «معرفیِ محصول» و «تحمیلِ محصول» تفاوت را حفظ کند.","آموزشِ ادمینی"],
+    ["بازخوردِ کاربران را با تیمِ تولید یا فروش به اشتراک بگذار.","آموزشِ ادمینی"],
+    ["برای مشتریانِ تکراری، شخصی‌سازیِ بیشتر یعنی وفاداریِ بیشتر.","آموزشِ ادمینی"],
+    ["پیامِ خداحافظیِ محترمانه، حتی وقتی مشتری خرید نکرده، درِ بازگشت را باز نگه می‌دارد.","آموزشِ ادمینی"],
+    ["ادمینِ منظم، پوشه‌بندیِ مکالمات را جدی می‌گیرد تا چیزی گم نشود.","آموزشِ ادمینی"],
+    ["سرعت و دقت با هم؛ پاسخِ سریعِ اشتباه، بدتر از پاسخِ کمی دیرترِ درست است.","آموزشِ ادمینی"],
+    ["هر روز که پیجی را اداره می‌کنی، در واقع اعتمادِ یک برند را دست داری؛ جدی بگیرش.","آموزشِ ادمینی"]
+  ],
+  visitor: [
+    ["ویزیتورِ خوب، پیش از ورود به مغازه، درباره‌ی صاحبِ کسب‌وکار کمی اطلاعات دارد.","آموزشِ ویزیتوری"],
+    ["اولین دقیقه‌ی ملاقات، لحنِ کلِ گفت‌وگو را می‌سازد؛ با اعتمادبه‌نفس وارد شو.","آموزشِ ویزیتوری"],
+    ["به‌جای معرفیِ کاتالوگ، اول بپرس مشتری الان با چه مشکلی روبه‌روست.","آموزشِ ویزیتوری"],
+    ["مسیرِ ویزیت را از قبل برنامه‌ریزی کن تا زمان و بنزین هدر نرود.","آموزشِ ویزیتوری"],
+    ["هر «نه»ی امروز، لزوماً «نه»ی همیشگی نیست؛ آدرس را برای ویزیتِ بعدی نگه‌دار.","آموزشِ ویزیتوری"],
+    ["نمونه‌ی محصول همراه داشته باش؛ لمس‌کردن، بیشتر از توضیح‌دادن متقاعد می‌کند.","آموزشِ ویزیتوری"],
+    ["به‌جای فهرستِ کاملِ محصولات، فقط چیزی را معرفی کن که به‌دردِ همان مشتری می‌خورد.","آموزشِ ویزیتوری"],
+    ["دفترِ ویزیتِ منظم، بهترین ابزارِ یک ویزیتورِ حرفه‌ای‌ست.","آموزشِ ویزیتوری"],
+    ["قیمت را با اطمینان بگو؛ تردید در لحن، شک را در مشتری می‌کارد.","آموزشِ ویزیتوری"],
+    ["هر ویزیت را با یک قدمِ بعدیِ مشخص تمام کن: سفارش، قرارِ بعدی یا پیگیریِ تلفنی.","آموزشِ ویزیتوری"],
+    ["لباس و ظاهرِ مرتب، اولین پیامِ حرفه‌ای‌بودن است، پیش از هر کلمه.","آموزشِ ویزیتوری"],
+    ["به رقیب بی‌احترامی نکن؛ مزیتِ خودت را نشان بده، نه ضعفِ دیگری را.","آموزشِ ویزیتوری"],
+    ["مشتریِ سخت‌گیر، اغلب دقیق‌ترین بازخورد را برای بهبودِ محصول می‌دهد.","آموزشِ ویزیتوری"],
+    ["هر مسیرِ ویزیت را با هدفِ عددی مشخص شروع کن: چند مشتری، چند سفارش.","آموزشِ ویزیتوری"],
+    ["بعد از فروشِ اول، پیگیریِ رضایتِ مشتری را فراموش نکن؛ فروشِ دوم مهم‌تر است.","آموزشِ ویزیتوری"],
+    ["زمانِ مناسبِ ویزیت را بشناس؛ ساعتِ شلوغیِ مغازه، بدترین زمانِ فروش است.","آموزشِ ویزیتوری"],
+    ["اگر مشتری امروز نخرید، اطلاعاتِ تماس بگیر تا فرصتِ فردا از دست نرود.","آموزشِ ویزیتوری"],
+    ["ویزیتورِ موفق، شنونده‌ی بهتری از سخنران است.","آموزشِ ویزیتوری"],
+    ["مقایسه‌ی محصول با نمونه‌ی رقیب، وقتی صادقانه باشد، اعتماد می‌سازد.","آموزشِ ویزیتوری"],
+    ["هر اعتراضِ مشتری درباره‌ی قیمت، فرصتی‌ست برای نشان‌دادنِ ارزش، نه فقط تخفیف.","آموزشِ ویزیتوری"],
+    ["پیگیریِ منظم و بدونِ فشار، مشتریِ مردد را در طولِ زمان مشتریِ ثابت می‌کند.","آموزشِ ویزیتوری"],
+    ["ویزیتِ حضوری، فرصتِ دیدنِ نیازهایی‌ست که تلفن نشانت نمی‌دهد.","آموزشِ ویزیتوری"],
+    ["هر مشتریِ راضی، دو یا سه مشتریِ جدید را از طریقِ توصیه معرفی می‌کند؛ از او بخواه.","آموزشِ ویزیتوری"],
+    ["نمونه‌ی رایگان، وقتی هدفمند داده شود، سرمایه‌گذاری‌ست نه هزینه.","آموزشِ ویزیتوری"],
+    ["برنامه‌ی هفتگیِ ویزیت‌ها را طوری بچین که مشتریانِ قدیمی هم فراموش نشوند.","آموزشِ ویزیتوری"],
+    ["زبانِ بدنِ مطمئن -نگاهِ مستقیم و دست‌دادنِ محکم- پیامِ اعتماد می‌فرستد.","آموزشِ ویزیتوری"],
+    ["برای هر اعتراضِ رایج، از قبل یک پاسخِ آماده و مطمئن داشته باش.","آموزشِ ویزیتوری"],
+    ["ویزیتورِ خوب، مشتری را وادار به تصمیمِ سریع نمی‌کند؛ راهنمایی می‌کند.","آموزشِ ویزیتوری"],
+    ["ثبتِ دقیقِ سفارش‌ها و تاریخِ تحویل، اعتمادِ کسب‌وکارها را نگه می‌دارد.","آموزشِ ویزیتوری"],
+    ["هر ویزیت، فرصتی‌ست برای شنیدنِ بازخوردِ بازار، نه فقط فروش.","آموزشِ ویزیتوری"],
+    ["بازارِ رقابتی را بشناس؛ ندانستنِ قیمتِ رقیب، دستِ تو را در مذاکره ضعیف می‌کند.","آموزشِ ویزیتوری"],
+    ["ویزیتِ منظم و پیش‌بینی‌پذیر، از ویزیتِ نامنظم اعتمادسازتر است.","آموزشِ ویزیتوری"],
+    ["برای مشتریانِ بزرگ، برنامه‌ی تخفیفِ حجمی از قبل آماده داشته باش.","آموزشِ ویزیتوری"],
+    ["هدفِ ویزیت، فقط فروشِ امروز نیست؛ ساختنِ رابطه‌ی بلندمدت است.","آموزشِ ویزیتوری"],
+    ["وقتی مشتری مردد است، از او سوال‌های باز بپرس تا دلیلِ واقعیِ تردید را بفهمی.","آموزشِ ویزیتوری"],
+    ["کارتِ ویزیت و کاتالوگ همیشه همراهت باشد؛ فرصت‌ها بدونِ خبر می‌آیند.","آموزشِ ویزیتوری"],
+    ["بعد از هر «نه»، دلیلش را بپرس؛ داده‌ی باارزشی برای فروشِ بعدی‌ست.","آموزشِ ویزیتوری"],
+    ["مشتریانِ راضی را در شبکه‌های اجتماعی یا کاتالوگ به‌عنوانِ نمونه معرفی کن.","آموزشِ ویزیتوری"],
+    ["زمانِ حضور در هر مغازه را کوتاه و مفید نگه دار؛ وقتِ مشتری هم ارزش دارد.","آموزشِ ویزیتوری"],
+    ["ویزیتورِ حرفه‌ای، بعد از هر ملاقات، یادداشتِ کوتاهی از نکاتِ مهم می‌نویسد.","آموزشِ ویزیتوری"],
+    ["قبل از پیشنهادِ محصولِ جدید، سابقه‌ی خریدِ قبلیِ مشتری را مرور کن.","آموزشِ ویزیتوری"],
+    ["اعتمادسازی زمان می‌برد؛ روی مشتری‌های سخت زودتر از موعد فشار نیاور.","آموزشِ ویزیتوری"],
+    ["پیشنهادِ محدودِ زمانی، وقتی واقعی باشد، تصمیم‌گیری را سریع‌تر می‌کند.","آموزشِ ویزیتوری"],
+    ["هر منطقه‌ی جغرافیایی را بشناس؛ نیازِ کارواشِ شهری با روستایی فرق دارد.","آموزشِ ویزیتوری"],
+    ["ویزیتورِ موفق، حتی روزهای کم‌فروش را با انرژیِ ثابت جلو می‌رود.","آموزشِ ویزیتوری"],
+    ["دفترچه یا اپلیکیشنِ ثبتِ مشتریان را همیشه به‌روز نگه دار.","آموزشِ ویزیتوری"],
+    ["برای مشتریانِ جدید، اولین سفارش را کوچک و بدونِ ریسک پیشنهاد بده.","آموزشِ ویزیتوری"],
+    ["هر ویزیت را با لبخند تمام کن، حتی وقتی فروش انجام نشده.","آموزشِ ویزیتوری"],
+    ["بازخوردِ منفی درباره‌ی محصول را سریع به شرکت منتقل کن؛ اعتبارِ برند به آن بستگی دارد.","آموزشِ ویزیتوری"],
+    ["ویزیتورِ بااستمرار، در بلندمدت از ویزیتورِ بااستعداد و بی‌ثبات جلو می‌زند.","آموزشِ ویزیتوری"]
+  ],
+  selling: [
+    ["فروش، انتقالِ اطمینان است، نه اجبار به خرید.","آموزشِ فروشندگی"],
+    ["مشتری محصول را بر اساسِ احساس می‌خرد و با منطق توجیه می‌کند.","آموزشِ فروشندگی"],
+    ["پیش از معرفیِ محصول، مشکلِ دقیقِ مشتری را کشف کن.","آموزشِ فروشندگی"],
+    ["سکوت بعد از گفتنِ قیمت، ابزاری قدرتمند است؛ اولین کسی که حرف می‌زند، اغلب می‌بازد.","آموزشِ فروشندگی"],
+    ["فروشنده‌ی حرفه‌ای، سوال می‌پرسد تا بفهمد، نه فقط تا صحبت کند.","آموزشِ فروشندگی"],
+    ["اعتراض به قیمت، اغلب یعنی ارزش هنوز روشن نیست.","آموزشِ فروشندگی"],
+    ["داستان‌گفتن درباره‌ی مشتریانِ راضی، از فهرستِ ویژگی‌ها بیشتر می‌فروشد.","آموزشِ فروشندگی"],
+    ["هر «نه»، تو را یک قدم به «بله»ی بعدی نزدیک‌تر می‌کند.","آموزشِ فروشندگی"],
+    ["فروشنده باید عاشقِ حل‌کردنِ مشکلِ مشتری باشد، نه فقط بستنِ قرارداد.","آموزشِ فروشندگی"],
+    ["اولین برداشتِ مشتری در چند ثانیه‌ی اول شکل می‌گیرد؛ آماده باش.","آموزشِ فروشندگی"],
+    ["به‌جای فشار برای فروشِ فوری، اعتماد بساز تا مشتری خودش تصمیم بگیرد.","آموزشِ فروشندگی"],
+    ["هر مشتری یک دلیلِ منحصربه‌فرد برای خرید دارد؛ آن دلیل را پیدا کن.","آموزشِ فروشندگی"],
+    ["پیگیریِ حرفه‌ای، بیش از پیامِ اول، معامله می‌بندد.","آموزشِ فروشندگی"],
+    ["فروشنده‌ی خوب، از رد‌شدن نمی‌ترسد؛ آن را بخشی از کار می‌داند.","آموزشِ فروشندگی"],
+    ["قیمت را توجیه کن با ارزش، نه با توضیح‌های طولانی و دفاعی.","آموزشِ فروشندگی"],
+    ["مشتریِ فعلی، ارزان‌ترین و مطمئن‌ترین منبعِ فروشِ بعدی‌ست.","آموزشِ فروشندگی"],
+    ["زبانِ بدن و لحنِ صدا، گاهی بیشتر از کلمات پیام می‌رسانند.","آموزشِ فروشندگی"],
+    ["هر اعتراض، فرصتی‌ست برای روشن‌کردنِ ابهام، نه علامتِ شکست.","آموزشِ فروشندگی"],
+    ["فروشنده‌ی بزرگ، شنونده‌ی بزرگ‌تری‌ست.","آموزشِ فروشندگی"],
+    ["پیشنهادِ محدود، وقتی صادقانه است، تصمیم‌گیری را تسریع می‌کند نه گمراه.","آموزشِ فروشندگی"],
+    ["به‌جای رقابت بر سرِ قیمت، روی تفاوتِ ارزش تمرکز کن.","آموزشِ فروشندگی"],
+    ["بستنِ فروش، لحظه‌ی طبیعیِ یک گفت‌وگوی خوب است، نه یک ترفندِ جدا.","آموزشِ فروشندگی"],
+    ["هر مشتری را طوری متقاعد کن که انگار داری به یک دوست کمک می‌کنی.","آموزشِ فروشندگی"],
+    ["اطلاعاتِ ناقص، بزرگ‌ترین دشمنِ اعتمادِ مشتری‌ست.","آموزشِ فروشندگی"],
+    ["فروشنده‌ی موفق، بعد از فروش هم پیگیرِ رضایتِ مشتری می‌ماند.","آموزشِ فروشندگی"],
+    ["سوالِ باز بپرس تا مشتری خودش دلیلِ خرید را بگوید، نه اینکه تو تحمیل کنی.","آموزشِ فروشندگی"],
+    ["اعتمادبه‌نفس در فروش، از آماده‌بودن می‌آید، نه از تظاهر.","آموزشِ فروشندگی"],
+    ["هر مکالمه‌ی فروش را با یک هدفِ روشن شروع کن، نه فقط برای «صحبت‌کردن».","آموزشِ فروشندگی"],
+    ["مشتریِ ناراضی که پاسخِ درست بگیرد، وفادارتر از مشتریِ راضیِ عادی می‌شود.","آموزشِ فروشندگی"],
+    ["بهترین فروشنده‌ها، محصول را نمی‌فروشند؛ نتیجه‌ای که مشتری می‌خواهد را می‌فروشند.","آموزشِ فروشندگی"],
+    ["زمان‌بندیِ پیشنهاد، به‌اندازه‌ی خودِ پیشنهاد اهمیت دارد.","آموزشِ فروشندگی"],
+    ["هر جلسه‌ی فروشِ ناموفق را تحلیل کن؛ داده‌اش برای فروشِ بعدی طلاست.","آموزشِ فروشندگی"],
+    ["اعتمادسازی از صداقت شروع می‌شود، حتی وقتی صداقت یعنی گفتنِ «این محصول برای شما مناسب نیست».","آموزشِ فروشندگی"],
+    ["مشتری بیش از هر چیز، حسِ شنیده‌شدن می‌خواهد؛ آن را بده.","آموزشِ فروشندگی"],
+    ["فروشنده‌ی خوب، زمانِ درستِ سکوت‌کردن را می‌داند.","آموزشِ فروشندگی"],
+    ["پیشنهادهای اضافه (آپ‌سل) را وقتی بده که ارزشِ واقعی برای مشتری دارد، نه فقط برای فروشِ بیشتر.","آموزشِ فروشندگی"],
+    ["هر تماسِ فروش را با آماده‌بودن شروع کن، نه با ایمپروایز کردن.","آموزشِ فروشندگی"],
+    ["اعتراضِ «باید فکر کنم» معمولاً یعنی هنوز یک سوال بی‌جواب مانده.","آموزشِ فروشندگی"],
+    ["فروشنده‌ی موفق، بعد از هر «بله»، از مشتری تشکرِ واقعی می‌کند، نه فقط رسمی.","آموزشِ فروشندگی"],
+    ["ارتباطِ بلندمدت با مشتری، از فروشِ یک‌باره ارزشمندتر است.","آموزشِ فروشندگی"],
+    ["قبل از مذاکره‌ی قیمت، حداقل و هدفِ خودت را دقیق بدان.","آموزشِ فروشندگی"],
+    ["هر «شاید» را با یک سوالِ روشن‌کننده به «بله» یا «نه» نزدیک کن.","آموزشِ فروشندگی"],
+    ["مشتریِ آگاه امروز، تحقیق می‌کند؛ فروشنده باید بیشتر از مشتری اطلاعات داشته باشد.","آموزشِ فروشندگی"],
+    ["تخفیف، آخرین ابزار است، نه اولین پیشنهاد.","آموزشِ فروشندگی"],
+    ["لبخند و انرژیِ مثبت، حتی پشتِ تلفن، در صدا شنیده می‌شود.","آموزشِ فروشندگی"],
+    ["هر معامله را طوری ببند که مشتری حسِ برنده‌بودن داشته باشد، نه باخت.","آموزشِ فروشندگی"],
+    ["فروشنده‌ی حرفه‌ای، فرقِ بینِ «مشتریِ آماده» و «مشتریِ کنجکاو» را زود تشخیص می‌دهد.","آموزشِ فروشندگی"],
+    ["پیگیریِ بعد از فروش، دری‌ست به سوی فروشِ بعدی و معرفیِ مشتریانِ جدید.","آموزشِ فروشندگی"],
+    ["هر اعتراض را با آرامش بشنو؛ عصبانیت، اعتماد را نابود می‌کند.","آموزشِ فروشندگی"],
+    ["فروش، یک لحظه نیست؛ یک رابطه است که با هر تماس، قوی‌تر یا ضعیف‌تر می‌شود.","آموزشِ فروشندگی"]
+  ]
+};
+
+/* ---------------- چالشِ هر حوزه ---------------- */
+const MINI_CHALLENGES = {
+  money: [
+    "امروز یک منبعِ درآمدِ جدید را روی کاغذ بنویس، حتی اگر خیلی کوچک باشد.",
+    "هزینه‌های این ماه را مرور کن و یک هزینه‌ی بی‌فایده را همین امروز حذف کن.",
+    "قیمتِ یکی از محصولات یا خدماتت را بازبینی کن؛ شاید وقتِ افزایش رسیده.",
+    "با یک نفر که در حوزه‌ی مالی موفق بوده، پیام بده و یک سوال بپرس.",
+    "امروز ۵٪ از درآمدت را کنار بگذار، حتی اگر عدد کوچکی باشد.",
+    "یک ایده‌ی کسب‌درآمدِ جانبی را برای ۱۰ دقیقه روی کاغذ بررسی کن.",
+    "لیستِ بدهی‌ها یا تعهداتِ مالی‌ات را یک‌بار مرور و اولویت‌بندی کن.",
+    "امروز یک محصول یا خدمتِ جدید به فهرستِ فروشت اضافه کن، حتی در حد ایده.",
+    "با خودت یک قراردادِ مالی ببند: امروز یک قدم به‌سمتِ هدفِ پس‌اندازت بردار.",
+    "بودجه‌ی هفته‌ی آینده را همین امروز بنویس، پیش از آنکه هفته شروع شود."
+  ],
+  thanks: [
+    "سه چیزِ کوچک را که امروز نادیده گرفتی، پیدا کن و برایشان شکر کن.",
+    "به کسی که کمکت کرده، یک پیامِ کوتاهِ تشکر بفرست.",
+    "قبل از خواب، امروز را در سه جمله‌ی شکرگزاری خلاصه کن.",
+    "به‌جای شکایت از یک مشکل، یک جنبه‌ی خوبِ همان موقعیت را پیدا کن.",
+    "برای بدنت -که امروز کارت را انجام داد- یک لحظه شکر کن.",
+    "یک خاطره‌ی خوبِ سالِ گذشته را به یاد بیاور و برایش شکرگزار باش.",
+    "امروز بابتِ یک شکستِ گذشته که درس شد، شکر کن.",
+    "به یکی از اعضای خانواده‌ات بگو بابتِ چه چیزی از او سپاسگزاری.",
+    "یک نفسِ عمیق بکش و فقط برای همین لحظه شکر کن.",
+    "امروز، به‌جای درخواستِ چیزِ جدید، فقط شکرِ داشته‌هایت را بگو."
+  ],
+  humanity: [
+    "به یک غریبه، بدونِ دلیل، یک کارِ کوچکِ مهربانانه انجام بده.",
+    "امروز به حرف‌های یک نفر، بدونِ قطع‌کردنش، تا آخر گوش بده.",
+    "یک وسیله یا لباسِ اضافه را برای کسی که نیاز دارد کنار بگذار.",
+    "با کسی که در سکوت رنج می‌برد، فقط بنشین و همراهی کن.",
+    "امروز به‌جای قضاوت، سعی کن جای دیگری بایستی و ماجرا را از دیدِ او ببینی.",
+    "یک پیامِ دلگرم‌کننده برای کسی بفرست که این روزها سخت می‌گذراند.",
+    "یک وعده‌ی غذا یا نوشیدنی برای کسی که نیاز دارد بخر.",
+    "امروز بدونِ چشم‌داشت، وقتِ کسی را با گوش‌دادنِ خالص پر کن.",
+    "به یک کارِ داوطلبانه یا خیریه، حتی یک قدمِ کوچک، فکر کن و شروع کن.",
+    "امروز، به کسی که فراموشش کرده بودی، حالش را بپرس."
+  ],
+  sales: [
+    "قبل از تماسِ فروشِ بعدی، یک سوال بنویس که نیازِ واقعیِ مشتری را روشن کند.",
+    "امروز یک مشتریِ قدیمی را که مدتی تماس نگرفته پیگیری کن.",
+    "یک اعتراضِ رایجِ مشتریان را بنویس و برایش یک پاسخِ آماده بساز.",
+    "به یک مشتری، بدونِ فروختنِ چیزی، فقط ارزش بده.",
+    "امروز داستانِ موفقیتِ یک مشتریِ راضی را از او بگیر و ثبت کن.",
+    "قیمت‌گذاریِ یکی از پیشنهادهایت را بر اساسِ ارزش، نه فقط هزینه، بازبینی کن.",
+    "امروز یک پیشنهادِ فروش را با تمرکز بر نتیجه، نه ویژگی، بازنویسی کن.",
+    "به یک مشتریِ بالقوه‌ی جدید، پیامِ اولِ معرفی را بفرست.",
+    "امروز یک «نه» از مشتری را تحلیل کن؛ دلیلِ واقعی‌اش چه بود؟",
+    "یک تماسِ فروش را مرور کن و یک نقطه‌ی قابلِ‌بهبود پیدا کن."
+  ],
+  motivation: [
+    "سخت‌ترین کارِ امروزت را همین الان، قبلِ هر کارِ دیگر، شروع کن.",
+    "یک هدفِ بزرگ را به یک قدمِ ۱۰دقیقه‌ای بشکن و همین امروز انجامش بده.",
+    "امروز یک بهانه‌ی همیشگی‌ات را کنار بگذار و کاری که عقب انداختی را انجام بده.",
+    "به‌جای فکرکردن به نتیجه، فقط روی حرکتِ بعدی تمرکز کن.",
+    "یک ویدیو یا صدای انگیزشی که واقعاً کارت را می‌کند، امروز دوباره گوش کن.",
+    "پنج دقیقه بنشین و روزی که می‌خواهی بسازی را تجسم کن، بعد بلند شو و شروع کن.",
+    "امروز به خودتِ یک سالِ پیش نامه بنویس؛ چه چیزی عوض شده؟",
+    "یک کارِ ناتمام را همین امروز -فقط همین یکی- تمام کن.",
+    "قانونِ ۵ ثانیه را امتحان کن: شمارشِ معکوس کن و حرکت کن.",
+    "امروز به‌جای «باید»، بگو «انتخاب می‌کنم» و یک کارِ سخت را انجام بده."
+  ],
+  formula: [
+    "یک فردِ موفق در حوزه‌ات را پیدا کن و مسیرِ او را برای ۱۵ دقیقه مطالعه کن.",
+    "امروز هدفِ یک‌ساله‌ات را به سه مرحله‌ی کوچک‌تر تقسیم کن.",
+    "یک عادتِ کلیدی که افرادِ موفق دارند را انتخاب کن و امروز شروعش کن.",
+    "سیستم یا روتینِ روزانه‌ات را بازبینی کن؛ یک بخشِ غیرِضروری را حذف کن.",
+    "امروز یک تصمیمِ سخت را که مدتی معطلش کرده‌ای، بگیر.",
+    "شکستِ اخیرت را در یک جمله بنویس: از آن چه یاد گرفتی؟",
+    "امروز یک قدمِ کوچک اما نامتعارف برای رسیدن به هدفت بردار.",
+    "معیارِ موفقیتِ امروزت را از قبل بنویس، نه اینکه در آخرِ روز قضاوت کنی.",
+    "به فرمولِ ۱٪ بهترشدن فکر کن: امروز کجا می‌توانی همین ۱٪ را اضافه کنی؟",
+    "یک باورِ محدودکننده را بنویس و یک دلیل برای نادرست‌بودنش پیدا کن."
+  ],
+  instagram: [
+    "امروز یک استوری پشتِ‌صحنه از کارت منتشر کن؛ مردم واقعی‌بودن را دوست دارند.",
+    "به ۱۰ پیجِ هم‌حوزه سر بزن و روی سه پستِ خوب، کامنتِ واقعی بگذار.",
+    "یک پستِ قبلی‌ات را که خوب عمل نکرده، بازنویسی و دوباره منتشر کن.",
+    "امروز یک ریلِ کوتاه با یک نکته‌ی کاربردی از کسب‌وکارت بساز.",
+    "به دایرکت‌های خوانده‌نشده پاسخ بده؛ هر پاسخ، یک رابطه‌ی جدید است.",
+    "بیوگرافیِ پیجت را طوری بازنویسی کن که در سه ثانیه بگوید چه کمکی می‌کنی.",
+    "امروز از یک مشتریِ راضی بخواه یک استوری یا نظر برایت بفرستد.",
+    "یک نظرسنجی در استوری بگذار و بر اساسِ جواب‌ها، محتوای فردا را بساز.",
+    "زمانِ فعالیتِ مخاطبانت را چک کن و پستِ بعدی را دقیقاً همان ساعت منتشر کن.",
+    "امروز یک همکاریِ کوچک با یک پیجِ مرتبط پیشنهاد بده."
+  ],
+  admin: [
+    "امروز یک پاسخِ آماده برای پرتکرارترین سوالِ مشتریان بنویس تا وقتت را ذخیره کنی.",
+    "پیام‌های خوانده‌نشده‌ی صفحه یا پیجت را صفر کن.",
+    "زمانِ پاسخ‌گویی‌ات را اندازه بگیر و امروز سعی کن سریع‌تر جواب بدهی.",
+    "یک قالبِ استاندارد برای خوش‌آمدگویی به مشتریِ جدید بساز.",
+    "امروز فهرستِ سوالاتِ متداول را بازبینی و یک موردِ جدید اضافه کن.",
+    "یک مکالمه‌ی سخت با مشتری را مرور کن؛ دفعه‌ی بعد چطور بهتر جواب می‌دهی؟",
+    "روشِ پیگیریِ سفارش‌ها را ساده‌تر کن؛ یک مرحله‌ی اضافه را حذف کن.",
+    "امروز یک پیامِ خودکار یا الگو برای زمان‌های شلوغی آماده کن.",
+    "بازخوردِ یک مشتریِ ناراضی را بدونِ دفاعی‌شدن، فقط بشنو و ثبت کن.",
+    "چک‌لیستِ روزانه‌ی ادمینی‌ات را بنویس تا هیچ پیامی جا نماند."
+  ],
+  visitor: [
+    "امروز به یک مغازه یا مشتریِ جدید سر بزن که تا حالا نرفته‌ای.",
+    "قبل از ورود به هر مغازه، یک جمله‌ی معرفیِ کوتاه و قوی آماده کن.",
+    "از یک مشتریِ قدیمی بخواه تو را به یک مشتریِ جدید معرفی کند.",
+    "امروز مسیرِ ویزیتت را بهینه کن تا زمانِ کمتری در راه از دست بدهی.",
+    "به ردِ یک مشتری با یک لبخند و یک سوال جواب بده، نه ناامیدی.",
+    "امروز محصولِ جدید یا پیشنهادِ ویژه را به همه‌ی مشتریانِ مسیرت معرفی کن.",
+    "یک دفترچه یا اپلیکیشن برای ثبتِ سفارش‌های امروز آماده کن تا چیزی فراموش نشود.",
+    "با صاحبِ یک مغازه، فراتر از فروش، یک گفت‌وگوی واقعی داشته باش.",
+    "امروز هدفِ تعدادِ بازدید را از دیروز یک مورد بیشتر کن.",
+    "لیستِ مشتریانی که مدتی سفارش نداده‌اند را چک و به آن‌ها سر بزن."
+  ],
+  selling: [
+    "امروز پیش از معرفیِ محصول، سه سوال از مشتری بپرس تا نیازش را بفهمی.",
+    "یک اعتراضِ رایجِ مشتریان را امروز با آرامش و بدونِ دفاعی‌شدن جواب بده.",
+    "لحنِ صدایت را در فروش امروز آگاهانه گرم‌تر و مطمئن‌تر کن.",
+    "بعد از هر فروش، از مشتری بخواه صادقانه نظرش را بگوید.",
+    "امروز یک فروشِ ناموفق را دوباره در ذهنت مرور کن؛ کجا می‌شد بهتر عمل کرد؟",
+    "به‌جای معرفیِ ویژگی‌ها، امروز نتیجه‌ای که مشتری می‌گیرد را روایت کن.",
+    "امروز به یک مشتریِ مردد، بدونِ فشار، فقط اطلاعاتِ بیشتر بده.",
+    "یک تکنیکِ جدیدِ بستنِ فروش را امروز امتحان کن.",
+    "پیگیریِ یک مشتریِ «شاید بعداً» را همین امروز انجام بده.",
+    "امروز از یک مشتریِ راضی بخواه تو را به یک نفرِ دیگر معرفی کند."
+  ],
+  workout: [
+    "امروز پیش از چک‌کردنِ گوشی، ۵ دقیقه کِش‌وقوس بده.",
+    "یک پله‌ی جلوی چشمت را امروز به‌جای آسانسور انتخاب کن.",
+    "امروز ۲۰ اسکوات را در سه نوبت، هر وقت یادت افتاد، انجام بده.",
+    "یک پیاده‌رویِ ۱۰دقیقه‌ای بدونِ گوشی، فقط برای امروز.",
+    "امروز، هر بارِ نشستنِ طولانی، یک دقیقه بلند شو و حرکت کن.",
+    "یک تایمر بگذار و ۳۰ ثانیه پلانک را امروز امتحان کن.",
+    "امروز آب بیشتر از دیروز بخور؛ یک لیوانِ اضافه، همین الان.",
+    "قبل از خواب، ۵ دقیقه کششِ آرام برای کاهشِ خستگیِ روز.",
+    "امروز یک مسیرِ کوتاه را پیاده برو، به‌جای ماشین یا موتور.",
+    "۱۰ نفسِ عمیق و آگاهانه بکش، بینِ دو کارِ سختِ امروز."
+  ]
+};
+const MINI_CHALLENGE_META = {
+  money: ["💰","پول‌سازی"], thanks: ["🙏","شکرگزاری"], humanity: ["🤍","انسانیت"],
+  sales: ["📈","فروش"], motivation: ["🔥","انگیزشی"], formula: ["🎯","فرمول موفقیت"],
+  instagram: ["📸","رشدِ اینستاگرام"], admin: ["🛠","ادمینی"], visitor: ["🚐","ویزیتوری"],
+  selling: ["🤝","فروشندگی"], workout: ["🏃","ورزش"]
+};
+
+/* هر روز، ترکیب و ترتیبِ متفاوتی از جمله‌های هر دسته با یک چیدمانِ تصادفیِ ثابت-بر-اساسِ-تاریخ نشان داده می‌شود */
+function hashString(str){
+  let h = 0;
+  for(let i=0;i<str.length;i++){ h = (h*31 + str.charCodeAt(i)) % 2147483647; }
+  return h;
+}
+renderMiniChallenges(todayIndex);
+function seededRandom(seed){
+  let s = seed % 2147483647;
+  if(s <= 0) s += 2147483646;
+  return function(){ s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+}
+function dailyOrder(catKey, length){
+  const seed = ((todayIndex * 9973) + hashString(catKey)) % 2147483647 || 1;
+  const rand = seededRandom(seed);
+  const idxs = Array.from({length}, (_,i)=>i);
+  for(let i=idxs.length-1;i>0;i--){
+    const j = Math.floor(rand()*(i+1));
+    [idxs[i],idxs[j]] = [idxs[j],idxs[i]];
+  }
+  return idxs;
+}
+const DEFAULT_SHOWN = { money:3, thanks:3, humanity:3, sales:3, motivation:3, formula:3, instagram:10, admin:10, visitor:10, selling:10 };
+
+let currentCat = 'money';
+let shownCount = 3;
+function renderQuotes(cat, count){
+  const list = CATEGORIES[cat];
+  const container = document.getElementById('quote-list');
+  container.innerHTML = '';
+  const order = dailyOrder(cat, list.length);
+  for(let i=0;i<count && i<list.length;i++){
+    const idx = order[i];
+    const [text, author] = list[idx];
+    const div = document.createElement('div');
+    div.className = 'quote-item';
+    div.innerHTML = `<span class="quote-mark">”</span><span class="quote-text">${text}</span><span class="quote-author">— ${author}</span>`;
+    container.appendChild(div);
+  }
+}
+function showCategory(cat){
+  currentCat = cat; shownCount = DEFAULT_SHOWN[cat] || 3;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+  renderQuotes(cat, shownCount);
+}
+document.getElementById('tabs').addEventListener('click', e => { const b=e.target.closest('.tab-btn'); if(b) showCategory(b.dataset.cat); });
+document.getElementById('btn-more').addEventListener('click', () => {
+  const step = DEFAULT_SHOWN[currentCat] || 3;
+  shownCount = Math.min(shownCount + step, CATEGORIES[currentCat].length);
+  renderQuotes(currentCat, shownCount);
+});
+showCategory('money');
+
+function speakCurrentQuotes(){
+  if(!('speechSynthesis' in window)) return;
+  const texts = Array.from(document.querySelectorAll('#quote-list .quote-text')).map(el => el.textContent).join('. ');
+  if(!texts) return;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(texts);
+  utter.lang = 'fa-IR';
+  window.speechSynthesis.speak(utter);
+}
+const btnListen = document.getElementById('btn-listen');
+if('speechSynthesis' in window){
+  btnListen.addEventListener('click', speakCurrentQuotes);
+}else{
+  btnListen.style.display = 'none';
+}
+document.getElementById('btn-share').addEventListener('click', () => {
+  const first = document.querySelector('#quote-list .quote-text');
+  const text = first ? first.textContent : '';
+  const msg = encodeURIComponent(`${text}\n\nاز سایتِ سپیده‌دم`);
+  window.open(`https://wa.me/?text=${msg}`, '_blank', 'noopener');
+});
+
+/* ---------------- استریکِ روزانه و پیشرفتِ مطالعه ---------------- */
+function toFa(n){ return String(n).replace(/[0-9]/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]); }
+function localDateStr(d){
+  const y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,'0'), day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+function updateStreak(){
+  const KEY = 'sepidedam-streak-v1';
+  let data = null;
+  try{ data = JSON.parse(localStorage.getItem(KEY) || 'null'); }catch(e){}
+  const today = localDateStr(new Date());
+  const yesterday = localDateStr(new Date(Date.now() - 86400000));
+  let count = 1;
+  if(data && data.lastDate === today){ count = data.count || 1; }
+  else if(data && data.lastDate === yesterday){ count = (data.count || 0) + 1; }
+  try{ localStorage.setItem(KEY, JSON.stringify({ lastDate: today, count })); }catch(e){}
+  const el = document.getElementById('streak-badge');
+  if(el) el.textContent = `🔥 ${toFa(count)} روزِ متوالی`;
+}
+updateStreak();
+
+function setupReadProgress(){
+  const sections = document.querySelectorAll('.section-label');
+  const total = sections.length;
+  const seen = new Set();
+  const badge = document.getElementById('read-badge');
+  function update(){ if(badge) badge.textContent = `${toFa(seen.size)} از ${toFa(total)} بخش رو دیدی`; }
+  update();
+  if(!('IntersectionObserver' in window) || total === 0) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if(entry.isIntersecting){ seen.add(entry.target); update(); } });
+  }, { threshold: 0.4 });
+  sections.forEach(el => obs.observe(el));
+}
+setupReadProgress();
+
+/* ---------------- چالش، انجام‌شد ---------------- */
+function setupChallengeDone(){
+  const KEY = 'sepidedam-challenge-done-v1';
+  const btn = document.getElementById('challenge-done-btn');
+  const status = document.getElementById('challenge-done-status');
+  const today = localDateStr(new Date());
+  const yesterday = localDateStr(new Date(Date.now() - 86400000));
+  let data = null;
+  try{ data = JSON.parse(localStorage.getItem(KEY) || 'null'); }catch(e){}
+  function render(){
+    if(data && data.lastDate === today){
+      btn.disabled = true;
+      btn.textContent = '✅ امروز انجام دادی';
+      status.textContent = `🔥 ${toFa(data.streak || 1)} روزِ متوالی`;
+    }else{
+      btn.disabled = false;
+      btn.textContent = '✅ امروز انجامش دادم';
+      status.textContent = data && data.streak ? `🔥 ${toFa(data.streak)} روزِ متوالی` : '';
+    }
+  }
+  render();
+  btn.addEventListener('click', () => {
+    let streak = 1;
+    if(data && data.lastDate === yesterday){ streak = (data.streak || 0) + 1; }
+    else if(data && data.lastDate === today){ streak = data.streak || 1; }
+    data = { lastDate: today, streak };
+    try{ localStorage.setItem(KEY, JSON.stringify(data)); }catch(e){}
+    render();
+  });
+}
+setupChallengeDone();
+
+/* ---------------- پیشنهادِ محصولِ امروز ---------------- */
+/* توجه: اسم و توضیحِ محصولات نمونه‌ست — با محصولاتِ واقعیِ کاتالوگ جایگزین کن */
+const PRODUCTS = [
+  ["نانو پوششِ بدنه‌ی خودرو", "برای مشتری‌ای که تازه ماشین شسته، این محافظتِ چندماهه رو پیشنهاد بده."],
+  ["نانو محافظ و آبگریزِ شیشه‌ی جلو", "تو روزهای بارونی، این محصول بیشترین تقاضا رو داره — همین امروز معرفی‌اش کن."],
+  ["اسپریِ نانو ضدآبِ پارچه و مبل", "برای ماشین‌های نو یا مبلمانِ خونگی، یه پیشنهادِ ساده و کاربردیه."],
+  ["نانو براق‌کننده و محافظِ رینگ", "بعد از هر کاروآش، این محصول رو به‌عنوانِ مکملِ خدمت پیشنهاد بده."],
+  ["نانو پولیشِ دستیِ بدنه", "برای مشتری‌هایی که دنبالِ درخشندگیِ سریع و بدونِ دستگاه‌ان."],
+  ["محلولِ نانو ضدخشِ شیشه", "راهی ساده برای افزایشِ ارزشِ خدماتِ کاروآش، بدونِ هزینه‌ی زیاد."],
+  ["اسپریِ نانو محافظِ چرم و صندلی", "برای ماشین‌های صفر یا صندلیِ چرمی، این یکی همیشه فروش می‌ره."],
+  ["نانو تمیزکننده و درخشان‌کننده‌ی تایر", "لمسِ نهایی‌ای که ظاهرِ کارِ کاروآش رو حرفه‌ای‌تر نشون می‌ده."],
+  ["پکِ کاملِ نانو (بدنه + شیشه)", "برای مشتریانی که می‌خوان یه‌بار همه‌چیز رو کامل انجام بدن، این پک ایده‌آله."],
+  ["نانو ضدبخارِ شیشه", "تو فصلِ سرد، این محصول یه نیازِ واقعیِ رانندگی رو حل می‌کنه."]
+];
+function setProductOfDay(idx){
+  const p = PRODUCTS[((idx % PRODUCTS.length) + PRODUCTS.length) % PRODUCTS.length];
+  document.getElementById('product-day-badge').textContent = 'پیشنهادِ امروز';
+  document.getElementById('product-day-name').textContent = p[0];
+  document.getElementById('product-day-pitch').textContent = p[1];
+}
+setProductOfDay(todayIndex);
+
+/* ---------------- سوالِ امروز ---------------- */
+const QUIZZES = [
+  { q:"مشتری می‌گه «باید فکر کنم»؛ بهترین واکنش چیه؟", options:["ولش کنی بره","بپرسی دقیقاً نگرانی‌اش چیه","فوراً تخفیف بدی"], correct:1, explain:"اکثرِ «باید فکر کنم»ها یعنی هنوز یه سوال بی‌جواب مونده؛ باید همون رو پیدا کنی." },
+  { q:"بهترین زمان برای پیشنهادِ تخفیف کِیه؟", options:["اولِ گفت‌وگو","وقتی مشتری ارزش رو فهمیده ولی هنوز مردده","همیشه، برای جلبِ رضایت"], correct:1, explain:"تخفیفِ زودهنگام، ارزشِ پیشنهاد رو زیر سوال می‌بره. اول ارزش را نشان بده، بعد اگر لازم شد تخفیف." },
+  { q:"وقتی مشتری «نه» می‌گه، بهترین کار چیه؟", options:["فوراً قطع‌کردنِ ارتباط","با آرامش دلیلِ واقعی‌اش رو بپرسی","اصرار و فشارِ بیشتر"], correct:1, explain:"نه‌شنیدن معمولاً پایانِ گفت‌وگو نیست؛ آغازِ فهمیدنِ نیازِ واقعیِ مشتریه." },
+  { q:"قوی‌ترین ابزارِ بازاریابیِ یک کسب‌وکارِ کوچک چیه؟", options:["تبلیغاتِ گرون‌قیمت","مشتریِ راضی که تو رو معرفی می‌کنه","شعارِ جذاب"], correct:1, explain:"مشتریِ راضی، ارزان‌ترین و قابلِ‌اعتمادترین کانالِ تبلیغاتیِ هر کسب‌وکاریه." },
+  { q:"برای شروعِ یک تماسِ فروش، بهترین کار چیه؟", options:["بلافاصله معرفیِ محصول","یک سوالِ خوب برای فهمیدنِ نیاز","صحبت درباره‌ی قیمت"], correct:1, explain:"سوال‌پرسیدن پیش از حرف‌زدن، نشون می‌ده به نیازِ واقعیِ مشتری اهمیت می‌دی." },
+  { q:"بهترین واکنش به اعتراضِ مشتری چیه؟", options:["دفاعی‌شدن و توضیحِ زیاد","با آرامش گوش‌دادن تا آخر","تغییرِ موضوع"], correct:1, explain:"گوش‌دادنِ آرام، اعتماد می‌سازه؛ عصبانیت یا دفاعی‌شدن، اون اعتماد رو از بین می‌بره." },
+  { q:"پیگیریِ بعد از فروش چه فایده‌ای داره؟", options:["هیچ فایده‌ای نداره","دری به‌سویِ فروشِ بعدی و معرفیِ مشتریِ جدید", "فقط وقت‌گیره"], correct:1, explain:"پیگیریِ خوب، رابطه رو زنده نگه می‌داره و مسیرِ فروش‌های بعدی رو باز می‌کنه." },
+  { q:"برای پیجِ اینستاگرامِ کسب‌وکار، کدوم محتوا بیشتر اعتماد می‌سازه؟", options:["فقط عکسِ محصول","پشتِ‌صحنه و تجربه‌ی واقعیِ مشتریان","کپشن‌های طولانیِ تبلیغاتی"], correct:1, explain:"محتوایِ واقعی و پشتِ‌صحنه، حسِ صداقت می‌ده و اعتمادِ مخاطب رو بیشتر جلب می‌کنه." }
+];
+function renderQuiz(idx){
+  const quiz = QUIZZES[((idx % QUIZZES.length) + QUIZZES.length) % QUIZZES.length];
+  const card = document.getElementById('quiz-card');
+  card.innerHTML = '';
+  const q = document.createElement('p');
+  q.className = 'quiz-question';
+  q.textContent = quiz.q;
+  card.appendChild(q);
+  const optsWrap = document.createElement('div');
+  optsWrap.className = 'quiz-options';
+  quiz.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option';
+    btn.type = 'button';
+    btn.textContent = opt;
+    btn.addEventListener('click', () => {
+      Array.from(optsWrap.children).forEach(b => b.disabled = true);
+      if(i === quiz.correct){
+        btn.classList.add('correct');
+      }else{
+        btn.classList.add('wrong');
+        optsWrap.children[quiz.correct].classList.add('correct');
+      }
+      const exp = document.createElement('p');
+      exp.className = 'quiz-explain';
+      exp.textContent = quiz.explain;
+      card.appendChild(exp);
+    });
+    optsWrap.appendChild(btn);
+  });
+  card.appendChild(optsWrap);
+}
+renderQuiz(todayIndex);
+
+/* ---------------- مهارت و فرصتِ پول‌ساز امروز ---------------- */
+const SKILLS = [
+  ["فریلنسینگِ نویسندگی","با نوشتنِ محتوا برای کسب‌وکارها (وبلاگ، شبکه‌ی اجتماعی، ایمیل) شروع کن؛ نیازی به سرمایه‌ی اولیه نداری، فقط مهارتِ نوشتن و پیگیری."],
+  ["فروشِ آنلاینِ محصولِ دیجیتال","یک مهارت که داری را به یک دوره یا فایلِ آموزشیِ کوتاه تبدیل کن و در پلتفرم‌های فروشِ آنلاین عرضه کن."],
+  ["مدیریتِ شبکه‌های اجتماعیِ کسب‌وکارهای محلی","کسب‌وکارهای کوچکِ اطرافت معمولاً وقت ندارند؛ پیشنهادِ مدیریتِ پیج‌شان را بده."],
+  ["طراحیِ گرافیک پایه","با ابزارهای رایگان طراحیِ لوگو و پست شروع کن و اولین مشتری‌هایت را از آشنایان بگیر."],
+  ["تدریسِ آنلاینِ یک مهارت","هر چیزی که خوب بلدی -از زبان تا نرم‌افزار- می‌تواند تبدیل به کلاسِ آنلاین شود."],
+  ["واسطه‌گریِ خرید و فروش","بین تقاضای بازار و عرضه‌ی موجود پل بزن؛ سودِ کارمزدی بدونِ نیاز به موجودیِ کالا."],
+  ["مشاوره در تخصصِ خودت","اگر در یک حوزه تجربه داری، ساعتِ مشاوره‌ات را بفروش."],
+  ["ویرایش و بازنویسیِ متن","کسب‌وکارها و دانشجوها همیشه به ویراستارِ خوب نیاز دارند."],
+  ["دراپ‌شیپینگِ هدفمند","روی یک بازارِ خاص و کوچک تمرکز کن، نه محصولِ عمومی؛ رقابت کمتر، سود بیشتر."],
+  ["ساختِ محتوایِ ویدیویی کوتاه","برای برندهای کوچک ویدیوهای تبلیغاتیِ کوتاه بساز؛ تقاضا بالاست."],
+  ["ترجمه‌ی تخصصی","اگر به دو زبان مسلطی، ترجمه‌ی متونِ تخصصی بازارِ پایداری دارد."],
+  ["مدیریتِ رویداد و جشن‌های کوچک","برنامه‌ریزیِ دقیق، مهارتی‌ست که خانواده‌ها برایش پول می‌دهند."],
+  ["فروشِ عکاسیِ استوک","اگر عکاسی را دوست داری، عکس‌هایت را در سایت‌های فروشِ عکس عرضه کن."],
+  ["ساختِ اپلیکیشنِ ساده یا ابزارِ کوچک","یک مشکلِ کوچکِ روزمره را با یک ابزارِ نرم‌افزاریِ ساده حل کن."],
+  ["کوچینگِ سلامتی و تناسب‌اندام","اگر منظم ورزش می‌کنی، تجربه‌ات را به برنامه‌ی آنلاین تبدیل کن."],
+  ["بازاریابیِ وابسته (افیلیت)","محصولاتی که خودت استفاده می‌کنی و به آن‌ها اعتماد داری را معرفی کن."],
+  ["نویسندگیِ رزومه و مصاحبه‌کوچی","به جویندگانِ کار در نوشتنِ رزومه‌ی حرفه‌ای کمک کن."],
+  ["پادکست یا محتوایِ صوتی","اگر در حوزه‌ای دانش داری، صدایت را دارایی کن."],
+  ["اجاره‌دادنِ دارایی‌های بلااستفاده","از وسیله‌ی نقلیه تا فضای خالی، هر دارایی می‌تواند درآمدزا شود."],
+  ["مشاوره‌ی چیدمانِ خانه یا سبک زندگی","سلیقه‌ی خوب، اگر سازمان‌دهی‌شده عرضه شود، مشتری دارد."],
+  ["مدیریتِ صفحاتِ فروشِ آنلاین دیگران","تجربه‌ی فروشِ اینترنتی‌ات را به کسب‌وکارهای دیگر بفروش."],
+  ["ساختِ قالب و ابزارِ آماده (تمپلیت)","یک بار بساز، بارها بفروش؛ از قالبِ اکسل تا طرحِ گرافیکی."],
+  ["مربی‌گریِ مهارت‌های نرم","مهارت‌هایی مثل مذاکره یا سخنرانی، تقاضای رو‌به‌رشدی دارند."],
+  ["بازسازی و فروشِ مجددِ کالا","کالاهای دست‌دوم را بهبود بده و با سود بفروش."],
+  ["نویسندگیِ خبرنامه‌ی تخصصی","اگر در حوزه‌ای به‌روز باشی، خبرنامه‌ی مشترکینِ پولی می‌تواند درآمدِ ثابت بسازد."],
+  ["مدیریتِ سفارش‌گیری برای رستوران‌های محلی","کسب‌وکارهای کوچکِ غذایی اغلب به کمکِ دیجیتال نیاز دارند."],
+  ["برگزاریِ کارگاه‌های آموزشیِ حضوری","دانشِ خودت را در قالبِ یک کارگاهِ کوتاه به افراد دیگر منتقل کن."],
+  ["فروشِ صنایعِ‌دستی یا محصولِ خانگی","اگر دستِ هنر داری، بازارِ محلی و آنلاین منتظرِ محصولِ توست."],
+  ["مشاوره‌ی مالیِ شخصیِ ساده","اگر در بودجه‌بندی و پس‌انداز مهارت داری، به دیگران کمک کن و از آن درآمد بساز."],
+  ["ساختِ کانال یا صفحه‌ی آموزشی","با انتشارِ پیوسته‌ی محتوای آموزشی، اعتبار و سپس فرصت‌های درآمدی می‌سازی."]
+];
+function setSkill(idx){
+  const [name, desc] = SKILLS[((idx % SKILLS.length)+SKILLS.length) % SKILLS.length];
+  document.getElementById('skill-name').textContent = name;
+  document.getElementById('skill-desc').textContent = desc;
+}
+setSkill(todayIndex);
+
+/* ---------------- داستان‌های موفقیتِ مالی ---------------- */
+const STORIES = [
+  ["سارا بلیکلی","بنیان‌گذارِ Spanx","با ۵٬۰۰۰ دلار پس‌اندازش و بدونِ تجربه‌ی طراحیِ لباس، ایده‌ای ساده برای جوراب‌شلواری را دنبال کرد. سال‌ها با رد شدنِ کارخانه‌ها روبه‌رو شد تا سرانجام یکی موافقت کرد، و برندش را به شرکتی چندمیلیارددلاری تبدیل کرد."],
+  ["هاوارد شولتز","مدیرِ سابقِ استارباکس","در خانواده‌ای کم‌درآمد در بروکلین بزرگ شد. با فروشِ ایده‌ی «تجربه‌ی قهوه» به‌جای صرفاً «فروشِ قهوه»، استارباکس را از چند شعبه به یک برندِ جهانی رساند."],
+  ["اوپرا وینفری","رسانه‌گر و کارآفرین","دورانِ کودکیِ سختی را گذراند و از رادیوهای محلی شروع کرد. با صداقت و پیوستگی در کارش، به یکی از تأثیرگذارترین و ثروتمندترین چهره‌های رسانه‌ای جهان تبدیل شد."],
+  ["جک ما","بنیان‌گذارِ علی‌بابا","بارها در آزمون‌های ورودی و استخدام رد شد. با اعتقاد به آینده‌ی اینترنت در چین، شرکتی کوچک راه‌اندازی کرد که به یکی از بزرگ‌ترین پلتفرم‌های تجارتِ الکترونیکِ جهان بدل شد."],
+  ["کلنل ساندرز","بنیان‌گذارِ KFC","در دهه‌ی ۶۰ زندگی‌اش، پس از سال‌ها شکست در مشاغلِ مختلف، دستورِ مرغِ سوخاری‌اش را دوره‌گردی کرد. با وجودِ ردشدن‌های فراوان، در نهایت شبکه‌ای جهانی بنا نهاد."],
+  ["جی.کی. رولینگ","نویسنده‌ی هری‌پاتر","در دورانی که به‌سختی امرارمعاش می‌کرد، دست‌نوشته‌اش بارها توسط ناشران رد شد. پشتکارش او را به یکی از پرفروش‌ترین نویسندگانِ تاریخ تبدیل کرد."],
+  ["والت دیزنی","بنیان‌گذارِ دیزنی","در اولین کسب‌وکارش ورشکست شد و از یک روزنامه به‌خاطرِ «کمبودِ خلاقیت» اخراج شد. با پافشاری بر رویایش، امپراتوریِ سرگرمیِ دیزنی را بنا کرد."],
+  ["ایندرا نویی","مدیرِ سابقِ پپسی‌کو","از هند به آمریکا مهاجرت کرد و با کار سخت در نقش‌های مختلف، به یکی از قدرتمندترین مدیرانِ زن در دنیای کسب‌وکار تبدیل شد."],
+  ["استیو جابز","بنیان‌گذارِ اپل","از دانشگاه انصراف داد، شرکتش را خودش تأسیس کرد و سپس از آن اخراج شد. سال‌ها بعد به اپل بازگشت و آن را به یکی از باارزش‌ترین شرکت‌های جهان تبدیل کرد."],
+  ["چیمامانداآدیچیه، به‌عنوانِ نمونه‌ی کارآفرینانِ فرهنگی","نویسنده و کارآفرینِ فرهنگی","بدونِ حمایتِ مالیِ بزرگ، با نوشتن و سخنرانیِ مداوم، برندِ شخصی‌اش را در سطحِ جهانی ساخت و از آن مسیرِ درآمدیِ پایدار پدید آورد."]
+];
+function setStories(idx){
+  const list = document.getElementById('story-list');
+  list.innerHTML = '';
+  for(let i=0;i<2;i++){
+    const s = STORIES[((idx+i) % STORIES.length + STORIES.length) % STORIES.length];
+    const div = document.createElement('div');
+    div.className = 'story-card';
+    div.innerHTML = `<p class="story-name">${s[0]}</p><p class="story-tag">${s[1]}</p><p class="story-text">${s[2]}</p>`;
+    list.appendChild(div);
+  }
+}
+setStories(todayIndex);
+
+/* ---------------- روتینِ روزانه‌ی افرادِ موفق ---------------- */
+const ROUTINES = [
+  { person:"تیم کوک", role:"مدیرعاملِ اپل", timeline:[
+    ["۳:۴۵ بامداد","بیدار می‌شود و ایمیل‌ها را مرور می‌کند"],
+    ["۴:۳۰","ورزشِ باشگاهی، پیش از شلوغیِ روز"],
+    ["۵:۰۰","مطالعه‌ی اخبار و گزارش‌های صنعت"],
+    ["۹:۰۰","جلسات و تصمیم‌های کلیدیِ روز"],
+    ["۲۰:۰۰","مرورِ روز و برنامه‌ریزیِ فردا"]
+  ]},
+  { person:"میشل اوباما", role:"نویسنده و فعالِ اجتماعی", timeline:[
+    ["۴:۳۰ بامداد","بیدار می‌شود، پیش از بیدار شدنِ خانواده"],
+    ["۴:۳۰ تا ۵:۳۰","تمرینِ بدنسازی، بدونِ بهانه‌ی روزمرگی"],
+    ["۶:۰۰","آماده‌شدن و صبحانه با خانواده"],
+    ["۹:۰۰","کارِ متمرکز روی پروژه‌ها و نوشتن"],
+    ["۲۱:۰۰","زمانِ آرام برای مطالعه پیش از خواب"]
+  ]},
+  { person:"بنجامین فرانکلین", role:"دانشمند و بنیان‌گذار", timeline:[
+    ["۵:۰۰ بامداد","بیدار می‌شود و از خود می‌پرسد «امروز چه کارِ خوبی انجام دهم؟»"],
+    ["۵:۰۰ تا ۸:۰۰","مطالعه، برنامه‌ریزیِ روز و صبحانه"],
+    ["۸:۰۰ تا ۱۲:۰۰","کارِ اصلی و متمرکز"],
+    ["۱۴:۰۰ تا ۱۸:۰۰","ادامه‌ی کار و مرورِ حساب‌ها"],
+    ["۲۲:۰۰","پرسشِ پایانِ روز: «امروز چه کارِ خوبی انجام دادم؟» سپس خواب"]
+  ]},
+  { person:"ایندرا نویی", role:"مدیرِ سابقِ پپسی‌کو", timeline:[
+    ["۴:۰۰ بامداد","بیدار می‌شود و ایمیل‌های شب را مرور می‌کند"],
+    ["۵:۳۰","آماده‌شدن برای دفتر، پیش از ترافیکِ صبح"],
+    ["۷:۰۰","شروعِ جلسات و تماس‌های بین‌المللی"],
+    ["۱۹:۰۰","بازگشت به خانه و وقتِ خانواده"],
+    ["۲۳:۰۰","مرورِ کوتاهِ روز پیش از خواب"]
+  ]},
+  { person:"جف بزوس", role:"بنیان‌گذارِ آمازون", timeline:[
+    ["۷:۰۰ صبح","بیدار می‌شود، بدونِ زنگ‌ساعت و بدونِ عجله"],
+    ["۷:۰۰ تا ۹:۰۰","صبحانه با خانواده، بدونِ جلسه یا کار"],
+    ["۱۰:۰۰","اولین جلسه‌ی «تصمیمِ سخت» روز، وقتی ذهن تازه است"],
+    ["۱۷:۰۰","پایانِ کاری و زمانِ شخصی"],
+    ["۲۲:۰۰","خواب زودهنگام برای هشت ساعت استراحت"]
+  ]},
+  { person:"اپیکتتوس", role:"فیلسوفِ رواقی", timeline:[
+    ["سپیده‌دم","بیدار می‌شود و از خود می‌پرسد چه چیزی در کنترلش هست"],
+    ["صبح","مطالعه و تمرینِ فکری بر اصولِ رواقی"],
+    ["روز","انجامِ وظیفه، بدونِ گلایه از آنچه در کنترلش نیست"],
+    ["غروب","مرورِ روز: کجا خوب عمل کردم، کجا نه"],
+    ["شب","شکرگزاری و خواب با ذهنی آرام"]
+  ]},
+  { person:"ریچارد برانسون", role:"بنیان‌گذارِ ویرجین", timeline:[
+    ["۵:۴۵ بامداد","بیدار می‌شود، اغلب در جزیره‌ی شخصی‌اش"],
+    ["۶:۰۰","ورزش -کایت‌سرفینگ، تنیس یا دویدن"],
+    ["۷:۳۰","صبحانه و مرورِ اولویت‌های روز"],
+    ["۹:۰۰","جلسات و کارِ روی پروژه‌های تازه"],
+    ["۲۲:۰۰","زمانِ خانواده و خواب"]
+  ]},
+  { person:"مِیا آنجلو", role:"نویسنده و شاعر", timeline:[
+    ["۵:۳۰ بامداد","بیدار می‌شود و به یک اتاقِ ساده‌ی هتل می‌رود تا بنویسد"],
+    ["۶:۰۰ تا ۱۲:۰۰","نوشتنِ متمرکز، بدونِ تلفن و بدونِ مزاحمت"],
+    ["۱۲:۳۰","بازگشت به خانه و ناهار"],
+    ["بعدازظهر","ویرایشِ آنچه صبح نوشته"],
+    ["شب","مطالعه و استراحت"]
+  ]}
+];
+function setRoutine(idx){
+  const r = ROUTINES[((idx % ROUTINES.length)+ROUTINES.length) % ROUTINES.length];
+  document.getElementById('routine-person').textContent = r.person;
+  document.getElementById('routine-role').textContent = '— ' + r.role;
+  const box = document.getElementById('routine-timeline');
+  box.innerHTML = '';
+  r.timeline.forEach(([time, act]) => {
+    const div = document.createElement('div');
+    div.className = 'timeline-item';
+    div.innerHTML = `<span class="timeline-time">${time}</span><span class="timeline-activity">${act}</span>`;
+    box.appendChild(div);
+  });
+}
+setRoutine(todayIndex);
+
+/* ---------------- برنامه‌ی ورزشِ صبحگاهی ---------------- */
+const WORKOUTS = [
+  { badge:"روزِ سبک — بدنِ نرم و بیدار", items:[
+    ["کشش و چرخشِ گردن و شانه","۱ دقیقه"],
+    ["جامپینگ‌جک","۳۰ ثانیه × ۲"],
+    ["اسکوات بدونِ وزنه","۱۵ تکرار × ۲"],
+    ["پلانک","۲۰ ثانیه × ۲"],
+    ["تنفسِ عمیق و کشش نهایی","۱ دقیقه"]
+  ]},
+  { badge:"روزِ متوسط — انرژی برای تصمیم‌های بزرگ", items:[
+    ["دویدن در جا","۱ دقیقه"],
+    ["شنا سوئدی","۱۰ تکرار × ۲"],
+    ["لانج (هر پا)","۱۰ تکرار × ۲"],
+    ["پلانک","۳۰ ثانیه × ۲"],
+    ["برپی","۸ تکرار × ۲"],
+    ["کشش نهایی","۱ دقیقه"]
+  ]},
+  { badge:"روزِ فشرده — برای شروعِ قدرتمند", items:[
+    ["جامپینگ‌جک","۴۵ ثانیه × ۲"],
+    ["شنا سوئدی","۱۵ تکرار × ۲"],
+    ["اسکوات پرشی","۱۲ تکرار × ۲"],
+    ["پلانک","۴۵ ثانیه × ۲"],
+    ["برپی","۱۲ تکرار × ۲"],
+    ["دویدن در جا با زانوی بالا","۱ دقیقه"],
+    ["کشش نهایی","۱ تا ۲ دقیقه"]
+  ]}
+];
+function setWorkout(idx){
+  const w = WORKOUTS[((idx % WORKOUTS.length)+WORKOUTS.length) % WORKOUTS.length];
+  document.getElementById('workout-badge').textContent = w.badge;
+  const list = document.getElementById('workout-list');
+  list.innerHTML = '';
+  w.items.forEach(([name, detail]) => {
+    const div = document.createElement('div');
+    div.className = 'workout-item';
+    div.innerHTML = `<span class="workout-name">${name}</span><span class="workout-detail">${detail}</span>`;
+    list.appendChild(div);
+  });
+}
+setWorkout(todayIndex);
+
+/* ---------------- برنامه‌ریزی برای موفقیت ---------------- */
+const PLANNER_TIPS = [
+  "قانونِ <b>یک‌سومی</b>: هدفِ سال را به هدف‌های ماهانه بشکن، هدفِ ماه را به هفتگی، و هدفِ هفته را به یک کارِ مشخصِ امروز.",
+  "هدفِ خوب، <b>SMART</b> است: مشخص، قابلِ اندازه‌گیری، دست‌یافتنی، مرتبط، و دارایِ مهلتِ زمانی.",
+  "هر شب، پیش از خواب، مهم‌ترین کارِ فردا را بنویس؛ صبح با تصمیمِ آماده شروع کن، نه با سردرگمی.",
+  "اگر هدف بزرگ می‌ترساندت، فقط به «قدمِ بعدی» فکر کن، نه به کلِ مسیر.",
+  "هدفی که ننوشته‌ای، فقط یک آرزوست؛ هدفی که نوشته‌ای، یک برنامه است.",
+  "هر هفته یک‌بار، ۱۰ دقیقه بنشین و بپرس: «آیا کارهای این هفته‌ام مرا به هدفِ بزرگ نزدیک کرد؟»",
+  "اولویت یعنی انتخابِ آگاهانه؛ اگر همه‌چیز اولویت باشد، هیچ‌چیز اولویت نیست."
+];
+function setPlannerTip(idx){
+  document.getElementById('planner-tip').innerHTML = '💡 ' + PLANNER_TIPS[((idx % PLANNER_TIPS.length)+PLANNER_TIPS.length) % PLANNER_TIPS.length];
+}
+setPlannerTip(todayIndex);
+
+const PLANNER_KEY = 'sepidedam-planner-v1';
+const PLANNER_FIELDS = ['plan-today','plan-week','plan-month','plan-year'];
+function loadPlanner(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(PLANNER_KEY) || '{}');
+    PLANNER_FIELDS.forEach(id => { if(saved[id]) document.getElementById(id).value = saved[id]; });
+  }catch(e){ /* بدونِ ذخیره‌ی قبلی */ }
+}
+function savePlanner(){
+  const data = {};
+  PLANNER_FIELDS.forEach(id => { data[id] = document.getElementById(id).value; });
+  try{
+    localStorage.setItem(PLANNER_KEY, JSON.stringify(data));
+    const status = document.getElementById('planner-status');
+    status.textContent = '✅ ذخیره شد';
+    setTimeout(() => { status.textContent = ''; }, 2500);
+  }catch(e){
+    document.getElementById('planner-status').textContent = 'ذخیره ممکن نشد.';
+  }
+}
+document.getElementById('planner-save-btn').addEventListener('click', savePlanner);
+loadPlanner();
+
+/* ---------------- اخبار زنده با چند منبعِ پشتیبان ---------------- */
+const NEWS_FALLBACK_WORLD = [
+  {title:"داوطلبان یک شهر، پارکی متروکه را به باغی سرسبز برای همه تبدیل کردند.", src:"نمونه خبر مثبت"},
+  {title:"دانش‌آموزان یک مدرسه، طرحی برای کاهش زباله‌ی پلاستیکی محله‌شان اجرا کردند.", src:"نمونه خبر مثبت"},
+  {title:"یک تیم پزشکی داوطلب، هزاران نفر را در مناطق دورافتاده معاینه‌ی رایگان کرد.", src:"نمونه خبر مثبت"},
+  {title:"همسایه‌ها با کمکِ هم، خانه‌ی سالمندی تنها را در فصلِ سرما گرم نگه داشتند.", src:"نمونه خبر مثبت"},
+  {title:"یک اختراعِ ساده، دسترسی به آبِ سالم را برای روستایی دورافتاده ممکن کرد.", src:"نمونه خبر مثبت"},
+  {title:"گروهی از داوطلبان، ساحلی آلوده را در یک روز پاک‌سازی کردند.", src:"نمونه خبر مثبت"},
+  {title:"یک کتابخانه‌ی سیار، کتاب را به کودکانِ مناطقِ محروم رساند.", src:"نمونه خبر مثبت"},
+  {title:"جوانانِ یک محله، باغِ سبزیجاتِ مشترکی برای کمک به خانواده‌های نیازمند ساختند.", src:"نمونه خبر مثبت"}
+];
+const NEWS_FALLBACK_BIZ = [
+  {title:"یک کسب‌وکار کوچک خانگی، با تمرکز بر خدمت به مشتری، ظرف یک سال رشد ده‌برابری داشت.", src:"نمونه خبر کسب‌وکار"},
+  {title:"استارتاپی با ایده‌ای ساده برای حل یک مشکلِ روزمره، جذب سرمایه‌ی موفق داشت.", src:"نمونه خبر کسب‌وکار"},
+  {title:"یک برند نوپا با تمرکز بر شفافیتِ قیمت‌گذاری، اعتمادِ مشتریان را جلب کرد.", src:"نمونه خبر کسب‌وکار"},
+  {title:"یک تیمِ کوچکِ سه‌نفره، با فروشِ آنلاین توانست بازارِ محلی را به بین‌المللی گسترش دهد.", src:"نمونه خبر کسب‌وکار"},
+  {title:"کارآفرینی جوان، با اشتراک‌گذاریِ رایگانِ دانشش، مخاطبانی وفادار و سپس مشتریانی پایدار ساخت.", src:"نمونه خبر کسب‌وکار"}
+];
+const NEWS_FALLBACK_GROWTH = [
+  {title:"تحقیقی نشان داد نوشتنِ روزانه‌ی اهداف، احتمالِ رسیدن به آن‌ها را افزایش می‌دهد.", src:"نمونه خبرِ رشدِ فردی"},
+  {title:"یک کوچِ شغلی توضیح داد چگونه عادت‌های کوچکِ صبحگاهی، بهره‌وریِ روز را بالا می‌برند.", src:"نمونه خبرِ رشدِ فردی"},
+  {title:"مطالعه‌ای، رابطه‌ی شکرگزاریِ روزانه با کاهشِ استرس را تأیید کرد.", src:"نمونه خبرِ رشدِ فردی"},
+  {title:"گزارشی از رشدِ صنعتِ آموزشِ آنلاینِ مهارت‌های کسب‌وکار منتشر شد.", src:"نمونه خبرِ رشدِ فردی"}
+];
+
+function renderNews(containerId, items, statusId, statusText, retryFn){
+  const statusEl = document.getElementById(statusId);
+  statusEl.innerHTML = '';
+  statusEl.appendChild(document.createTextNode(statusText));
+  if(retryFn){
+    const btn = document.createElement('button');
+    btn.className = 'retry-btn';
+    btn.textContent = '↻ تلاشِ دوباره';
+    btn.onclick = retryFn;
+    statusEl.appendChild(btn);
+  }
+  const list = document.getElementById(containerId);
+  list.innerHTML = '';
+  items.forEach((item, i) => {
+    const a = document.createElement(item.link ? 'a' : 'div');
+    a.className = 'news-item';
+    if(item.link){ a.href = item.link; a.target = '_blank'; a.rel = 'noopener'; }
+    a.innerHTML = `<div class="news-num">${i+1}</div><div><p class="news-title">${item.title}</p><p class="news-src">${item.src||''}</p></div>`;
+    list.appendChild(a);
+  });
+}
+
+async function fetchFeedRobust(rssUrl){
+  const attempts = [
+    async () => {
+      const r = await fetch('https://api.rss2json.com/v1/api.json?count=20&rss_url=' + encodeURIComponent(rssUrl));
+      if(!r.ok) throw new Error('rss2json failed');
+      const data = await r.json();
+      if(data.status !== 'ok' || !data.items || data.items.length === 0) throw new Error('rss2json empty');
+      return data.items.map(it => ({ title: (it.title||'').trim(), link: it.link||'' })).filter(i=>i.title);
+    },
+    async () => {
+      const r = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(rssUrl));
+      if(!r.ok) throw new Error('allorigins failed');
+      const text = await r.text();
+      const xml = new DOMParser().parseFromString(text, 'text/xml');
+      const items = Array.from(xml.querySelectorAll('item')).map(node => ({
+        title: node.querySelector('title')?.textContent?.trim() || '',
+        link: node.querySelector('link')?.textContent?.trim() || ''
+      })).filter(i=>i.title);
+      if(items.length===0) throw new Error('allorigins empty');
+      return items;
+    },
+    async () => {
+      const r = await fetch('https://corsproxy.io/?' + encodeURIComponent(rssUrl));
+      if(!r.ok) throw new Error('corsproxy failed');
+      const text = await r.text();
+      const xml = new DOMParser().parseFromString(text, 'text/xml');
+      const items = Array.from(xml.querySelectorAll('item')).map(node => ({
+        title: node.querySelector('title')?.textContent?.trim() || '',
+        link: node.querySelector('link')?.textContent?.trim() || ''
+      })).filter(i=>i.title);
+      if(items.length===0) throw new Error('corsproxy empty');
+      return items;
+    }
+  ];
+  for(const attempt of attempts){
+    try{ const items = await attempt(); if(items.length>0) return items; }
+    catch(e){ /* روشِ بعدی */ }
+  }
+  return null;
+}
+
+async function loadFeed(rssUrl, containerId, statusId, liveLabel, fallback, maxItems){
+  renderNews(containerId, fallback, statusId, 'نمونه‌های امروز — در حال به‌روزرسانی با اخبارِ تازه…', null);
+  const items = await fetchFeedRobust(rssUrl);
+  if(items){
+    renderNews(containerId, items.slice(0,maxItems).map(i=>({...i, src: liveLabel})), statusId,
+      `به‌روزرسانی زنده — ${Math.min(items.length,maxItems)} خبرِ تازه (به‌انگلیسی):`,
+      () => loadFeed(rssUrl, containerId, statusId, liveLabel, fallback, maxItems));
+  }else{
+    renderNews(containerId, fallback, statusId,
+      'اتصال زنده در حال حاضر برقرار نشد؛ این‌ها نمونه‌اند — با دکمه‌ی کنار همین متن دوباره امتحان کنید:',
+      () => loadFeed(rssUrl, containerId, statusId, liveLabel, fallback, maxItems));
+  }
+}
+
+loadFeed('https://www.goodnewsnetwork.org/feed/', 'news-list-1', 'news-status-1', 'Good News Network', NEWS_FALLBACK_WORLD, 12);
+loadFeed('https://www.entrepreneur.com/latest.rss', 'news-list-2', 'news-status-2', 'Entrepreneur', NEWS_FALLBACK_BIZ, 10);
+loadFeed('https://www.success.com/feed/', 'news-list-3', 'news-status-3', 'Success.com', NEWS_FALLBACK_GROWTH, 8);
+</script>
+</body>
+</html>
