@@ -464,10 +464,30 @@
       <a class="price-link" href="https://www.tgju.org/profile/silver_999" target="_blank" rel="noopener">مشاهده لحظه‌ای ↗</a>
     </div>
   </div>
-  <div style="display:flex; align-items:center; gap:10px; margin:-14px 0 28px;">
-    <button class="retry-btn" id="live-refresh-btn" type="button">🔄 به‌روزرسانیِ دستی</button>
+  <div style="display:flex; align-items:center; gap:10px; margin:-14px 0 12px; flex-wrap:wrap;">
+    <button class="retry-btn" id="live-refresh-btn" type="button">🔄 به‌روزرسانیِ زنده (تلاشِ دوباره)</button>
+    <button class="retry-btn" id="quick-edit-toggle" type="button">✏️ ثبتِ دستیِ نرخِ امروز</button>
     <span class="price-updated" id="live-updated-time" style="margin:0;"></span>
   </div>
+
+  <div class="price-domestic" id="quick-edit-panel" style="display:none; margin-bottom:28px;">
+    <div style="padding:18px 20px 4px; font-size:.85rem; color:#8a7960; line-height:1.9;">
+      اگر به‌روزرسانیِ خودکار جواب نداد (قطعی، فیلترینگ یا محدودیتِ وب‌سرویس)، همین‌جا نرخِ امروز را دستی وارد کن؛ همین‌جا در مرورگرت ذخیره می‌شود و از دفعه‌ی بعد خودش نمایش داده می‌شود — دیگر لازم نیست کد را باز کنی.
+    </div>
+    <div class="price-calc-grid" style="padding:8px 20px;">
+      <div class="price-calc-field"><label>دلار آزاد (تومان)</label><input type="number" id="qe-usd" /></div>
+      <div class="price-calc-field"><label>یورو (تومان)</label><input type="number" id="qe-eur" /></div>
+      <div class="price-calc-field"><label>طلای ۱۸ عیار (تومان/گرم)</label><input type="number" id="qe-gold18" /></div>
+      <div class="price-calc-field"><label>مثقال طلا (تومان)</label><input type="number" id="qe-mesghal" /></div>
+      <div class="price-calc-field"><label>سکه امامی (تومان)</label><input type="number" id="qe-coin" /></div>
+      <div class="price-calc-field"><label>نقره ۹۹۹ (تومان/گرم)</label><input type="number" id="qe-silver" /></div>
+    </div>
+    <div style="padding:4px 20px 20px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+      <button class="price-calc-btn" id="qe-save-btn" type="button" style="width:auto; padding:11px 24px;">ذخیره و اعمال</button>
+      <span class="price-updated" id="qe-save-status" style="margin:0;"></span>
+    </div>
+  </div>
+
 
   <div class="section-label">🧮 محاسبه‌گرِ حبابِ طلا، سکه و نقره</div>
   <p class="section-sub">عددهای بازارِ داخلی را با نرخِ روزِ tgju.org به‌روز کن و دکمه‌ی محاسبه را بزن.</p>
@@ -948,6 +968,58 @@
     }
     const refreshBtn = document.getElementById('live-refresh-btn');
     if (refreshBtn) refreshBtn.addEventListener('click', fetchLive);
+
+    /* ---- پنلِ ثبتِ دستیِ نرخِ امروز (پشتیبانِ همیشگی، مستقلِ از وضعیتِ API) ---- */
+    const qeToggle = document.getElementById('quick-edit-toggle');
+    const qePanel = document.getElementById('quick-edit-panel');
+    const qeIds = ['usd','eur','gold18','mesghal','coin','silver'];
+    if (qeToggle && qePanel) {
+      qeToggle.addEventListener('click', () => {
+        const opening = qePanel.style.display === 'none';
+        qePanel.style.display = opening ? 'block' : 'none';
+        if (opening) {
+          // پیش‌پرکردنِ فیلدها با همان عددی که الان روی صفحه نمایش داده می‌شود
+          qeIds.forEach(id => {
+            const displayEl = document.getElementById('live-' + id);
+            const input = document.getElementById('qe-' + id);
+            if (displayEl && input) {
+              const raw = toEnglishDigits(displayEl.textContent).replace(/[~,٬\s]/g, '');
+              const n = parseFloat(raw);
+              if (!isNaN(n)) input.value = n;
+            }
+          });
+        }
+      });
+    }
+    const qeSaveBtn = document.getElementById('qe-save-btn');
+    if (qeSaveBtn) {
+      qeSaveBtn.addEventListener('click', () => {
+        const values = {};
+        qeIds.forEach(id => {
+          const input = document.getElementById('qe-' + id);
+          if (input && input.value !== '') {
+            const n = parseFloat(input.value);
+            if (!isNaN(n) && n > 0) values[id] = n;
+          }
+        });
+        if (Object.keys(values).length === 0) {
+          const st = document.getElementById('qe-save-status');
+          if (st) st.textContent = '⚠️ حداقل یک فیلد را پر کن.';
+          return;
+        }
+        applyValues(values, false);
+        saveCache(values);
+        setUpdatedTime(new Date(), 'cache');
+        setStatus('✏️ نرخ‌ها به‌صورتِ دستی ثبت شدند.');
+        const dollarInput = document.getElementById('p-inDollar');
+        if (dollarInput && values.usd) {
+          dollarInput.value = Math.round(values.usd);
+          dollarInput.dataset.autoFilled = 'true';
+        }
+        const st = document.getElementById('qe-save-status');
+        if (st) st.textContent = '✅ ذخیره شد — از این پس همیشه همین عدد نمایش داده می‌شود تا دوباره ویرایش کنی.';
+      });
+    }
 
     // نمایشِ فوریِ آخرین مقدارِ ذخیره‌شده (اگر باشد) تا کاربر منتظرِ خالی‌بودن نماند
     const cached = loadCache();
