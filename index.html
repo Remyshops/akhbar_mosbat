@@ -371,7 +371,8 @@
   <div class="top-tab-panel" id="tab-panel-price">
 
   <div class="section-label">💵 قیمتِ لحظه‌ایِ بازار</div>
-  <p class="price-updated">طلا، نقره، نفت، بیت‌کوین و یورو/دلار زنده‌اند؛ بازارِ داخلی آخرین قیمتِ ثبت‌شده است — برای نرخِ لحظه‌ای روی «مشاهده لحظه‌ای» بزن.</p>
+  <p class="price-updated">طلا، نقره، نفت، بیت‌کوین و یورو/دلار (نمودارها) زنده‌اند؛ بازارِ داخلی هم اکنون خودکار به‌روزرسانی می‌شود.</p>
+  <p class="price-updated" id="live-status-line">⏳ در حالِ دریافتِ نرخِ لحظه‌ای…</p>
 
   <div class="price-grid">
     <div class="price-card">
@@ -434,34 +435,38 @@
   <div class="price-domestic">
     <div class="price-row">
       <div class="price-name">دلار آزاد</div>
-      <div class="price-value">۱۹۹,۹۰۰<small>تومان</small></div>
+      <div class="price-value"><span id="live-usd">۱۹۹,۹۰۰</span><small id="live-usd-note">تومان</small></div>
       <a class="price-link" href="https://www.tgju.org/profile/price_dollar_rl" target="_blank" rel="noopener">مشاهده لحظه‌ای ↗</a>
     </div>
     <div class="price-row">
       <div class="price-name">یورو</div>
-      <div class="price-value">۲۳۳,۶۱۰<small>تومان</small></div>
+      <div class="price-value"><span id="live-eur">۲۳۳,۶۱۰</span><small id="live-eur-note">تومان</small></div>
       <a class="price-link" href="https://www.tgju.org/profile/price_eur" target="_blank" rel="noopener">مشاهده لحظه‌ای ↗</a>
     </div>
     <div class="price-row">
       <div class="price-name">طلای ۱۸ عیار <small>هر گرم</small></div>
-      <div class="price-value">۲۱,۷۴۶,۴۰۰<small>تومان</small></div>
+      <div class="price-value"><span id="live-gold18">۲۱,۷۴۶,۴۰۰</span><small id="live-gold18-note">تومان</small></div>
       <a class="price-link" href="https://www.tgju.org/profile/geram18" target="_blank" rel="noopener">مشاهده لحظه‌ای ↗</a>
     </div>
     <div class="price-row">
       <div class="price-name">مثقال طلا</div>
-      <div class="price-value">۹۴,۲۰۵,۰۰۰<small>تومان</small></div>
+      <div class="price-value"><span id="live-mesghal">۹۴,۲۰۵,۰۰۰</span><small id="live-mesghal-note">تومان</small></div>
       <a class="price-link" href="https://www.tgju.org/profile/mesghal" target="_blank" rel="noopener">مشاهده لحظه‌ای ↗</a>
     </div>
     <div class="price-row">
       <div class="price-name">سکه امامی</div>
-      <div class="price-value">۲۱۸,۰۴۰,۰۰۰<small>تومان</small></div>
+      <div class="price-value"><span id="live-coin">۲۱۸,۰۴۰,۰۰۰</span><small id="live-coin-note">تومان</small></div>
       <a class="price-link" href="https://www.tgju.org/profile/sekee" target="_blank" rel="noopener">مشاهده لحظه‌ای ↗</a>
     </div>
     <div class="price-row">
       <div class="price-name">نقره ۹۹۹ <small>هر گرم</small></div>
-      <div class="price-value">~۴۰۰,۰۰۰<small>تومان (تقریبی)</small></div>
+      <div class="price-value"><span id="live-silver">~۴۰۰,۰۰۰</span><small id="live-silver-note">تومان (تقریبی)</small></div>
       <a class="price-link" href="https://www.tgju.org/profile/silver_999" target="_blank" rel="noopener">مشاهده لحظه‌ای ↗</a>
     </div>
+  </div>
+  <div style="display:flex; align-items:center; gap:10px; margin:-14px 0 28px;">
+    <button class="retry-btn" id="live-refresh-btn" type="button">🔄 به‌روزرسانیِ دستی</button>
+    <span class="price-updated" id="live-updated-time" style="margin:0;"></span>
   </div>
 
   <div class="section-label">🧮 محاسبه‌گرِ حبابِ طلا، سکه و نقره</div>
@@ -505,7 +510,7 @@
     </div>
   </div>
 
-  <p class="disclaimer">⚠️ قیمتِ بیت‌کوین به‌دلار جهانی‌ست، نه نرخِ خریدوفروشِ صرافی‌های داخلی. اعدادِ بخشِ «بازارِ داخلی» (دلار، طلا، سکه) به‌صورتِ خودکار و لحظه‌ای به‌روز نمی‌شوند؛ برای نرخِ لحظه‌ای، روی «مشاهده لحظه‌ای» هر ردیف بزنید.</p>
+  <p class="disclaimer">⚠️ قیمتِ بیت‌کوین به‌دلار جهانی‌ست، نه نرخِ خریدوفروشِ صرافی‌های داخلی. اعدادِ بخشِ «بازارِ داخلی» (دلار، طلا، سکه) اکنون هر بار که صفحه باز می‌شود (و هر چند دقیقه یک‌بار) به‌صورتِ خودکار از یک وب‌سرویسِ رایگان به‌روز می‌شوند. اگر اتصال قطع بود، آخرین عددِ دریافت‌شده نمایش داده می‌شود؛ برای تضمینِ نرخِ لحظه‌ای همیشه می‌توانید روی «مشاهده لحظه‌ای» هر ردیف هم بزنید.</p>
 
   </div>
 
@@ -765,6 +770,196 @@
 </div>
 
 <script>
+/* ---------------- قیمتِ لحظه‌ایِ بازارِ داخلی (دلار، یورو، طلا، سکه، نقره) ---------------- */
+(function(){
+  // کلیدِ رایگانِ عمومیِ BrsApi (سقف ۱۵۰۰ ریکوئست در روز، بینِ همه‌ی کاربرانِ رایگان مشترک است).
+  // برای پایداریِ بیشتر، یک کلیدِ رایگانِ اختصاصی از اینجا بگیر و همین‌جا جایگزین کن:
+  // https://brsapi.ir/tsetmc-exchange-free-bourse-api-key-request/
+  const BRSAPI_KEY = 'FreeSV0E1LSgB9RDjuf0QorSLViX8pPG';
+  const RAW_API_URL = 'https://BrsApi.ir/Api/Market/Gold_Currency.php?key=' + BRSAPI_KEY;
+  // BrsApi هدرِ CORS برای درخواستِ مستقیمِ مرورگر نمی‌فرستد؛ به همین خاطر چند مسیرِ پراکسیِ رایگان
+  // را به‌ترتیب امتحان می‌کنیم تا مرورگر بتواند جواب را بخواند.
+  const FETCH_ATTEMPTS = [
+    RAW_API_URL,
+    'https://api.allorigins.win/raw?url=' + encodeURIComponent(RAW_API_URL),
+    'https://corsproxy.io/?url=' + encodeURIComponent(RAW_API_URL),
+    'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(RAW_API_URL)
+  ];
+  const CACHE_KEY = 'sepideh_live_rates_v1';
+  const REFRESH_MS = 5 * 60 * 1000; // هر ۵ دقیقه
+
+  const ROWS = [
+    { id:'usd',     symbols:['usd'],           names:['دلار آمریکا','دلار آزاد'], exclude:['کانادا','استرالیا','هنگ','سنگاپور'] },
+    { id:'eur',     symbols:['eur'],           names:['یورو'],                    exclude:[] },
+    { id:'gold18',  symbols:['gold_18k','geram18','ir_gold_18k'], names:['طلای 18 عیار','طلای ۱۸ عیار','طلا ۱۸'], exclude:[] },
+    { id:'mesghal', symbols:['gold_mesghal','ir_gold_mesghal'],   names:['مثقال طلا','مثقال'], exclude:[] },
+    { id:'coin',    symbols:['coin_emami','ir_coin_emami'],       names:['سکه امامی'], exclude:[] },
+    { id:'silver',  symbols:['silver_999','ir_silver_999'],       names:['نقره 999','نقره ۹۹۹'], exclude:[] }
+  ];
+
+  function toEnglishDigits(str){
+    return String(str).replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
+  }
+  function toFaNumber(n){
+    return Math.round(n).toLocaleString('fa-IR');
+  }
+  function parsePrice(v){
+    if (typeof v === 'number') return v;
+    if (typeof v === 'string') {
+      const cleaned = toEnglishDigits(v).replace(/[,٬\s]/g, '');
+      const n = parseFloat(cleaned);
+      return isNaN(n) ? null : n;
+    }
+    return null;
+  }
+
+  // به‌صورت بازگشتی در کلِ ساختارِ JSON می‌گردد و اولین آیتمی که با معیارها جور دربیاید را برمی‌گرداند
+  function findMatch(node, rule){
+    let result = null;
+    (function walk(n){
+      if (result || !n) return;
+      if (Array.isArray(n)) { n.forEach(walk); return; }
+      if (typeof n === 'object') {
+        const symbol = String(n.symbol || n.code || '').toLowerCase();
+        const name = String(n.name || n.name_en || n.title || '').toLowerCase();
+        const price = parsePrice(n.price ?? n.value ?? n.close);
+        if (price !== null) {
+          const symbolHit = rule.symbols.some(s => symbol === s.toLowerCase());
+          const nameHit = rule.names.some(nm => name.includes(nm.toLowerCase()));
+          const excluded = rule.exclude.some(ex => name.includes(ex.toLowerCase()));
+          if ((symbolHit || nameHit) && !excluded) { result = { node: n, price }; return; }
+        }
+        Object.values(n).forEach(walk);
+      }
+    })(node);
+    return result;
+  }
+
+  // اگر قیمت به ریال بود (عدد خیلی بزرگ) به تومان تبدیل می‌کنیم
+  function normalizeToToman(id, price){
+    if (id === 'usd' || id === 'eur') {
+      if (price > 3000000) return price / 10; // ریال -> تومان
+      return price;
+    }
+    // طلا/سکه/نقره معمولاً همین الان هم مقادیرِ چند میلیونی/ده‌میلیونیِ تومانی هستند
+    if (price > 2000000000) return price / 10;
+    return price;
+  }
+
+  function setRow(id, price, live){
+    const el = document.getElementById('live-' + id);
+    const note = document.getElementById('live-' + id + '-note');
+    if (!el) return;
+    el.textContent = (id === 'silver' ? '~' : '') + toFaNumber(price);
+    if (note) note.textContent = live ? 'تومان' : (note.textContent.includes('تقریبی') ? 'تومان (تقریبی)' : 'تومان');
+  }
+
+  function saveCache(values){
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ values, time: Date.now() })); } catch(e){}
+  }
+  function loadCache(){
+    try {
+      const raw = localStorage.getItem(CACHE_KEY);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch(e){ return null; }
+  }
+
+  function applyValues(values, live){
+    ROWS.forEach(r => {
+      if (values[r.id] != null) setRow(r.id, values[r.id], live);
+    });
+  }
+
+  function setStatus(text){
+    const el = document.getElementById('live-status-line');
+    if (el) el.textContent = text;
+  }
+  function setUpdatedTime(d, source){
+    const el = document.getElementById('live-updated-time');
+    if (!el) return;
+    const timeStr = d.toLocaleTimeString('fa-IR', { hour:'2-digit', minute:'2-digit' });
+    el.textContent = (source === 'live' ? '✅ آخرین به‌روزرسانیِ زنده: ' : '💾 آخرین مقدارِ ذخیره‌شده: ') + timeStr;
+  }
+
+  function fetchWithTimeout(url, ms){
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error('timeout')), ms);
+    });
+    return Promise.race([ fetch(url, { cache:'no-store' }), timeoutPromise ]);
+  }
+
+  async function fetchLive(){
+    setStatus('⏳ در حالِ دریافتِ نرخِ لحظه‌ای…');
+    let lastErr = null;
+    let data = null;
+
+    for (const url of FETCH_ATTEMPTS) {
+      try {
+        const res = await fetchWithTimeout(url, 8000);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        data = await res.json();
+        break; // موفق شد، دیگر سراغِ مسیرِ بعدی نرو
+      } catch (e) {
+        lastErr = e;
+        data = null;
+      }
+    }
+
+    try {
+      if (!data) throw lastErr || new Error('هیچ مسیری جواب نداد');
+      const values = {};
+      ROWS.forEach(r => {
+        const m = findMatch(data, r);
+        if (m) values[r.id] = normalizeToToman(r.id, m.price);
+      });
+
+      if (Object.keys(values).length === 0) throw new Error('هیچ نمادی پیدا نشد');
+
+      applyValues(values, true);
+      saveCache(values);
+      setUpdatedTime(new Date(), 'live');
+      setStatus('✅ قیمت‌های بازارِ داخلی زنده و به‌روز است.');
+
+      // همگام‌سازیِ ورودیِ محاسبه‌گرِ حباب با نرخِ دلارِ زنده (اگر کاربر خودش دستکاری نکرده)
+      const dollarInput = document.getElementById('p-inDollar');
+      if (dollarInput && values.usd && (dollarInput.dataset.autoFilled !== 'false')) {
+        dollarInput.value = Math.round(values.usd);
+        dollarInput.dataset.autoFilled = 'true';
+      }
+    } catch (err) {
+      console.warn('دریافتِ قیمتِ زنده ناموفق بود:', err);
+      const cached = loadCache();
+      if (cached && cached.values) {
+        applyValues(cached.values, false);
+        setUpdatedTime(new Date(cached.time), 'cache');
+        setStatus('⚠️ اتصال به وب‌سرویس برقرار نشد؛ آخرین مقدارِ ذخیره‌شده نمایش داده می‌شود.');
+      } else {
+        setStatus('⚠️ اتصال به وب‌سرویس برقرار نشد؛ برای نرخِ لحظه‌ای روی «مشاهده لحظه‌ای» بزن.');
+      }
+    }
+  }
+
+  // اگر کاربر دستی در فیلدِ دلارِ محاسبه‌گر چیزی تایپ کرد، دیگر خودکار رویش ننویس
+  document.addEventListener('DOMContentLoaded', () => {
+    const dollarInput = document.getElementById('p-inDollar');
+    if (dollarInput) {
+      dollarInput.addEventListener('input', () => { dollarInput.dataset.autoFilled = 'false'; });
+    }
+    const refreshBtn = document.getElementById('live-refresh-btn');
+    if (refreshBtn) refreshBtn.addEventListener('click', fetchLive);
+
+    // نمایشِ فوریِ آخرین مقدارِ ذخیره‌شده (اگر باشد) تا کاربر منتظرِ خالی‌بودن نماند
+    const cached = loadCache();
+    if (cached && cached.values) {
+      applyValues(cached.values, false);
+      setUpdatedTime(new Date(cached.time), 'cache');
+    }
+    fetchLive();
+    setInterval(fetchLive, REFRESH_MS);
+  });
+})();
+
 /* ---------------- تاریخ ---------------- */
 (function(){
   try{
